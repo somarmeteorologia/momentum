@@ -1,0 +1,334 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Not expect visual regression 1`] = `
+.c2 {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.c4 {
+  display: inline-block;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  line-height: 0;
+}
+
+.c7 {
+  display: inline-block;
+}
+
+.c15 {
+  width: 100%;
+  height: 1px;
+  border: none;
+  background-color: #d7dcf2;
+  margin: 10px 0;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 15px 10px;
+  background-color: #d7dcf2;
+}
+
+.c6 {
+  border-radius: 25px;
+  height: 50px;
+  line-height: 50px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  margin: 0 auto;
+  width: calc(100% - 20px);
+}
+
+.c6:hover {
+  background-color: #fff;
+}
+
+.c6:hover path,
+.c6:hover span {
+  color: #133BEC;
+}
+
+.c14 {
+  padding: 0 15px;
+}
+
+.c0 {
+  background-color: #f1f3fA;
+  height: 100%;
+  position: relative;
+}
+
+.c16 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c8 {
+  display: inline-block;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c11 {
+  border-radius: 1.5rem;
+  background-color: #133BEC;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  -webkit-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
+  height: 15px;
+  min-width: 24px;
+  padding: 0 3px;
+}
+
+.c12 {
+  border-radius: 50%;
+  background-color: #fff;
+  height: 10px;
+  width: 10px;
+}
+
+.c13 {
+  font-family: Inter,sans-serif;
+  color: #080B19;
+  cursor: pointer;
+  font-size: 0.75rem;
+  margin-left: 8px;
+}
+
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c10 {
+  border: 0;
+  -webkit-clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.c5 {
+  font-family: Inter,sans-serif;
+  font-weight: 600;
+  display: block;
+  color: #19244d;
+  font-size: 0.875rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c17 {
+  font-family: Inter,sans-serif;
+  font-weight: 500;
+  display: block;
+  color: #080B19;
+  font-size: 0.875rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+<div
+  class="c0"
+  data-testid="container"
+  style="width: 270px;"
+>
+  <div
+    class="c1"
+  >
+    <div
+      class="c2"
+      height="20"
+      width="20"
+    >
+      <div
+        class="c3"
+      />
+    </div>
+    <div
+      class="c4"
+      color="#19244d"
+      display="block"
+    >
+      <span
+        class="c5"
+        color="#19244d"
+        display="block"
+      >
+        Monitoramento
+      </span>
+    </div>
+  </div>
+  <div
+    class="c6"
+    data-testid="open-cars"
+  >
+    <div
+      class="c7"
+      data-interable="interable"
+    >
+      <div
+        class="c8"
+      >
+        <label
+          class="c9"
+          for="cars"
+        >
+          <input
+            checked=""
+            class="c10"
+            id="cars"
+            type="checkbox"
+          />
+          <div
+            class="c11"
+          >
+            <div
+              class="c12"
+            />
+          </div>
+          <span
+            class="c13"
+          >
+            Cars
+          </span>
+        </label>
+      </div>
+    </div>
+    <div
+      class="c4"
+      height="12"
+      width="12"
+    >
+      <div
+        class="c3"
+      />
+    </div>
+  </div>
+  <div
+    class="c14"
+  >
+    <hr
+      class="c15"
+    />
+  </div>
+  <div
+    class="c6"
+    data-testid="open-newsletter"
+  >
+    <div
+      class="c16"
+    >
+      <div
+        class="c2"
+        height="20"
+        width="20"
+      >
+        <div
+          class="c3"
+        />
+      </div>
+      <div
+        class="c4"
+        display="block"
+      >
+        <span
+          class="c17"
+          display="block"
+        >
+          Boletins
+        </span>
+      </div>
+    </div>
+    <div
+      class="c4"
+      height="12"
+      width="12"
+    >
+      <div
+        class="c3"
+      />
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,9 @@
+.DS_STORE
+node_modules
+storybook-static
+.env
+build
+.vscode
+
+yarn-error.log
+lerna-debug.log
