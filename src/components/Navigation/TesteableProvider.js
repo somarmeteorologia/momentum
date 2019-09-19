@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 
 import { Navigation } from '@components/Navigation'
 import { Switch } from '@components/Switch'
@@ -81,7 +81,7 @@ const defaultStructure = [
     id: 'monitoring',
     type: Type.Category,
     title: ({ details, description }) => (
-      <>
+      <Fragment>
         <Icon name="home" right={10} width={20} height={20} color={details} />
         <Text
           weight={Text.weight.bold}
@@ -90,7 +90,7 @@ const defaultStructure = [
         >
           Monitoramento
         </Text>
-      </>
+      </Fragment>
     ),
     children: [
       {
@@ -99,7 +99,6 @@ const defaultStructure = [
         onPrevent: () => console.log('prevented'),
         title: ({ getter, setter }) => (
           <Interable>
-            <>
               <Switch
                 id="cars"
                 label="Cars"
@@ -107,7 +106,6 @@ const defaultStructure = [
                 active={getter('cars')}
                 onChange={() => setter('cars', !getter('cars'))}
               />
-            </>
           </Interable>
         ),
         type: Type.Group,
@@ -133,7 +131,7 @@ const defaultStructure = [
                 parent: 'volkswagen',
                 title: ({ getter, setter }) => (
                   <Control>
-                    <>
+                    <Fragment>
                       <Switch
                         id="1.6"
                         label="1.6"
@@ -149,7 +147,7 @@ const defaultStructure = [
                         active={getter('1.0')}
                         onChange={() => setter('1.0', !getter('1.0'))}
                       />
-                    </>
+                    </Fragment>
                   </Control>
                 ),
                 type: Type.Item,

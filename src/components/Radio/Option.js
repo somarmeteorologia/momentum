@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { ifProp, switchProp, prop } from 'styled-tools'
@@ -157,7 +157,7 @@ export function Option({
   }
 
   return (
-    <>
+    <Fragment>
       {checkable.hasOwnProperty(id) && (
         <Box {...props}>
           <Container
@@ -194,7 +194,7 @@ export function Option({
           </Container>
         </Box>
       )}
-    </>
+    </Fragment>
   )
 }
 

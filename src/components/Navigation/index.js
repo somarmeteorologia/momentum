@@ -62,7 +62,6 @@ export const Navigation = ({ height, toOpen, onToggled }) => {
   const containerRef = useRef(null)
 
   return (
-    <>
       <Container
         data-testid="container"
         ref={containerRef}
@@ -101,7 +100,6 @@ export const Navigation = ({ height, toOpen, onToggled }) => {
           </Toggleable>
         )}
       </Container>
-    </>
   )
 }
 

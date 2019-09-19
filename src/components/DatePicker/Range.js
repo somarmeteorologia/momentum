@@ -74,7 +74,6 @@ export const Range = memo(
     }, [range])
 
     return (
-      <>
         <DayPicker
           className="Range"
           numberOfMonths={2}
@@ -91,7 +90,6 @@ export const Range = memo(
           navbarElement={navbar}
           {...props}
         />
-      </>
     )
   }
 )

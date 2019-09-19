@@ -75,7 +75,7 @@ function Nested({ parent, id, onBack, height }) {
   }, [])
 
   return (
-    <>
+    <Fragment>
       <Back onClick={toParent(parent)} isShadowed={isShadowed}>
         <Icon name="left" right={10} width={12} height={12} />
         <Text
@@ -97,7 +97,7 @@ function Nested({ parent, id, onBack, height }) {
           )
         })}
       </Container>
-    </>
+    </Fragment>
   )
 }
 

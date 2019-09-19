@@ -1,4 +1,4 @@
-import React, { memo, useContext } from 'react'
+import React, { memo, useContext, Fragment } from 'react'
 import styled, { css, ThemeContext } from 'styled-components'
 import PropTypes from 'prop-types'
 import posed from 'react-pose'
@@ -76,7 +76,7 @@ const Animated = posed(styled.div`
 })
 
 const renderContent = (title, toClose, drawer, children) => (
-  <>
+  <Fragment>
     <Header>
       <h3 className="title">{title}</h3>
 
@@ -88,7 +88,7 @@ const renderContent = (title, toClose, drawer, children) => (
       />
     </Header>
     <Content>{children}</Content>
-  </>
+  </Fragment>
 )
 
 export const Drawer = memo(

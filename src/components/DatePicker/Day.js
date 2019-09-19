@@ -22,7 +22,6 @@ export const Day = memo(
     }, [date])
 
     return (
-      <>
         <DayPicker
           onDayClick={handleDayChange}
           showOutsideDays
@@ -34,7 +33,6 @@ export const Day = memo(
           navbarElement={navbar}
           {...props}
         />
-      </>
     )
   }
 )

@@ -1,4 +1,4 @@
-import React, { memo, useContext } from 'react'
+import React, { memo, useContext, Fragment } from 'react'
 import styled, { css, ThemeContext } from 'styled-components'
 import PropTypes from 'prop-types'
 import { switchProp, ifProp, prop } from 'styled-tools'
@@ -100,12 +100,12 @@ export const Tooltip = memo(
         arrowType
         className={appearence}
         content={
-          <>
+          <Fragment>
             {header && (
               <Header appearence={appearence}>{header({ color })}</Header>
             )}
             <Body size={size}>{body({ color })}</Body>
-          </>
+          </Fragment>
         }
       >
         <span>{children}</span>

@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState, useContext } from 'react'
+import React, { memo, useEffect, useState, useContext, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { switchProp, ifProp, prop } from 'styled-tools'
 import styled, { css, ThemeContext } from 'styled-components'
@@ -154,17 +154,17 @@ export const Button = memo(
         {...props}
       >
         {loading ? (
-          <>
+          <Fragment>
             <Icon>
               <Iconable name={Iconable.name.loading} color={color} />
             </Icon>
             Loading
-          </>
+          </Fragment>
         ) : (
-          <>
+          <Fragment>
             {icon && <Icon>{icon(color)}</Icon>}
             {children}
-          </>
+          </Fragment>
         )}
       </Content>
     )

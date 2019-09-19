@@ -81,7 +81,6 @@ export const Week = memo(
     }, [week])
 
     return (
-      <>
         <DayPicker
           locale="pt-br"
           months={MONTHS}
@@ -96,7 +95,6 @@ export const Week = memo(
           navbarElement={navbar}
           {...props}
         />
-      </>
     )
   }
 )
