@@ -29,7 +29,7 @@ export const Radio = memo(
     const childrens = Children.map(children, child => {
       if (!isValidOption(child)) {
         throw new Error(
-          'TypeError: Radio component children are invalid, please use Option component.'
+          'TypeError: Radio component children is invalid, please use Option.'
         )
       }
 

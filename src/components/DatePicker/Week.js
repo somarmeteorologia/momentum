@@ -19,6 +19,9 @@ export const Week = memo(
       to: null
     })
 
+    /**
+     * @todo Melhorar essa função
+     */
     const getWeekDays = weekStart => {
       const days = [weekStart]
 

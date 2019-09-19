@@ -51,18 +51,41 @@ storiesOf(`${GROUPS.COMPONENTS}|Button`, module)
   ))
   .add('With icon', () => (
     <>
-      <Button icon={color => <Icon name={Icon.name.download} width={22} height={22} color={color} />}>
+      <Button
+        icon={color => (
+          <Icon
+            name={Icon.name.download}
+            width={22}
+            height={22}
+            color={color}
+          />
+        )}
+      >
         Primary
       </Button>
       <Button
         appearence={Button.appearence.stroke}
-        icon={color => <Icon name={Icon.name.download} width={22} height={22} color={color} />}
+        icon={color => (
+          <Icon
+            name={Icon.name.download}
+            width={22}
+            height={22}
+            color={color}
+          />
+        )}
       >
         Stroke
       </Button>
       <Button
         appearence={Button.appearence.flat}
-        icon={color => <Icon name={Icon.name.download} width={22} height={22} color={color} />}
+        icon={color => (
+          <Icon
+            name={Icon.name.download}
+            width={22}
+            height={22}
+            color={color}
+          />
+        )}
       >
         Flat
       </Button>
@@ -71,5 +94,14 @@ storiesOf(`${GROUPS.COMPONENTS}|Button`, module)
   .add('Loading', () => (
     <>
       <Button loading={true} />
+    </>
+  ))
+  .add('Group', () => (
+    <>
+      <Button.Group>
+        <Button>Primary</Button>
+        <Button>Secondary</Button>
+        <Button>Tertiary</Button>
+      </Button.Group>
     </>
   ))

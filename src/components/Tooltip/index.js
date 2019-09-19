@@ -126,8 +126,8 @@ Tooltip.propTypes = {
   tailPosition: PropTypes.oneOf(['bottom', 'top', 'left', 'right']),
   trigger: PropTypes.oneOf(['click', 'mouseenter']),
   size: PropTypes.oneOf(['small', 'default', 'large']),
-  header: PropTypes.node,
-  body: PropTypes.node.isRequired
+  header: PropTypes.func,
+  body: PropTypes.func.isRequired
 }
 
 Tooltip.trigger = {

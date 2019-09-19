@@ -1,7 +1,17 @@
 import { tokens } from '@components/Tokens'
 
 const { font, colors, border, zindex, animations, shadow } = tokens
-const { white, ebony, cornflower, red, green, yellow, gray, ciano } = colors
+const {
+  white,
+  ebony,
+  cornflower,
+  red,
+  green,
+  yellow,
+  gray,
+  ciano,
+  blue
+} = colors
 
 const withCommons = theme => ({
   colors,
@@ -36,7 +46,8 @@ export const Theme = {
         primary: ebony.twenty,
         stroke: 'transparent',
         flat: 'transparent',
-        disabled: ebony.twenty
+        disabled: ebony.twenty,
+        group: blue.fifty
       },
       text: {
         primary: white.hundred,
@@ -48,7 +59,8 @@ export const Theme = {
         primary: 'none',
         stroke: `1px solid ${ebony.sixty}`,
         flat: 'none',
-        disabled: 'none'
+        disabled: 'none',
+        group: ebony.twenty
       },
       hover: {
         primary: { bg: cornflower.fifty, text: white.hundred },
@@ -345,7 +357,8 @@ export const Theme = {
         primary: ebony.ninetySix,
         stroke: 'transparent',
         flat: 'transparent',
-        disabled: ebony.ninetySix
+        disabled: ebony.ninetySix,
+        group: blue.fifty
       },
       text: {
         primary: ebony.zero,
@@ -357,7 +370,8 @@ export const Theme = {
         primary: 'none',
         stroke: `1px solid ${ebony.sixty}`,
         flat: 'none',
-        disabled: 'none'
+        disabled: 'none',
+        group: ebony.eighty
       },
       hover: {
         primary: { bg: cornflower.fifty, text: white.hundred },

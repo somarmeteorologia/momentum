@@ -1,7 +1,7 @@
 import React, { useContext, useState, useRef } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import PropTypes from 'prop-types'
-import { prop, ifProp } from 'styled-tools'
+import { prop, ifProp, theme } from 'styled-tools'
 import posed from 'react-pose'
 
 import { Icon } from '@components/Icon'
@@ -10,13 +10,13 @@ import Interable from './Interable'
 import Control from './Control'
 import Separator from './Separator'
 
-import { Provider } from './Context'
+import { Provider, Context } from './Context'
 import Switcher from './Switcher'
 import Type from './Type'
 import { useInterable } from './utils'
 
 const Container = posed(styled.div`
-  background-color: ${prop('theme.navigation.bg.primary')};
+  background-color: ${theme('navigation.bg.primary')};
   height: ${ifProp('height', prop('height'), '100%')};
   position: relative;
 `)({
@@ -38,30 +38,23 @@ const Toggleable = styled.div`
   width: 23px;
   height: 23px;
   cursor: pointer;
-  border: 1px solid ${prop('theme.navigation.toggle.secondary')};
-  background-color: ${prop('theme.navigation.toggle.primary')};
+  border: 1px solid ${theme('navigation.toggle.secondary')};
+  background-color: ${theme('navigation.toggle.primary')};
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: ${prop('theme.border.radius.fifty')};
+  border-radius: ${theme('border.radius.fifty')};
   position: absolute;
   right: -10px;
   top: 122px;
-  z-index: ${prop('theme.zindex.above')};
+  z-index: ${theme('zindex.above')};
 
   &:hover {
-    background-color: ${prop('theme.navigation.toggle.tertiary')};
+    background-color: ${theme('navigation.toggle.tertiary')};
   }
 `
 
-export const Navigation = ({
-  height,
-  toOpen,
-  defaultStructure,
-  defaultInterables,
-  onInterable,
-  onToggled
-}) => {
+export const Navigation = ({ height, toOpen, onToggled }) => {
   const [toggled, setToggled] = useState(false)
   const [hasNavigationHover, setHasNavigationHover] = useState(false)
   const [hasToggleHover, setHasToggleHover] = useState(false)
@@ -70,52 +63,44 @@ export const Navigation = ({
 
   return (
     <>
-      <Provider
-        value={{
-          defaultStructure,
-          defaultInterables,
-          onInterable
-        }}
+      <Container
+        data-testid="container"
+        ref={containerRef}
+        height={height}
+        onMouseEnter={() => setHasNavigationHover(true)}
+        onMouseLeave={() => setHasNavigationHover(false)}
+        initialPose={animations.visible}
+        pose={toggled ? animations.collapsed : animations.visible}
       >
-        <Container
-          data-testid="container"
-          ref={containerRef}
-          height={height}
-          onMouseEnter={() => setHasNavigationHover(true)}
-          onMouseLeave={() => setHasNavigationHover(false)}
-          initialPose={animations.visible}
-          pose={toggled ? animations.collapsed : animations.visible}
-        >
-          {!toggled && (
-            <Switcher
-              toOpen={toOpen}
-              height={containerRef.current && containerRef.current.offsetHeight}
+        {!toggled && (
+          <Switcher
+            toOpen={toOpen}
+            height={containerRef.current && containerRef.current.offsetHeight}
+          />
+        )}
+        {hasNavigationHover && (
+          <Toggleable
+            data-testid="toggleable"
+            onMouseEnter={() => setHasToggleHover(true)}
+            onMouseLeave={() => setHasToggleHover(false)}
+            onClick={() => {
+              setToggled(!toggled)
+              onToggled(!toggled)
+            }}
+          >
+            <Icon
+              name={toggled ? 'right' : 'left'}
+              width={10}
+              height={10}
+              color={
+                hasToggleHover
+                  ? navigation.toggle.secondary
+                  : navigation.toggle.tertiary
+              }
             />
-          )}
-          {hasNavigationHover && (
-            <Toggleable
-              data-testid="toggleable"
-              onMouseEnter={() => setHasToggleHover(true)}
-              onMouseLeave={() => setHasToggleHover(false)}
-              onClick={() => {
-                setToggled(!toggled)
-                onToggled(!toggled)
-              }}
-            >
-              <Icon
-                name={toggled ? 'right' : 'left'}
-                width={10}
-                height={10}
-                color={
-                  hasToggleHover
-                    ? navigation.toggle.secondary
-                    : navigation.toggle.tertiary
-                }
-              />
-            </Toggleable>
-          )}
-        </Container>
-      </Provider>
+          </Toggleable>
+        )}
+      </Container>
     </>
   )
 }
@@ -127,9 +112,10 @@ Navigation.Title = Title
 Navigation.Control = Control
 
 Navigation.useInterable = useInterable
+Navigation.Context = Context
+Navigation.Provider = Provider
 
 Navigation.defaultProps = {
-  onInterable: () => {},
   onToggled: () => {},
   isReady: true
 }
@@ -137,47 +123,5 @@ Navigation.defaultProps = {
 Navigation.propTypes = {
   toOpen: PropTypes.func,
   height: PropTypes.string,
-  onInterable: PropTypes.func,
-  onToggled: PropTypes.func,
-  defaultInterables: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      interables: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.string.isRequired,
-          value: PropTypes.any.isRequired
-        })
-      )
-    })
-  ).isRequired,
-  defaultStructure: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.func.isRequired,
-      type: PropTypes.oneOf(['category']).isRequired,
-      children: PropTypes.arrayOf(
-        PropTypes.shape({
-          parent: PropTypes.string.isRequired,
-          id: PropTypes.string.isRequired,
-          title: PropTypes.func.isRequired,
-          type: PropTypes.oneOf(['group', 'item']).isRequired,
-          prevent: PropTypes.func,
-          onPrevent: PropTypes.func,
-          isOpen: PropTypes.bool,
-          children: PropTypes.arrayOf(
-            PropTypes.shape({
-              parent: PropTypes.string.isRequired,
-              id: PropTypes.string.isRequired,
-              title: PropTypes.func.isRequired,
-              type: PropTypes.oneOf(['group', 'item']).isRequired,
-              prevent: PropTypes.func,
-              onPrevent: PropTypes.func,
-              isOpen: PropTypes.bool,
-              children: PropTypes.array
-            })
-          )
-        })
-      )
-    })
-  )
+  onToggled: PropTypes.func
 }

@@ -5,6 +5,8 @@ import styled, { css, ThemeContext } from 'styled-components'
 
 import { Icon as Iconable } from '@components/Icon'
 
+import Group from './Group'
+
 const Icon = styled.div`
   margin-right: 12px;
   display: flex;
@@ -107,6 +109,12 @@ const Content = styled.button`
   }
 `
 
+const types = {
+  primary: 'primary',
+  stroke: 'stroke',
+  flat: 'flat'
+}
+
 export const Button = memo(
   ({
     appearence,
@@ -122,12 +130,6 @@ export const Button = memo(
   }) => {
     const { button } = useContext(ThemeContext)
     const [color, setColor] = useState('')
-
-    const types = {
-      primary: 'primary',
-      stroke: 'stroke',
-      flat: 'flat'
-    }
 
     const setHoverColor = () =>
       types[appearence] && setColor(button.hover[appearence].text)
@@ -168,6 +170,8 @@ export const Button = memo(
     )
   }
 )
+
+Button.Group = Group
 
 Button.displayName = 'Button'
 

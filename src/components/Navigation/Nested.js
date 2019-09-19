@@ -62,15 +62,15 @@ function Nested({ parent, id, onBack, height }) {
     setStructure(setOpenById(parent)(structure))
   }
 
-  const handleScroll = event =>
+  const onScroll = event =>
     event.target.scrollTop > 0 ? setIsShadowed(true) : setIsShadowed(false)
 
   useEffect(() => {
     const component = document.getElementById('container')
-    component.addEventListener('scroll', handleScroll)
+    component.addEventListener('scroll', onScroll)
 
     return () => {
-      component.removeEventListener('scroll', handleScroll)
+      component.removeEventListener('scroll', onScroll)
     }
   }, [])
 

@@ -84,7 +84,7 @@ export const DataTable = memo(({ data, columns, size, ...props }) => {
       onMouseEnter={() => setHover({ bg: datatable.bg.columnHover, accessor })}
       onMouseLeave={() => setHover({ bg: null, accessor: null })}
     >
-      {Header}
+      {Header}{' '}
       {sortable && (
         <Icon
           name="arrow"
@@ -111,13 +111,13 @@ export const DataTable = memo(({ data, columns, size, ...props }) => {
     }),
     columns: column.columns
       ? column.columns.map(subColumn => ({
-          ...subColumn,
-          Header: renderHeader(subColumn),
-          headerStyle: getStyle(subColumn),
-          getProps: () => ({
-            style: getStyle(subColumn)
-          })
-        }))
+        ...subColumn,
+        Header: renderHeader(subColumn),
+        headerStyle: getStyle(subColumn),
+        getProps: () => ({
+          style: getStyle(subColumn)
+        })
+      }))
       : null
   }))
 

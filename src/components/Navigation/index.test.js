@@ -3,8 +3,9 @@ import { render, fireEvent } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 
 import { Theme } from '@components/Theme'
+import { Navigation } from '@components/Navigation'
 
-import Testeable from './Testeable'
+import TesteableProvider from './TesteableProvider'
 
 const NEWSLETTER_TITLE = 'Boletins'
 const NEWSLETTER_CONTENT = 'Content from newsletter'
@@ -13,9 +14,11 @@ const TO_BACK = 'Voltar'
 
 const CARS_CONTENT = 'Ford'
 
-const withProvider = ({ ...props }) => (
+const withProvider = ({ toOpen }) => (
   <ThemeProvider theme={Theme.light}>
-    <Testeable {...props} />
+    <TesteableProvider>
+      <Navigation toOpen={toOpen} />
+    </TesteableProvider>
   </ThemeProvider>
 )
 

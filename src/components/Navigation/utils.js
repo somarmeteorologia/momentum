@@ -46,7 +46,13 @@ export const getChildrensById = (array, id) =>
 export const notEqualsById = id => object => object.id !== id
 export const equalsById = id => object => object.id === id
 
-export const useInterable = ({ interables, setInterables }) => id => {
+export const useInterable = dependencies => id => {
+  if (!dependencies) {
+    return []
+  }
+
+  const { interables, setInterables } = dependencies
+
   const interable = interables.find(equalsById(id))
 
   const getter = id => {

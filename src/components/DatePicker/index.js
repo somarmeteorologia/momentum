@@ -1,7 +1,7 @@
-import React, { memo, useState, useContext, useEffect } from 'react'
+import React, { memo, useState, useContext, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled, { ThemeContext } from 'styled-components'
-import { prop } from 'styled-tools'
+import { prop, ifProp, theme } from 'styled-tools'
 import { rgba } from 'polished'
 
 import 'react-day-picker/lib/style.css'
@@ -21,8 +21,8 @@ const Navbarable = styled.div`
     top: 18px;
     height: 24px;
     width: 24px;
-    border-radius: ${prop('theme.border.radius.four')};
-    background-color: ${prop('theme.datepicker.bg.primary')};
+    border-radius: ${theme('border.radius.four')};
+    background-color: ${theme('datepicker.bg.primary')};
     cursor: pointer;
   }
 
@@ -36,20 +36,22 @@ const Navbarable = styled.div`
 `
 
 const Container = styled.div`
-  border-radius: ${prop('theme.border.radius.four')};
-  font-family: ${prop('theme.font.family.inter')};
-  box-shadow: ${prop('theme.datepicker.shadow.primary')};
+  border-radius: ${theme('border.radius.four')};
+  font-family: ${theme('font.family.inter')};
+  box-shadow: ${theme('datepicker.shadow.primary')};
+  position: absolute;
+  left: ${prop('left')}px;
   background: linear-gradient(
     180deg,
-    ${prop('theme.datepicker.bg.secondary')} 0%,
-    ${prop('theme.datepicker.bg.secondary')} 30%,
-    ${prop('theme.datepicker.bg.primary')} 30%
+    ${theme('datepicker.bg.secondary')} 0%,
+    ${theme('datepicker.bg.secondary')} 30%,
+    ${theme('datepicker.bg.primary')} 30%
   );
 
   .Range {
     .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-      font-weight: ${prop('theme.font.weight.bold')};
-      color: ${prop('theme.datepicker.text.primary')};
+      font-weight: ${theme('font.weight.bold')};
+      color: ${theme('datepicker.text.primary')};
       background: ${({ theme }) =>
         rgba(theme.datepicker.bg.secondary.toString(), 0.2)} !important;
     }
@@ -59,37 +61,37 @@ const Container = styled.div`
     }
 
     .DayPicker-Day--start {
-      border-radius: ${prop('theme.border.radius.twentyFour')} 0 0
-        ${prop('theme.border.radius.twentyFour')} !important;
+      border-radius: ${theme('border.radius.twentyFour')} 0 0
+        ${theme('border.radius.twentyFour')} !important;
     }
 
     .DayPicker-Day--end {
-      border-radius: 0 ${prop('theme.border.radius.twentyFour')}
-        ${prop('theme.border.radius.twentyFour')} 0 !important;
+      border-radius: 0 ${theme('border.radius.twentyFour')}
+        ${theme('border.radius.twentyFour')} 0 !important;
     }
   }
 
   .DayPicker-Day {
-    font-weight: ${prop('theme.font.weight.light')};
-    font-size: ${prop('theme.font.size.twelve')};
-    color: ${prop('theme.datepicker.text.primary')};
+    font-weight: ${theme('font.weight.light')};
+    font-size: ${theme('font.size.twelve')};
+    color: ${theme('datepicker.text.primary')};
     max-width: 35px;
     width: 35px;
     height: 35px;
   }
 
   .DayPicker-Day--outside {
-    color: ${prop('theme.datepicker.text.off')};
+    color: ${theme('datepicker.text.off')};
   }
 
   .DayPicker-Day--today {
-    color: ${prop('theme.datepicker.text.primary')};
+    color: ${theme('datepicker.text.primary')};
   }
 
   .DayPicker-Day--selected {
-    background-color: ${prop('theme.datepicker.bg.secondary')} !important;
-    border-radius: ${prop('theme.border.radius.fifty')};
-    font-weight: ${prop('theme.font.weight.bold')};
+    background-color: ${theme('datepicker.bg.secondary')} !important;
+    border-radius: ${theme('border.radius.fifty')};
+    font-weight: ${theme('font.weight.bold')};
 
     &:focus {
       outline: none;
@@ -98,8 +100,8 @@ const Container = styled.div`
 
   .DayPicker:not(.DayPicker--interactionDisabled)
     .DayPicker-Day:not(.DayPicker-Day--hoverRange):not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
-    font-weight: ${prop('theme.font.weight.bold')};
-    border-radius: ${prop('theme.border.radius.fifty')} !important;
+    font-weight: ${theme('font.weight.bold')};
+    border-radius: ${theme('border.radius.fifty')} !important;
     background: ${({ theme }) =>
       rgba(theme.datepicker.bg.secondary.toString(), 0.2)} !important;
   }
@@ -110,60 +112,64 @@ const Container = styled.div`
 
   .DayPicker-Day--hoverRange {
     border-radius: 0;
-    font-weight: ${prop('theme.font.weight.bold')};
-    color: ${prop('theme.datepicker.text.primary')};
+    font-weight: ${theme('font.weight.bold')};
+    color: ${theme('datepicker.text.primary')};
     background: ${({ theme }) =>
       rgba(theme.datepicker.bg.secondary.toString(), 0.2)} !important;
   }
 
   .DayPicker-Day--hoverRange:first-of-type,
   .DayPicker-Day--selected:first-of-type {
-    border-radius: ${prop('theme.border.radius.twentyFour')} 0 0
-      ${prop('theme.border.radius.twentyFour')} !important;
+    border-radius: ${theme('border.radius.twentyFour')} 0 0
+      ${theme('border.radius.twentyFour')} !important;
   }
 
   .DayPicker-Day--hoverRange:last-of-type,
   .DayPicker-Day--selected:last-of-type {
-    border-radius: 0 ${prop('theme.border.radius.twentyFour')}
-      ${prop('theme.border.radius.twentyFour')} 0 !important;
+    border-radius: 0 ${theme('border.radius.twentyFour')}
+      ${theme('border.radius.twentyFour')} 0 !important;
   }
 
   .DayPicker-Caption > div {
-    font-size: ${prop('theme.font.size.fourteen')};
-    font-weight: ${prop('theme.font.weight.bold')} !important;
+    font-size: ${theme('font.size.fourteen')};
+    font-weight: ${theme('font.weight.bold')} !important;
     text-align: center;
-    color: ${prop('theme.datepicker.text.secondary')};
+    color: ${theme('datepicker.text.secondary')};
     margin-top: -13px;
     margin-bottom: 10px;
   }
 
+  .DayPicker-Months {
+    flex-wrap: inherit;
+  }
+
   .DayPicker-Weekday {
-    font-size: ${prop('theme.font.size.twelve')};
-    font-weight: ${prop('theme.font.weight.bold')};
-    color: ${prop('theme.datepicker.text.secondary')};
+    font-size: ${theme('font.size.twelve')};
+    font-weight: ${theme('font.weight.bold')};
+    color: ${theme('datepicker.text.secondary')};
   }
 
   .DayPicker-Day--disabled {
     pointer-events: none;
-    color: ${prop('theme.datepicker.text.off')};
+    color: ${theme('datepicker.text.off')};
   }
 `
 
 const Input = styled.div`
   height: 40px;
-  width: 283px;
+  width: ${ifProp('full', '100%', '283px')};
   margin-bottom: 10px;
-  border: ${prop('theme.datepicker.border.primary')};
-  border-radius: ${prop('theme.border.radius.four')};
-  background-color: ${prop('theme.datepicker.bg.tertiary')};
+  border: ${theme('datepicker.border.primary')};
+  border-radius: ${theme('border.radius.four')};
+  background-color: ${theme('datepicker.bg.tertiary')};
   display: flex;
   align-items: center;
   cursor: pointer;
 
   p {
-    color: ${prop('theme.datepicker.text.tertiary')};
-    font-family: ${prop('theme.font.family.inter')};
-    font-size: ${prop('theme.font.size.fourteen')};
+    color: ${theme('datepicker.text.tertiary')};
+    font-family: ${theme('font.family.inter')};
+    font-size: ${theme('font.size.fourteen')};
   }
 `
 
@@ -205,11 +211,16 @@ export const DatePicker = memo(
     onDayChange,
     onWeekChange,
     onRangeChange,
+    align,
+    full,
     ...props
   }) => {
     const [placeholder, setPlaceholder] = useState('')
     const [isOpen, setIsOpen] = useState(false)
+    const [offset, setOffset] = useState(0)
     const { datepicker } = useContext(ThemeContext)
+    const inputRef = useRef(null)
+    const containerRef = useRef(null)
 
     const toClose = () => setIsOpen(false)
 
@@ -218,13 +229,27 @@ export const DatePicker = memo(
     const isRange = () => appearence === 'range'
 
     useEffect(() => {
-      if (isDay()) setPlaceholder('Selecione uma data')
-      else if (isWeek() || isRange()) setPlaceholder('Data início - Data final')
+      const placeholder = isDay()
+        ? 'Selecione uma data'
+        : isWeek() || isRange()
+          ? 'Data início - Data final'
+          : ''
+
+      setPlaceholder(placeholder)
     }, [])
+
+    useEffect(() => {
+      const offset =
+        align === DatePicker.align.left
+          ? inputRef.current.offsetLeft
+          : inputRef.current.offsetLeft - 654 / 2
+
+      setOffset(offset)
+    }, [inputRef])
 
     return (
       <Content>
-        <Input onClick={() => setIsOpen(!isOpen)}>
+        <Input ref={inputRef} onClick={() => setIsOpen(!isOpen)} full={full}>
           <Icon
             name="calendar"
             color={datepicker.icon.tertiary}
@@ -238,7 +263,7 @@ export const DatePicker = memo(
 
         {isOpen && (
           <Closeable whenClose={toClose}>
-            <Container>
+            <Container ref={containerRef} left={offset}>
               {isDay() && (
                 <Day
                   navbar={Navbar}
@@ -249,6 +274,7 @@ export const DatePicker = memo(
                   {...props}
                 />
               )}
+
               {isWeek() && (
                 <Week
                   navbar={Navbar}
@@ -259,6 +285,7 @@ export const DatePicker = memo(
                   {...props}
                 />
               )}
+
               {isRange() && (
                 <Range
                   navbar={Navbar}
@@ -277,8 +304,18 @@ export const DatePicker = memo(
   }
 )
 
+DatePicker.align = {
+  left: 'left',
+  center: 'center'
+}
+
+DatePicker.defaultProps = {
+  align: DatePicker.align.center
+}
+
 DatePicker.propTypes = {
   appearence: PropTypes.oneOf(['day', 'week', 'range']),
+  align: PropTypes.oneOf(['left', 'center']),
   initialDate: PropTypes.date,
   onDayChange: PropTypes.func,
   onWeekChange: PropTypes.func,

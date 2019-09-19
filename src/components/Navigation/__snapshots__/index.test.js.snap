@@ -28,6 +28,7 @@ exports[`Not expect visual regression 1`] = `
 
 .c7 {
   display: inline-block;
+  padding: 0 5px;
 }
 
 .c15 {
@@ -52,13 +53,14 @@ exports[`Not expect visual regression 1`] = `
   -ms-flex-align: center;
   align-items: center;
   margin-bottom: 15px;
-  padding: 15px 10px;
+  padding: 15px;
   background-color: #d7dcf2;
 }
 
 .c6 {
-  border-radius: 25px;
+  width: calc(100% - 10px);
   height: 50px;
+  border-radius: 0.25rem;
   line-height: 50px;
   cursor: pointer;
   display: -webkit-box;
@@ -73,10 +75,9 @@ exports[`Not expect visual regression 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  padding: 10px 5px 10px 0;
+  margin-left: 5px;
   margin-bottom: 10px;
-  padding: 10px 15px;
-  margin: 0 auto;
-  width: calc(100% - 20px);
 }
 
 .c6:hover {
@@ -96,6 +97,8 @@ exports[`Not expect visual regression 1`] = `
   background-color: #f1f3fA;
   height: 100%;
   position: relative;
+  overflow-y: overlay;
+  overflow-x: hidden;
 }
 
 .c16 {
@@ -128,6 +131,7 @@ exports[`Not expect visual regression 1`] = `
   -webkit-justify-content: flex-end;
   -ms-flex-pack: end;
   justify-content: flex-end;
+  cursor: pointer;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -136,7 +140,6 @@ exports[`Not expect visual regression 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  cursor: pointer;
   -webkit-transition: background-color 0.5s ease-out;
   transition: background-color 0.5s ease-out;
   height: 15px;
