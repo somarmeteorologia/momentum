@@ -22,9 +22,17 @@ const Container = styled.div`
         small: '40px',
         default: '80px'
     }))};
-    
+
     path {
       stroke: ${theme('button.text.group')};
+    }
+
+    &:hover svg path,
+    &:hover{
+      stroke:${theme('button.hover.group.text')};
+      border-color: ${theme('button.hover.primary.bg')};
+      color: ${theme('button.hover.group.text')};
+      background: ${theme('button.hover.group.bg')};
     }
   }
 
@@ -63,9 +71,6 @@ const Container = styled.div`
 
     &:hover {
       border-right-width: 0;
-      border-color: ${theme('button.hover.primary.bg')};
-      color: ${theme('colors.white.hundred')};
-      background: ${theme('button.hover.primary.bg')};
     }
   }
 
@@ -76,12 +81,6 @@ const Container = styled.div`
       vertical: css`0 0  
       ${theme('border.radius.four')} ${theme('border.radius.four')}`
     })};
-
-    &:hover {
-      color: ${theme('colors.white.hundred')};
-      border-color: ${theme('button.hover.primary.bg')};
-      background: ${theme('button.hover.primary.bg')};
-    }
   }
 
   .selected {

@@ -66,7 +66,8 @@ export const Theme = {
       hover: {
         primary: { bg: cornflower.fifty, text: white.hundred },
         stroke: { border: `1px solid ${white.hundred}`, text: white.hundred },
-        flat: { bg: cornflower.fifty, text: white.hundred }
+        flat: { bg: cornflower.fifty, text: white.hundred },
+        group: { bg: ebony.sixty, text: white.hundred }
       },
       active: {
         primary: cornflower.thirty,
@@ -382,7 +383,8 @@ export const Theme = {
           border: `1px solid ${cornflower.fifty}`,
           text: cornflower.fifty
         },
-        flat: { bg: cornflower.fifty, text: white.hundred }
+        flat: { bg: cornflower.fifty, text: white.hundred },
+        group: { bg: ebony.sixty, text: white.hundred }
       },
       active: {
         primary: cornflower.thirty,
