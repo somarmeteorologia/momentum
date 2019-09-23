@@ -1,0 +1,14 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+    - master
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Run tests
+      uses: stefanoeb/jest-action@1.0.0
