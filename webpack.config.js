@@ -12,7 +12,9 @@ module.exports = {
 
   output: {
     publicPath: '/',
-    path: PATH.build
+    path: PATH.build,
+    library: '',
+    libraryTarget: 'umd'
   },
 
   resolve: {
@@ -24,6 +26,28 @@ module.exports = {
       '@resources': `${PATH.source}/resources`
     }
   },
+
+  externals: {
+    react: {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react'
+    },
+    'react-dom': {
+      root: 'ReactDOM',
+      commonjs2: 'react-dom',
+      commonjs: 'react-dom',
+      amd: 'react-dom'
+    },
+    'styled-components': {
+      root: 'styled-components',
+      commonjs2: 'styled-components',
+      commonjs: 'styled-components',
+      amd: 'styled-components'
+    }
+  },
+
   node: {
     fs: 'empty'
   },

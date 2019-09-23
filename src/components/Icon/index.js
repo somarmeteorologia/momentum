@@ -1,9 +1,9 @@
 import React, { memo, lazy, Suspense, useContext } from 'react'
 import PropTypes from 'prop-types'
 import styled, { ThemeContext, css } from 'styled-components'
+import { ifProp } from 'styled-tools'
 
 import { Box } from '@components/Box'
-import { ifProp } from 'styled-tools'
 
 const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1)
 

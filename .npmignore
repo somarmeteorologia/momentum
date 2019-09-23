@@ -13,5 +13,5 @@ path.js
 jest.config.js
 rtl.setup.js
 webpack.config.js
+rollup.config.js
 LICENSE.md
-README.md

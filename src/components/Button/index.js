@@ -128,7 +128,11 @@ export const Button = memo(
     onClick,
     ...props
   }) => {
-    const { button } = useContext(ThemeContext)
+    console.log('context', ThemeContext)
+    const theme = useContext(ThemeContext)
+    console.log(theme)
+    const { button } = theme
+
     const [color, setColor] = useState('')
 
     const setHoverColor = () =>
