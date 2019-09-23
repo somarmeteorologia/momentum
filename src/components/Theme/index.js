@@ -53,14 +53,15 @@ export const Theme = {
         primary: white.hundred,
         stroke: ebony.sixty,
         flat: white.hundred,
-        disabled: ebony.sixty
+        disabled: ebony.sixty,
+        group: ebony.sixty
       },
       border: {
         primary: 'none',
         stroke: `1px solid ${ebony.sixty}`,
         flat: 'none',
         disabled: 'none',
-        group: ebony.twenty
+        group: `1px solid ${ebony.twenty}`
       },
       hover: {
         primary: { bg: cornflower.fifty, text: white.hundred },
@@ -70,7 +71,8 @@ export const Theme = {
       active: {
         primary: cornflower.thirty,
         stroke: ebony.thirteen,
-        flat: cornflower.thirty
+        flat: cornflower.thirty,
+        group: {bg: ebony.twenty, border: 'none'}
       }
     },
     slider: {
@@ -364,14 +366,15 @@ export const Theme = {
         primary: ebony.zero,
         stroke: ebony.sixty,
         flat: ebony.zero,
-        disabled: ebony.sixty
+        disabled: ebony.sixty,
+        group: ebony.eighty
       },
       border: {
         primary: 'none',
         stroke: `1px solid ${ebony.sixty}`,
         flat: 'none',
         disabled: 'none',
-        group: ebony.eighty
+        group: `1px solid ${ebony.eighty}`
       },
       hover: {
         primary: { bg: cornflower.fifty, text: white.hundred },
@@ -384,7 +387,8 @@ export const Theme = {
       active: {
         primary: cornflower.thirty,
         stroke: ebony.ninetySix,
-        flat: cornflower.thirty
+        flat: cornflower.thirty,
+        group : {bg: ebony.sixty, border: 'none'}
       }
     },
     slider: {
