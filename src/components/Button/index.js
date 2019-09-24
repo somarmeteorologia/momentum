@@ -1,6 +1,6 @@
-import React, { memo, useEffect, useState, useContext } from 'react'
+import React, { memo, useEffect, useState, useContext, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { switchProp, ifProp, prop } from 'styled-tools'
+import { switchProp, ifProp, theme } from 'styled-tools'
 import styled, { css, ThemeContext } from 'styled-components'
 
 import { Icon as Iconable } from '@components/Icon'
@@ -14,9 +14,9 @@ const Icon = styled.div`
 `
 
 const Content = styled.button`
-  border-radius: ${prop('theme.border.radius.four')};
-  font-family: ${prop('theme.font.family.inter')};
-  font-weight: ${prop('theme.font.weight.bold')};
+  border-radius: ${theme('border.radius.four')};
+  font-family: ${theme('font.family.inter')};
+  font-weight: ${theme('font.weight.bold')};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,59 +28,72 @@ const Content = styled.button`
   ${switchProp('size', {
     small: css`
       height: 32px;
-      font-size: ${prop('theme.font.size.twelve')};
+      font-size: ${theme('font.size.twelve')};
     `,
     default: css`
       height: 40px;
-      font-size: ${prop('theme.font.size.fourteen')};
+      font-size: ${theme('font.size.fourteen')};
     `,
     large: css`
       height: 48px;
-      font-size: ${prop('theme.font.size.sixteen')};
+      font-size: ${theme('font.size.sixteen')};
     `
   })};
 
   ${switchProp('appearence', {
     primary: css`
-      background-color: ${prop('theme.button.bg.primary')};
-      color: ${prop('theme.button.text.primary')};
-      border: ${prop('theme.button.border.primary')};
+      background-color: ${theme('button.bg.primary')};
+      color: ${theme('button.text.primary')};
+      border: ${theme('button.border.primary')};
 
       &:hover {
-        background-color: ${prop('theme.button.hover.primary.bg')};
-        color: ${prop('theme.button.hover.primary.text')};
+        background-color: ${theme('button.hover.primary.bg')};
+        color: ${theme('button.hover.primary.text')};
       }
 
       &:active {
-        background-color: ${prop('theme.button.active.primary')};
+        background-color: ${theme('button.active.primary')};
       }
     `,
     stroke: css`
-      background-color: ${prop('theme.button.bg.stroke')};
-      color: ${prop('theme.button.text.stroke')};
-      border: ${prop('theme.button.border.stroke')};
+      background-color: ${theme('button.bg.stroke')};
+      color: ${theme('button.text.stroke')};
+      border: ${theme('button.border.stroke')};
 
       &:hover {
-        color: ${prop('theme.button.hover.stroke.text')};
-        border: ${prop('theme.button.hover.stroke.border')};
+        color: ${theme('button.hover.stroke.text')};
+        border: ${theme('button.hover.stroke.border')};
       }
 
       &:active {
-        background-color: ${prop('theme.button.active.stroke')};
+        background-color: ${theme('button.active.stroke')};
       }
     `,
     flat: css`
-      background-color: ${prop('theme.button.bg.flat')};
-      color: ${prop('theme.button.text.flat')};
-      border: ${prop('theme.button.border.flat')};
+      background-color: ${theme('button.bg.flat')};
+      color: ${theme('button.text.flat')};
+      border: ${theme('button.border.flat')};
 
       &:hover {
-        background-color: ${prop('theme.button.hover.flat.bg')};
-        color: ${prop('theme.button.hover.flat.text')};
+        background-color: ${theme('button.hover.flat.bg')};
+        color: ${theme('button.hover.flat.text')};
       }
 
       &:active {
-        background-color: ${prop('theme.button.active.flat')};
+        background-color: ${theme('button.active.flat')};
+      }
+    `,
+    rounded: css`
+      background-color: ${theme('button.bg.rouded')};
+      color: ${theme('color.ebony.zero')};
+      border: ${theme('button.border.rouded')};
+      border-radius: ${theme('border.radius.twentyFour')};
+      box-shadow: none;
+      transition: box-shadow 0.2s linear;
+
+      &:hover {
+        background-color: ${theme('button.hover.rouded.bg')};
+        box-shadow: 0 0 12px ${theme('shadow.default')};
       }
     `
   })};
@@ -88,14 +101,14 @@ const Content = styled.button`
   ${ifProp(
     { disabled: true },
     css`
-      background-color: ${prop('theme.button.bg.disabled')};
-      color: ${prop('theme.button.text.disabled')};
-      border: ${prop('theme.button.border.disabled')};
+      background-color: ${theme('button.bg.disabled')};
+      color: ${theme('button.text.disabled')};
+      border: ${theme('button.border.disabled')};
 
       &:hover {
-        background-color: ${prop('theme.button.bg.disabled')};
-        color: ${prop('theme.button.text.disabled')};
-        border: ${prop('theme.button.border.disabled')};
+        background-color: ${theme('button.bg.disabled')};
+        color: ${theme('button.text.disabled')};
+        border: ${theme('button.border.disabled')};
       }
     `
   )}
@@ -112,7 +125,8 @@ const Content = styled.button`
 const types = {
   primary: 'primary',
   stroke: 'stroke',
-  flat: 'flat'
+  flat: 'flat',
+  rounded: 'rounded'
 }
 
 export const Button = memo(
@@ -129,6 +143,7 @@ export const Button = memo(
     ...props
   }) => {
     const { button } = useContext(ThemeContext)
+
     const [color, setColor] = useState('')
 
     const setHoverColor = () =>
@@ -154,17 +169,17 @@ export const Button = memo(
         {...props}
       >
         {loading ? (
-          <>
+          <Fragment>
             <Icon>
               <Iconable name={Iconable.name.loading} color={color} />
             </Icon>
             Loading
-          </>
+          </Fragment>
         ) : (
-          <>
+          <Fragment>
             {icon && <Icon>{icon(color)}</Icon>}
             {children}
-          </>
+          </Fragment>
         )}
       </Content>
     )
@@ -186,7 +201,7 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
-  appearence: PropTypes.oneOf(['primary', 'stroke', 'flat']),
+  appearence: PropTypes.oneOf(['primary', 'stroke', 'flat', 'rounded']),
   size: PropTypes.oneOf(['small', 'default', 'large']),
   disabled: PropTypes.bool,
   icon: PropTypes.func,
@@ -199,7 +214,8 @@ Button.propTypes = {
 Button.appearence = {
   primary: 'primary',
   stroke: 'stroke',
-  flat: 'flat'
+  flat: 'flat',
+  rounded: 'rounded'
 }
 
 Button.size = {

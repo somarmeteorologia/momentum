@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Calendar({ width, height, color }) {
+export function Calendar({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 22 22" fill="none">
       <rect width={width} height={height} rx="2" fill="none" />

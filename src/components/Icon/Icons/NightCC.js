@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function NightCC({ width, height, color }) {
+export function NightCC({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 68 69" fill="none">
       <g clipPath="url(#clip0)">

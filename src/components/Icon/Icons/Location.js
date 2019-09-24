@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Location({ width, height, color }) {
+export function Location({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 14 19" fill="none">
       <path

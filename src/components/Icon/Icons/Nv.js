@@ -1,7 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-export default function Nv({ width, height, color }) {
+export function Nv({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 32 31" fill="none">
       <path

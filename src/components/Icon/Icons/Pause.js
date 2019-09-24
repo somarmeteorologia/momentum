@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Pause({ width, height, color }) {
+export function Pause({ width, height, color }) {
   return (
     <svg
       width={width}

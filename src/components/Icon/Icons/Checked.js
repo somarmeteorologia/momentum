@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Checked({ width, height, color }) {
+export function Checked({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 12 9" fill="none">
       <path

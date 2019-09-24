@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Plus({ width, height, color }) {
+export function Plus({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 15 16" fill="none">
       <path

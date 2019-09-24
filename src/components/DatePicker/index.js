@@ -143,6 +143,10 @@ const Container = styled.div`
     flex-wrap: inherit;
   }
 
+  .DayPicker-Month {
+    margin-top: 2em;
+  }
+
   .DayPicker-Weekday {
     font-size: ${theme('font.size.twelve')};
     font-weight: ${theme('font.weight.bold')};
@@ -232,13 +236,16 @@ export const DatePicker = memo(
       const placeholder = isDay()
         ? 'Selecione uma data'
         : isWeek() || isRange()
-          ? 'Data início - Data final'
-          : ''
+        ? 'Data início - Data final'
+        : ''
 
       setPlaceholder(placeholder)
     }, [])
 
     useEffect(() => {
+      /**
+       * @todo Corrigir regra de alinhamento por posição quando align igual a center
+       */
       const offset =
         align === DatePicker.align.left
           ? inputRef.current.offsetLeft

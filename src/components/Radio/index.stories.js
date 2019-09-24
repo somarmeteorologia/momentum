@@ -53,7 +53,7 @@ storiesOf(`${GROUPS.COMPONENTS}|Radio`, module)
     </>
   ))
   .add('Size', () => (
-    <>  
+    <>
       <Radio size={Radio.size.default} name="weather">
         <Radio.Option id="cloudy" label="Default" checked />
         <Radio.Option id="rainy" label="Default" />
@@ -66,7 +66,7 @@ storiesOf(`${GROUPS.COMPONENTS}|Radio`, module)
     </>
   ))
   .add('Disabled', () => (
-    <>  
+    <>
       <Radio size={Radio.size.large} name="weather">
         <Radio.Option id="cloudy" label="Cloudy" checked />
         <Radio.Option id="rainy" label="Rainy" disabled={true} />

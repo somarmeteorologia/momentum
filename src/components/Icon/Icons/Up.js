@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Right from './Right'
+import { Right } from './Right'
 
 const Icon = styled.div`
   transform: rotate(-90deg);
 `
 
-export default function Up({ width, height, color }) {
+export function Up({ width, height, color }) {
   return (
     <Icon>
       <Right width={width} height={height} color={color} />

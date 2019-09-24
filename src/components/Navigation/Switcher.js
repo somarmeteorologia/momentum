@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Root from './Root'
 import Nested from './Nested'
@@ -16,7 +16,7 @@ export default function Switcher({ toOpen, height }) {
   }, [])
 
   return (
-    <>
+    <Fragment>
       {isEveryClose ? (
         <Root />
       ) : (
@@ -27,7 +27,7 @@ export default function Switcher({ toOpen, height }) {
           height={height}
         />
       )}
-    </>
+    </Fragment>
   )
 }
 

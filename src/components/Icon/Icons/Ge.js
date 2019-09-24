@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Ge({ width, height, color }) {
+export function Ge({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 31 31" fill="none">
       <path

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Tv({ width, height, color }) {
+export function Tv({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 31 29" fill="none">
       <path

@@ -37,10 +37,10 @@ const Label = styled.span`
       &::after {
         content: '*';
         color: ${ifProp(
-    'disabled',
-    prop('theme.field.text.disabled'),
-    prop('theme.field.text.danger')
-  )};
+          'disabled',
+          prop('theme.field.text.disabled'),
+          prop('theme.field.text.danger')
+        )};
       }
     `
   )}
@@ -70,10 +70,10 @@ const Selectable = styled.div`
 
   &:hover {
     border: ${ifProp(
-    'disabled',
-    prop('theme.field.border.primary'),
-    prop('theme.field.border.secondary')
-  )};
+      'disabled',
+      prop('theme.field.border.primary'),
+      prop('theme.field.border.secondary')
+    )};
   }
 
   ${ifProp(

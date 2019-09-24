@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Eye({ width, height, color }) {
+export function Eye({ width, height, color }) {
   return (
     <svg
       width={width}

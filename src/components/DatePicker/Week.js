@@ -81,22 +81,20 @@ export const Week = memo(
     }, [week])
 
     return (
-      <>
-        <DayPicker
-          locale="pt-br"
-          months={MONTHS}
-          weekdaysLong={WEEKDAYS_LONG}
-          weekdaysShort={WEEKDAYS_SHORT}
-          showOutsideDays
-          modifiers={modifiers}
-          selectedDays={week}
-          onDayClick={handleWeekChange}
-          onDayMouseEnter={handleHoverEnter}
-          onDayMouseLeave={handleHoverLeave}
-          navbarElement={navbar}
-          {...props}
-        />
-      </>
+      <DayPicker
+        locale="pt-br"
+        months={MONTHS}
+        weekdaysLong={WEEKDAYS_LONG}
+        weekdaysShort={WEEKDAYS_SHORT}
+        showOutsideDays
+        modifiers={modifiers}
+        selectedDays={week}
+        onDayClick={handleWeekChange}
+        onDayMouseEnter={handleHoverEnter}
+        onDayMouseLeave={handleHoverLeave}
+        navbarElement={navbar}
+        {...props}
+      />
     )
   }
 )

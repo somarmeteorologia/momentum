@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Play({ width, height, color }) {
+export function Play({ width, height, color }) {
   return (
     <svg
       width={width}

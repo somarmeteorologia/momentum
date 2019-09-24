@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Lightning({ width, height, color }) {
+export function LightningCircle({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 22 22" fill="none">
       <circle cx="11" cy="11" r="10.5" stroke={color} />

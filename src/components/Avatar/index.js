@@ -1,9 +1,8 @@
-import React, { memo } from 'react'
+import React, { memo, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { switchProp } from 'styled-tools'
 import styled, { css } from 'styled-components'
 
-import { theme } from '@components/Theme'
 import { tokens } from '@components/Tokens'
 
 const { border } = tokens
@@ -35,9 +34,9 @@ const Image = styled.img`
 `
 
 export const Avatar = memo(({ src, size, radius }) => (
-  <>
+  <Fragment>
     <Image src={src} size={size} radius={radius} />
-  </>
+  </Fragment>
 ))
 
 Avatar.defaultProps = {

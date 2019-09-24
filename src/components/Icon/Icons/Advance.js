@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Advance({ width, height, color }) {
+export function Advance({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 15 14" fill="none">
       <path

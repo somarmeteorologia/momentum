@@ -4,6 +4,7 @@ storybook-static
 .env
 build
 .vscode
+dist
 
 yarn-error.log
 lerna-debug.log

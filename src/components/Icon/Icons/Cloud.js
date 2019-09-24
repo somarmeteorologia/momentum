@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Cloud({ width, height, color }) {
+export function Cloud({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 28 28" fill="none">
       <path

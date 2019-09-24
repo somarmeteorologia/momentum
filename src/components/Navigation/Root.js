@@ -7,7 +7,7 @@ export default function Root() {
   const { structure } = useContext(Context)
 
   return (
-    <>
+    <Fragment>
       {structure.map(children => {
         const Title = titleMapper[children.type]
 
@@ -33,6 +33,6 @@ export default function Root() {
           </Fragment>
         )
       })}
-    </>
+    </Fragment>
   )
 }

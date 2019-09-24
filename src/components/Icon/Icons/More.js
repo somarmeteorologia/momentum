@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function More({ width, height, color }) {
+export function More({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 10 10" fill="none">
       <path

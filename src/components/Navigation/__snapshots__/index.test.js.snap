@@ -97,8 +97,6 @@ exports[`Not expect visual regression 1`] = `
   background-color: #f1f3fA;
   height: 100%;
   position: relative;
-  overflow-y: overlay;
-  overflow-x: hidden;
 }
 
 .c16 {

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Energy({ width, height, color }) {
+export function Energy({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 25 24" fill="none">
       <path

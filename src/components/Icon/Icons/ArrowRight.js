@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ArrowRight({ width, height, color }) {
+export function ArrowRight({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 16 16" fill="none">
       <path

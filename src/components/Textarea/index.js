@@ -32,10 +32,10 @@ const Label = styled.span`
       &::after {
         content: '*';
         color: ${ifProp(
-    'disabled',
-    prop('theme.field.text.disabled'),
-    prop('theme.field.text.danger')
-  )};
+          'disabled',
+          prop('theme.field.text.disabled'),
+          prop('theme.field.text.danger')
+        )};
       }
     `
   )}
@@ -73,25 +73,25 @@ const Textareable = styled.textarea`
   &:focus {
     outline: none;
     border: ${ifProp(
-    'hasError',
-    prop('theme.field.border.danger'),
-    prop('theme.field.border.secondary')
-  )};
+      'hasError',
+      prop('theme.field.border.danger'),
+      prop('theme.field.border.secondary')
+    )};
   }
 
   &::placeholder {
     color: ${ifProp(
-    'hasError',
-    prop('theme.field.text.danger'),
-    prop('theme.field.text.secondary')
-  )};
+      'hasError',
+      prop('theme.field.text.danger'),
+      prop('theme.field.text.secondary')
+    )};
 
     ${ifProp(
-    'disabled',
-    css`
+      'disabled',
+      css`
         color: ${prop('theme.field.text.disabled')};
       `
-  )};
+    )};
   }
 `
 
