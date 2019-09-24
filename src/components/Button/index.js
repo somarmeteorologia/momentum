@@ -142,7 +142,7 @@ export const Button = memo(
     }, [button])
 
     return (
-      <Content
+    <Content
         appearence={appearence}
         size={size}
         disabled={disabled}
@@ -181,7 +181,8 @@ Button.defaultProps = {
   disabled: false,
   full: false,
   uppercase: false,
-  loading: false
+  loading: false,
+  onClick: () => {}
 }
 
 Button.propTypes = {

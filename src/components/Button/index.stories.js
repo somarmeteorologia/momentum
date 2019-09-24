@@ -98,10 +98,30 @@ storiesOf(`${GROUPS.COMPONENTS}|Button`, module)
   ))
   .add('Group', () => (
     <>
-      <Button.Group>
-        <Button>Primary</Button>
-        <Button>Secondary</Button>
-        <Button>Tertiary</Button>
+      <Button.Group activeId='Primary' >
+        <Button id='Primary'>Primary</Button>
+        <Button id='Secondary'>Secondary</Button>
+        <Button id='Tertiary'>Tertiary</Button>
+      </Button.Group>
+      <Button.Group activeId='Primary' appearence={Button.Group.appearence.secondary}>
+        <Button id='Primary'>Primary</Button>
+        <Button id='Secondary'>Secondary</Button>
+        <Button id='Tertiary'>Tertiary</Button>
       </Button.Group>
     </>
   ))
+  .add('Group vertical', () => (
+    <>
+      <Button.Group activeId='Primary' orientation={Button.Group.orientation.vertical}>
+        <Button id='Primary'>Primary</Button>
+        <Button id='Secondary'>Secondary</Button>
+        <Button id='Tertiary'>Tertiary</Button>
+      </Button.Group>
+      <Button.Group activeId='Primary' orientation={Button.Group.orientation.vertical} appearence={Button.Group.appearence.secondary}>
+        <Button id='Primary'>Primary</Button>
+        <Button id='Secondary'>Secondary</Button>
+        <Button id='Tertiary'>Tertiary</Button>
+      </Button.Group>
+    </>
+  ))
+  
