@@ -84,15 +84,15 @@ const Content = styled.button`
       }
     `,
     rounded: css`
-      background-color: ${theme('button.bg.rouded')};
+      background-color: ${theme('button.bg.rounded')};
       color: ${theme('color.ebony.zero')};
-      border: ${theme('button.border.rouded')};
+      border: ${theme('button.border.rounded')};
       border-radius: ${theme('border.radius.twentyFour')};
       box-shadow: none;
       transition: box-shadow 0.2s linear;
 
       &:hover {
-        background-color: ${theme('button.hover.rouded.bg')};
+        background-color: ${theme('button.hover.rounded.bg')};
         box-shadow: 0 0 12px ${theme('shadow.default')};
       }
     `
