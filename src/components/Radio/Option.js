@@ -158,6 +158,7 @@ export function Option({
 
   return (
     <Fragment>
+      {/* eslint-disable-next-line no-prototype-builtins */}
       {checkable.hasOwnProperty(id) && (
         <Box {...props}>
           <Container

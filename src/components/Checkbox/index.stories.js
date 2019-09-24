@@ -16,7 +16,17 @@ const Containerable = styled(Container)`
 const Toggle = ({ label, labelAlign, id, disabled, size }) => {
   const [on, setOn] = useState(false)
 
-  return <Checkbox id={id} size={size} label={label} labelAlign={labelAlign} disabled={disabled} checked={on} onChange={setOn} />
+  return (
+    <Checkbox
+      id={id}
+      size={size}
+      label={label}
+      labelAlign={labelAlign}
+      disabled={disabled}
+      checked={on}
+      onChange={setOn}
+    />
+  )
 }
 
 storiesOf(`${GROUPS.COMPONENTS}|Checkbox`, module)
@@ -30,28 +40,20 @@ storiesOf(`${GROUPS.COMPONENTS}|Checkbox`, module)
     <>
       <Toggle id="apple" label="Bottom" />
       <Toggle id="1" label="Right" labelAlign="right" />
-      <Toggle
-        id="2"
-        label="Top"
-        labelAlign="top"
-      />
-      <Toggle
-        id="0"
-        label="Left"
-        labelAlign="left"
-      />
+      <Toggle id="2" label="Top" labelAlign="top" />
+      <Toggle id="0" label="Left" labelAlign="left" />
     </>
   ))
   .add('Large', () => (
     <>
       <Toggle id="apple" label="Bottom" size={Checkbox.size.large} />
-      <Toggle id="1" label="Right" labelAlign="right" size={Checkbox.size.large} />
       <Toggle
-        id="2"
-        label="Top"
-        labelAlign="top"
+        id="1"
+        label="Right"
+        labelAlign="right"
         size={Checkbox.size.large}
       />
+      <Toggle id="2" label="Top" labelAlign="top" size={Checkbox.size.large} />
       <Toggle
         id="0"
         label="Left"
@@ -63,6 +65,11 @@ storiesOf(`${GROUPS.COMPONENTS}|Checkbox`, module)
   .add('Disabled', () => (
     <>
       <Toggle id="banana" label="Default" disabled={true} />
-      <Toggle id="apple" label="Large" disabled={true} size={Checkbox.size.large} />
+      <Toggle
+        id="apple"
+        label="Large"
+        disabled={true}
+        size={Checkbox.size.large}
+      />
     </>
   ))

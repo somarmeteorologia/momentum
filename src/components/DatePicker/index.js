@@ -232,8 +232,8 @@ export const DatePicker = memo(
       const placeholder = isDay()
         ? 'Selecione uma data'
         : isWeek() || isRange()
-          ? 'Data início - Data final'
-          : ''
+        ? 'Data início - Data final'
+        : ''
 
       setPlaceholder(placeholder)
     }, [])

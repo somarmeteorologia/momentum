@@ -8,7 +8,6 @@ import { Container } from '@helpers/components/Container'
 import { Reset } from '@components/Reset'
 import { Snackbar } from '@components/Snackbar'
 import { Button } from '@components/Button'
-import { Icon } from '@components/Icon'
 import { Text } from '@components/Text'
 
 const Containerable = styled(Container)`

@@ -32,10 +32,10 @@ const Label = styled.span`
       &::after {
         content: '*';
         color: ${ifProp(
-    'disabled',
-    prop('theme.field.text.disabled'),
-    prop('theme.field.text.danger')
-  )};
+          'disabled',
+          prop('theme.field.text.disabled'),
+          prop('theme.field.text.danger')
+        )};
       }
     `
   )}
@@ -84,17 +84,17 @@ const Field = styled.input.attrs({
 
   &::placeholder {
     color: ${ifProp(
-    'hasError',
-    prop('theme.field.text.danger'),
-    prop('theme.field.text.secondary')
-  )};
+      'hasError',
+      prop('theme.field.text.danger'),
+      prop('theme.field.text.secondary')
+    )};
 
     ${ifProp(
-    'disabled',
-    css`
+      'disabled',
+      css`
         color: ${prop('theme.field.text.disabled')};
       `
-  )};
+    )};
   }
 
   &::-webkit-outer-spin-button,

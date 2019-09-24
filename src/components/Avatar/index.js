@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { switchProp } from 'styled-tools'
 import styled, { css } from 'styled-components'
 
-import { theme } from '@components/Theme'
 import { tokens } from '@components/Tokens'
 
 const { border } = tokens

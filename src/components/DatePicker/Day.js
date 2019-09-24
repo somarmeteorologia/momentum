@@ -22,17 +22,17 @@ export const Day = memo(
     }, [date])
 
     return (
-        <DayPicker
-          onDayClick={handleDayChange}
-          showOutsideDays
-          locale="pt-br"
-          months={MONTHS}
-          weekdaysLong={WEEKDAYS_LONG}
-          weekdaysShort={WEEKDAYS_SHORT}
-          selectedDays={date}
-          navbarElement={navbar}
-          {...props}
-        />
+      <DayPicker
+        onDayClick={handleDayChange}
+        showOutsideDays
+        locale="pt-br"
+        months={MONTHS}
+        weekdaysLong={WEEKDAYS_LONG}
+        weekdaysShort={WEEKDAYS_SHORT}
+        selectedDays={date}
+        navbarElement={navbar}
+        {...props}
+      />
     )
   }
 )

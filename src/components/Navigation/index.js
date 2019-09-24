@@ -62,44 +62,44 @@ export const Navigation = ({ height, toOpen, onToggled }) => {
   const containerRef = useRef(null)
 
   return (
-      <Container
-        data-testid="container"
-        ref={containerRef}
-        height={height}
-        onMouseEnter={() => setHasNavigationHover(true)}
-        onMouseLeave={() => setHasNavigationHover(false)}
-        initialPose={animations.visible}
-        pose={toggled ? animations.collapsed : animations.visible}
-      >
-        {!toggled && (
-          <Switcher
-            toOpen={toOpen}
-            height={containerRef.current && containerRef.current.offsetHeight}
+    <Container
+      data-testid="container"
+      ref={containerRef}
+      height={height}
+      onMouseEnter={() => setHasNavigationHover(true)}
+      onMouseLeave={() => setHasNavigationHover(false)}
+      initialPose={animations.visible}
+      pose={toggled ? animations.collapsed : animations.visible}
+    >
+      {!toggled && (
+        <Switcher
+          toOpen={toOpen}
+          height={containerRef.current && containerRef.current.offsetHeight}
+        />
+      )}
+      {hasNavigationHover && (
+        <Toggleable
+          data-testid="toggleable"
+          onMouseEnter={() => setHasToggleHover(true)}
+          onMouseLeave={() => setHasToggleHover(false)}
+          onClick={() => {
+            setToggled(!toggled)
+            onToggled(!toggled)
+          }}
+        >
+          <Icon
+            name={toggled ? 'right' : 'left'}
+            width={10}
+            height={10}
+            color={
+              hasToggleHover
+                ? navigation.toggle.secondary
+                : navigation.toggle.tertiary
+            }
           />
-        )}
-        {hasNavigationHover && (
-          <Toggleable
-            data-testid="toggleable"
-            onMouseEnter={() => setHasToggleHover(true)}
-            onMouseLeave={() => setHasToggleHover(false)}
-            onClick={() => {
-              setToggled(!toggled)
-              onToggled(!toggled)
-            }}
-          >
-            <Icon
-              name={toggled ? 'right' : 'left'}
-              width={10}
-              height={10}
-              color={
-                hasToggleHover
-                  ? navigation.toggle.secondary
-                  : navigation.toggle.tertiary
-              }
-            />
-          </Toggleable>
-        )}
-      </Container>
+        </Toggleable>
+      )}
+    </Container>
   )
 }
 

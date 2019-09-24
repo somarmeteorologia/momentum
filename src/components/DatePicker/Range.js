@@ -74,22 +74,22 @@ export const Range = memo(
     }, [range])
 
     return (
-        <DayPicker
-          className="Range"
-          numberOfMonths={2}
-          fromMonth={range.from}
-          selectedDays={[range.from, { from: range.from, to: range.enteredTo }]}
-          modifiers={{ start: range.from, end: range.enteredTo }}
-          onDayClick={handleDayClick}
-          onDayMouseEnter={handleDayMouseEnter}
-          showOutsideDays
-          locale="pt-br"
-          months={MONTHS}
-          weekdaysLong={WEEKDAYS_LONG}
-          weekdaysShort={WEEKDAYS_SHORT}
-          navbarElement={navbar}
-          {...props}
-        />
+      <DayPicker
+        className="Range"
+        numberOfMonths={2}
+        fromMonth={range.from}
+        selectedDays={[range.from, { from: range.from, to: range.enteredTo }]}
+        modifiers={{ start: range.from, end: range.enteredTo }}
+        onDayClick={handleDayClick}
+        onDayMouseEnter={handleDayMouseEnter}
+        showOutsideDays
+        locale="pt-br"
+        months={MONTHS}
+        weekdaysLong={WEEKDAYS_LONG}
+        weekdaysShort={WEEKDAYS_SHORT}
+        navbarElement={navbar}
+        {...props}
+      />
     )
   }
 )
