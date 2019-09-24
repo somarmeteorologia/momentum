@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Back({ width, height, color }) {
+export function Back({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 16 14" fill="none">
       <path

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Resume({ width, height, color }) {
+export function Resume({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 24 27" fill="none">
       <path

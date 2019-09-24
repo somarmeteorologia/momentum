@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Checklist({ width, height, color }) {
+export function Checklist({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 17 22" fill={color}>
       <path

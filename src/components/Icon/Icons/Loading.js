@@ -116,7 +116,7 @@ const Content = styled.div`
   }
 `
 
-export default function Loading({ width, height, color }) {
+export function Loading({ width, height, color }) {
   return (
     <Content color={color} height={height} width={width}>
       <div className="circle1 circle" />

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Valv({ width, height, color }) {
+export function Valv({ width, height, color }) {
   return (
     <svg
       width={width}

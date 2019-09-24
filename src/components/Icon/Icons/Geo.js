@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Geo({ width, height, color }) {
+export function Geo({ width, height, color }) {
   return (
     <svg
       width={width}

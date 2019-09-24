@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Ecomp({ width, height, color }) {
+export function Ecomp({ width, height, color }) {
   return (
     <svg
       width={width}

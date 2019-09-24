@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Temperature({ width, height, color }) {
+export function Temperature({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 24 32" fill="none">
       <path

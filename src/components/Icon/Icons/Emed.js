@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Emed({ width, height, color }) {
+export function Emed({ width, height, color }) {
   return (
     <svg
       width={width}

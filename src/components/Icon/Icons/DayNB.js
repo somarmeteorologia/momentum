@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function DayNB({ width, height, color }) {
+export function DayNB({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 64 64" fill="none">
       <path

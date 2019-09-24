@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Segment({ width, height, color }) {
+export function Segment({ width, height, color }) {
   return (
     <svg
       width={width}

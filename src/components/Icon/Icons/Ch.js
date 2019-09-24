@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Ch({ width, height, color }) {
+export function Ch({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 64 64" fill="none">
       <path

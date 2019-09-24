@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Reservoirs({ width, height, color }) {
+export function Reservoirs({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 30 28" fill="none">
       <path

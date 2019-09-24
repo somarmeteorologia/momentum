@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Configurations({ width, height, color }) {
+export function Configurations({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 32 32" fill="none">
       <path

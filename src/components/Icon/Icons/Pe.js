@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Pe({ width, height, color }) {
+export function Pe({ width, height, color }) {
   return (
     <svg
       width={width}

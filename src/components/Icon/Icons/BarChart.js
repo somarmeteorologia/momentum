@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function BarChart({ width, height, color }) {
+export function BarChart({ width, height, color }) {
   return (
     <svg width={width} height={height} viewBox="0 0 18 16" fill="none">
       <path

@@ -1,15 +1,15 @@
-import React, { memo, lazy, Suspense, useContext } from 'react'
+import React, { memo, useContext } from 'react'
 import PropTypes from 'prop-types'
 import styled, { ThemeContext, css } from 'styled-components'
 import { ifProp } from 'styled-tools'
 
 import { Box } from '@components/Box'
 
+import * as Icons from './Icons'
+
 const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1)
 
-const load = name => lazy(() => import(`./Icons/${capitalize(name)}`))
-
-const Container = styled.div`
+const Container = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,18 +23,14 @@ const Container = styled.div`
   )}
 `
 
-export const Icon = memo(({ name, className, onClick, color, ...props }) => {
+export const Icon = memo(({ name, color, ...props }) => {
   const { icons } = useContext(ThemeContext)
-  const Iconable = load(name)
+  const Iconable = Icons[capitalize(name)]
 
   return (
-    <Box {...props}>
-      <Container className={className} onClick={onClick}>
-        <Suspense fallback={null}>
-          <Iconable {...props} color={color || icons.primary} />
-        </Suspense>
-      </Container>
-    </Box>
+    <Container {...props}>
+      <Iconable {...props} color={color || icons.primary} />
+    </Container>
   )
 })
 

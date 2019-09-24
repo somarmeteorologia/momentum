@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Clock({ width, height, color }) {
+export function Clock({ width, height, color }) {
   return (
     <svg
       width={width}
