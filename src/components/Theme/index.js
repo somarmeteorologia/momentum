@@ -46,6 +46,7 @@ export const Theme = {
         primary: ebony.twenty,
         stroke: 'transparent',
         flat: 'transparent',
+        rounded: white.hundred,
         disabled: ebony.twenty,
         group: blue.fifty
       },
@@ -53,19 +54,22 @@ export const Theme = {
         primary: white.hundred,
         stroke: ebony.sixty,
         flat: white.hundred,
+        rounded: cornflower.fifty,
         disabled: ebony.sixty
       },
       border: {
         primary: 'none',
         stroke: `1px solid ${ebony.sixty}`,
         flat: 'none',
+        rounded: 'none',
         disabled: 'none',
         group: ebony.twenty
       },
       hover: {
         primary: { bg: cornflower.fifty, text: white.hundred },
         stroke: { border: `1px solid ${white.hundred}`, text: white.hundred },
-        flat: { bg: cornflower.fifty, text: white.hundred }
+        flat: { bg: cornflower.fifty, text: white.hundred },
+        rounded: { bg: white.hundred, text: cornflower.fifty }
       },
       active: {
         primary: cornflower.thirty,
@@ -357,6 +361,8 @@ export const Theme = {
         primary: ebony.ninetySix,
         stroke: 'transparent',
         flat: 'transparent',
+        rounded: white.hundred,
+
         disabled: ebony.ninetySix,
         group: blue.fifty
       },
@@ -364,12 +370,14 @@ export const Theme = {
         primary: ebony.zero,
         stroke: ebony.sixty,
         flat: ebony.zero,
+        rounded: cornflower.fifty,
         disabled: ebony.sixty
       },
       border: {
         primary: 'none',
         stroke: `1px solid ${ebony.sixty}`,
         flat: 'none',
+        rounded: 'none',
         disabled: 'none',
         group: ebony.eighty
       },
@@ -379,7 +387,8 @@ export const Theme = {
           border: `1px solid ${cornflower.fifty}`,
           text: cornflower.fifty
         },
-        flat: { bg: cornflower.fifty, text: white.hundred }
+        flat: { bg: cornflower.fifty, text: white.hundred },
+        rounded: { bg: white.hundred, text: cornflower.fifty }
       },
       active: {
         primary: cornflower.thirty,

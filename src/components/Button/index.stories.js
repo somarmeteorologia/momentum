@@ -24,6 +24,7 @@ storiesOf(`${GROUPS.COMPONENTS}|Button`, module)
         <Button appearence={Button.appearence.primary}>Primary</Button>
         <Button appearence={Button.appearence.stroke}>Stroke</Button>
         <Button appearence={Button.appearence.flat}>Flat</Button>
+        <Button appearence={Button.appearence.rounded}>Rounded</Button>
       </>
     ),
     {
