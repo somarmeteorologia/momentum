@@ -59,6 +59,7 @@ const names = [
   'alert',
   'arrow',
   'chart',
+  'chat',
   'close',
   'comment',
   'configurations',
