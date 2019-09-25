@@ -54,6 +54,7 @@ export const Theme = {
         primary: white.hundred,
         stroke: ebony.sixty,
         flat: white.hundred,
+        group: ebony.sixty,
         rounded: cornflower.fifty,
         disabled: ebony.sixty
       },
@@ -63,18 +64,20 @@ export const Theme = {
         flat: 'none',
         rounded: 'none',
         disabled: 'none',
-        group: ebony.twenty
+        group: `1px solid ${ebony.twenty}`
       },
       hover: {
         primary: { bg: cornflower.fifty, text: white.hundred },
         stroke: { border: `1px solid ${white.hundred}`, text: white.hundred },
         flat: { bg: cornflower.fifty, text: white.hundred },
+        group: { bg: ebony.sixty, text: white.hundred },
         rounded: { bg: white.hundred, text: cornflower.fifty }
       },
       active: {
         primary: cornflower.thirty,
         stroke: ebony.thirteen,
-        flat: cornflower.thirty
+        flat: cornflower.thirty,
+        group: {bg: ebony.twenty, border: 'none'}
       }
     },
     slider: {
@@ -370,6 +373,7 @@ export const Theme = {
         primary: ebony.zero,
         stroke: ebony.sixty,
         flat: ebony.zero,
+        group: ebony.eighty,
         rounded: cornflower.fifty,
         disabled: ebony.sixty
       },
@@ -379,7 +383,7 @@ export const Theme = {
         flat: 'none',
         rounded: 'none',
         disabled: 'none',
-        group: ebony.eighty
+        group: `1px solid ${ebony.eighty}`
       },
       hover: {
         primary: { bg: cornflower.fifty, text: white.hundred },
@@ -388,12 +392,14 @@ export const Theme = {
           text: cornflower.fifty
         },
         flat: { bg: cornflower.fifty, text: white.hundred },
+        group: { bg: ebony.sixty, text: white.hundred },
         rounded: { bg: white.hundred, text: cornflower.fifty }
       },
       active: {
         primary: cornflower.thirty,
         stroke: ebony.ninetySix,
-        flat: cornflower.thirty
+        flat: cornflower.thirty,
+        group : {bg: ebony.sixty, border: 'none'}
       }
     },
     slider: {
