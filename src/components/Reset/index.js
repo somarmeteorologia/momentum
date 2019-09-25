@@ -1,56 +1,8 @@
 import { createGlobalStyle } from 'styled-components'
 
-import RobotoMonoLightWoff from '@resources/fonts/RobotoMono-Light.woff'
-
-import RobotoMonoRegularWoff from '@resources/fonts/RobotoMono-Regular.woff'
-
-import InterRegularWoff from '@resources/fonts/Inter-Regular.woff'
-import InterRegularWoff2 from '@resources/fonts/Inter-Regular.woff2'
-
-import InterMediumWoff from '@resources/fonts/Inter-Medium.woff'
-import InterMediumWoff2 from '@resources/fonts/Inter-Medium.woff2'
-
-import InterBoldWoff from '@resources/fonts/Inter-Bold.woff'
-import InterBoldWoff2 from '@resources/fonts/Inter-Bold.woff2'
-
 export const Reset = createGlobalStyle`
-  @font-face {
-    font-family: 'Roboto Mono';
-    font-style: normal;
-    font-weight: 400;
-    src: url(${RobotoMonoRegularWoff}) format('woff');
-  }
-
-  @font-face {
-    font-family: 'Roboto Mono';
-    font-style: normal;
-    font-weight: 300;
-    src: url(${RobotoMonoLightWoff}) format('woff');
-  }
-
-  @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    src: url(${InterRegularWoff2}) format('woff2'),
-      url(${InterRegularWoff}) format('woff');
-  }
-
-  @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    src: url(${InterMediumWoff2}) format('woff2'),
-      url(${InterMediumWoff}) format('woff');
-  }
-
-  @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    src: url(${InterBoldWoff2}) format('woff2'),
-      url(${InterBoldWoff}) format('woff');
-  }
+  @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300,400&display=swap');
+  @import url('https://rsms.me/inter/inter.css');
 
   * {
     box-sizing: border-box;

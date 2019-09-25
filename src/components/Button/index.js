@@ -157,7 +157,7 @@ export const Button = memo(
     }, [button])
 
     return (
-    <Content
+      <Content
         appearence={appearence}
         size={size}
         disabled={disabled}

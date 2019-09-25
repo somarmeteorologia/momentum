@@ -17,19 +17,21 @@ const Container = styled.div`
       primary: theme('button.border.group'),
       secondary: theme('button.border.flat')
     })};
-    width: ${ifProp({ orientation: 'horizontal' },
-    switchProp('size', {
-      small: '40px',
-      default: '80px'
-    }))};
+    width: ${ifProp(
+      { orientation: 'horizontal' },
+      switchProp('size', {
+        small: '40px',
+        default: '80px'
+      })
+    )};
 
     path {
       stroke: ${theme('button.text.group')};
     }
 
     &:hover svg path,
-    &:hover{
-      stroke:${theme('button.hover.group.text')};
+    &:hover {
+      stroke: ${theme('button.hover.group.text')};
       border-color: ${theme('button.hover.primary.bg')};
       color: ${theme('button.hover.group.text')};
       background: ${theme('button.hover.group.bg')};
@@ -37,24 +39,29 @@ const Container = styled.div`
   }
 
   .first {
-    border-radius: ${ifProp({ appearence: 'primary' },
-    switchProp('orientation', {
-      horizontal: css`${theme('border.radius.four')} 0 0
+    border-radius: ${ifProp(
+      { appearence: 'primary' },
+      switchProp('orientation', {
+        horizontal: css`${theme('border.radius.four')} 0 0
         ${theme('border.radius.four')}`,
-      vertical: css`${theme('border.radius.four')} ${theme('border.radius.four')} 
-        0 0`
-    }),
-    theme('border.radius.four')
+        vertical: css`
+          ${theme('border.radius.four')} ${theme(
+            'border.radius.four'
+          )} 
+        0 0
+        `
+      }),
+      theme('border.radius.four')
     )};
 
     ${switchProp('orientation', {
-    horizontal: css`
-          border-right-width: 0;
-        `,
-    vertical: css`
-          border-bottom-width: 0;
-        `
-  })};
+      horizontal: css`
+        border-right-width: 0;
+      `,
+      vertical: css`
+        border-bottom-width: 0;
+      `
+    })};
 
     &:hover {
       border-right-width: 0;
@@ -62,15 +69,19 @@ const Container = styled.div`
   }
 
   .middle {
-    border-radius: ${ifProp({ appearence: 'primary' }, '0', theme('border.radius.four'))};
+    border-radius: ${ifProp(
+      { appearence: 'primary' },
+      '0',
+      theme('border.radius.four')
+    )};
     ${switchProp('orientation', {
-    horizontal: css`
-          border-right-width: 0;
-        `,
-    vertical: css`
-          border-bottom-width: 0;
-        `
-    })}; 
+      horizontal: css`
+        border-right-width: 0;
+      `,
+      vertical: css`
+        border-bottom-width: 0;
+      `
+    })};
 
     &:hover {
       border-right-width: 0;
@@ -78,16 +89,17 @@ const Container = styled.div`
   }
 
   .last {
-    border-radius: ${ifProp({ appearence: 'primary' },
-    switchProp('orientation', {
-      horizontal: css`0 ${theme('border.radius.four')}
+    border-radius: ${ifProp(
+      { appearence: 'primary' },
+      switchProp('orientation', {
+        horizontal: css`0 ${theme('border.radius.four')}
         ${theme('border.radius.four')} 0`,
-      vertical: css`0 0  
+        vertical: css`0 0  
         ${theme('border.radius.four')} ${theme('border.radius.four')}`
-    }),
-    theme('border.radius.four')
+      }),
+      theme('border.radius.four')
     )};
-    }
+  }
 
   .active {
     background: ${theme('button.active.group.bg')};
@@ -95,9 +107,9 @@ const Container = styled.div`
     font-weight: ${theme('font.weight.bold')};
     color: ${theme('colors.white.hundred')};
     ${ifProp(
-    { appearence: 'secondary' },
-    css`
-        border-radius: ${theme('border.radius.four')};  	
+      { appearence: 'secondary' },
+      css`
+        border-radius: ${theme('border.radius.four')};
       `
     )}
 
@@ -110,7 +122,13 @@ const Container = styled.div`
 const isValidButton = child =>
   isValidElement(child) && child.type.displayName === 'Button'
 
-export default function Group({ children, orientation, activeId, appearence, size }) {
+export default function Group({
+  children,
+  orientation,
+  activeId,
+  appearence,
+  size
+}) {
   const [activeButton, setActiveButton] = useState(activeId)
   const [first, ...childrens] = Children.map(children, child => {
     if (!isValidButton(child)) {
@@ -121,7 +139,7 @@ export default function Group({ children, orientation, activeId, appearence, siz
 
     return child
   })
-  
+
   const firstChildren = cloneElement(first, {
     className: `first${first.props.id === activeButton ? ' active' : ''}`,
     appearence: 'stroke',
@@ -155,7 +173,11 @@ export default function Group({ children, orientation, activeId, appearence, siz
 
   const identifiedChildrens = [firstChildren, ...middle, lastChildren]
 
-  return <Container orientation={orientation} size={size} appearence={appearence}>{identifiedChildrens}</Container>
+  return (
+    <Container orientation={orientation} size={size} appearence={appearence}>
+      {identifiedChildrens}
+    </Container>
+  )
 }
 
 Group.appearence = {
@@ -181,7 +203,8 @@ Group.defaultProps = {
 
 Group.propTypes = {
   orientation: PropTypes.oneOf(['vertical', 'horizontal']),
-  activeId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  activeId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
   appearence: PropTypes.oneOf(['primary', 'secondary']),
   size: PropTypes.oneOf(['small', 'default'])
 }

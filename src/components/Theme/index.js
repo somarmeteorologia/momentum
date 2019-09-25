@@ -77,7 +77,7 @@ export const Theme = {
         primary: cornflower.thirty,
         stroke: ebony.thirteen,
         flat: cornflower.thirty,
-        group: {bg: ebony.twenty, border: 'none'}
+        group: { bg: ebony.twenty, border: 'none' }
       }
     },
     slider: {
@@ -399,7 +399,7 @@ export const Theme = {
         primary: cornflower.thirty,
         stroke: ebony.ninetySix,
         flat: cornflower.thirty,
-        group : {bg: ebony.sixty, border: 'none'}
+        group: { bg: ebony.sixty, border: 'none' }
       }
     },
     slider: {

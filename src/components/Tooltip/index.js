@@ -1,15 +1,17 @@
 import React, { memo, useContext, Fragment } from 'react'
 import styled, { css, ThemeContext } from 'styled-components'
 import PropTypes from 'prop-types'
-import { switchProp, ifProp, prop } from 'styled-tools'
+import { switchProp, ifProp, theme } from 'styled-tools'
 import Tippy from '@tippy.js/react'
 
+import { Text } from '@components/Text'
+
 const Tooltipable = styled(Tippy)`
-  z-index: ${prop('theme.zindex.modal')};
-  border-radius: ${prop('theme.border.radius.four')};
-  box-shadow: ${prop('theme.tooltip.shadow.primary')};
+  z-index: ${theme('zindex.modal')};
+  border-radius: ${theme('border.radius.four')};
+  box-shadow: ${theme('tooltip.shadow.primary')};
   min-width: ${ifProp('header', '200px', 'auto')};
-  max-width: 400px;
+  max-width: 300px;
 
   width: max-content;
   min-height: min-content;
@@ -17,51 +19,67 @@ const Tooltipable = styled(Tippy)`
 
   ${switchProp('className', {
     basic: css`
-      color: ${prop('theme.tooltip.text.primary')};
-      background: ${prop('theme.tooltip.bg.primary')};
+      color: ${theme('tooltip.text.primary')};
+      background: ${theme('tooltip.bg.primary')};
     `,
     accent: css`
-      color: ${prop('theme.tooltip.text.secondary')};
-      background: ${prop('theme.tooltip.bg.secondary')};
+      color: ${theme('tooltip.text.secondary')};
+      background: ${theme('tooltip.bg.secondary')};
     `
   })}
 
   .tippy-content {
-    border-radius: ${prop('theme.border.radius.four')};
+    border-radius: ${theme('border.radius.four')};
   }
 
   &[x-placement^='top'] .tippy-arrow {
-    border-top-color: ${prop('theme.tooltip.bg.primary')};
+    border-top-color: ${ifProp(
+      { className: 'basic' },
+      theme('tooltip.bg.primary'),
+      theme('tooltip.bg.secondary')
+    )};
   }
 
   &[x-placement^='bottom'] .tippy-arrow {
-    border-bottom-color: ${prop('theme.tooltip.bg.primary')};
+    border-bottom-color: ${ifProp(
+      { className: 'basic' },
+      theme('tooltip.bg.primary'),
+      theme('tooltip.bg.secondary')
+    )};
   }
 
   &[x-placement^='left'] .tippy-arrow {
-    border-left-color: ${prop('theme.tooltip.bg.primary')};
+    border-left-color: ${ifProp(
+      { className: 'basic' },
+      theme('tooltip.bg.primary'),
+      theme('tooltip.bg.secondary')
+    )};
   }
 
   &[x-placement^='right'] .tippy-arrow {
-    border-right-color: ${prop('theme.tooltip.bg.primary')};
+    border-right-color: ${ifProp(
+      { className: 'basic' },
+      theme('tooltip.bg.primary'),
+      theme('tooltip.bg.secondary')
+    )};
   }
 `
 
 const Header = styled.div`
-  font-weight: ${prop('theme.font.weight.bold')};
-  font-size: ${prop('theme.font.size.twelve')};
-  border-radius: ${prop('theme.border.radius.four')}
-    ${prop('theme.border.radius.four')} 0 0;
+  font-weight: ${theme('font.weight.bold')};
+  font-size: ${theme('font.size.twelve')};
+  border-radius: ${theme('border.radius.four')} ${theme('border.radius.four')} 0
+    0;
   width: 100%;
   padding: 10px 15px;
   text-transform: uppercase;
 
   ${switchProp('appearence', {
     basic: css`
-      background-color: ${prop('theme.tooltip.header.primary')};
+      background-color: ${theme('tooltip.header.primary')};
     `,
     accent: css`
-      background-color: ${prop('theme.tooltip.header.secondary')};
+      background-color: ${theme('tooltip.header.secondary')};
     `
   })}
 `
@@ -89,7 +107,8 @@ export const Tooltip = memo(
   ({ children, header, body, tailPosition, size, trigger, appearence }) => {
     const { tooltip } = useContext(ThemeContext)
 
-    const color = tooltip.text.primary
+    const color =
+      appearence === 'basic' ? tooltip.text.primary : tooltip.text.secondary
 
     return (
       <Tooltipable
@@ -102,9 +121,13 @@ export const Tooltip = memo(
         content={
           <Fragment>
             {header && (
-              <Header appearence={appearence}>{header({ color })}</Header>
+              <Header appearence={appearence}>
+                {header({ color, size: Text.size.twelve })}
+              </Header>
             )}
-            <Body size={size}>{body({ color })}</Body>
+            <Body appearence={appearence} size={size}>
+              {body({ color, size: Text.size.ten })}
+            </Body>
           </Fragment>
         }
       >

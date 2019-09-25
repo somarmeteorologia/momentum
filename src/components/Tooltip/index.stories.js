@@ -36,6 +36,16 @@ storiesOf(`${GROUPS.COMPONENTS}|Tooltip`, module)
       >
         <Text>Lorem ipsum dolor sit amet</Text>
       </Tooltip>
+
+      <Tooltip
+        appearence={Tooltip.appearence.accent}
+        trigger={Tooltip.trigger.click}
+        size={Tooltip.size.small}
+        header={({ color }) => <Text color={color}>A title here</Text>}
+        body={({ color }) => <Text color={color}>And description here</Text>}
+      >
+        <Text>Lorem ipsum dolor sit amet</Text>
+      </Tooltip>
     </>
   ))
   .add('Tail Position', () => (

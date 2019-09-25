@@ -27,6 +27,12 @@ module.exports = {
     }
   },
 
+  plugins: [
+    new webpack.EnvironmentPlugin({
+      ENV: JSON.stringify(process.env.ENV)
+    })
+  ],
+
   externals: {
     react: {
       root: 'React',
