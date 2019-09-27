@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`expect render with theme 1`] = `
+.c4 {
+  display: inline-block;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  line-height: 0;
+}
+
+.c0 {
+  width: 300px;
+}
+
+.c1 {
+  font-family: Inter,sans-serif;
+  width: 100%;
+}
+
+.c1:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.c1 .body {
+  margin-top: 5px;
+  padding: 14px 16px;
+  font-size: 0.75rem;
+  color: #080B19;
+  background-color: #f1f3fA;
+  border-radius: 0.25rem;
+  line-height: 150%;
+}
+
+.c2 {
+  height: 40px;
+  padding: 14px 48px 14px 16px;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #080B19;
+  background-color: #f1f3fA;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.c2 .icon {
+  position: absolute;
+  right: 16px;
+}
+
+.c3 {
+  width: 16px;
+  height: 16px;
+}
+
+<div
+  class="c0"
+>
+  <div
+    class="c1"
+  >
+    <div
+      class="c2"
+    >
+      <div>
+        Header
+      </div>
+      <span
+        class="icon c3"
+        style="transform: none;"
+      >
+        <div
+          class="c4"
+          height="16"
+          width="16"
+        >
+          <svg
+            fill="none"
+            height="16"
+            viewBox="0 0 15 16"
+            width="16"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M7.77817 1.63604L6.36396 1.63604L6.36396 7.29289H0.707107V8.70711H6.36396L6.36396 14.364L7.77817 14.364V8.70711L13.435 8.70711V7.29289L7.77817 7.29289V1.63604Z"
+              fill="#6479cb"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </div>
+      </span>
+    </div>
+    <div
+      class="body"
+      style="opacity: 0; display: none;"
+    >
+      <div>
+        Body.
+      </div>
+    </div>
+  </div>
+</div>
+`;
