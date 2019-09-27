@@ -11,6 +11,7 @@ const Container = styled.div`
   })};
 
   button {
+    background-color: ${theme('button.bg.group')};
     font-weight: ${theme('font.weight.regular')};
     color: ${theme('button.text.group')};
     border: ${switchProp('appearence', {
@@ -32,9 +33,9 @@ const Container = styled.div`
     &:hover svg path,
     &:hover {
       stroke: ${theme('button.hover.group.text')};
-      border-color: ${theme('button.hover.primary.bg')};
+      border-color: ${theme('button.hover.group.bg')};
       color: ${theme('button.hover.group.text')};
-      background: ${theme('button.hover.group.bg')};
+      background-color: ${theme('button.hover.group.bg')};
     }
   }
 
@@ -102,7 +103,7 @@ const Container = styled.div`
   }
 
   .active {
-    background: ${theme('button.active.group.bg')};
+    background-color: ${theme('button.active.group.bg')};
     border: ${theme('button.active.group.border')};
     font-weight: ${theme('font.weight.bold')};
     color: ${theme('colors.white.hundred')};
@@ -142,7 +143,6 @@ export default function Group({
 
   const firstChildren = cloneElement(first, {
     className: `first${first.props.id === activeButton ? ' active' : ''}`,
-    appearence: 'stroke',
     onClick: (...args) => {
       first.props.id && setActiveButton(first.props.id)
       first.props.onClick(...args)
@@ -153,7 +153,6 @@ export default function Group({
 
   const lastChildren = cloneElement(last, {
     className: `last${last.props.id === activeButton ? ' active' : ''}`,
-    appearence: 'stroke',
     onClick: (...args) => {
       last.props.id && setActiveButton(last.props.id)
       last.props.onClick(...args)
@@ -163,7 +162,6 @@ export default function Group({
   const middle = childrens.map(child =>
     cloneElement(child, {
       className: `middle${child.props.id === activeButton ? ' active' : ''}`,
-      appearence: 'stroke',
       onClick: (...args) => {
         child.props.id && setActiveButton(child.props.id)
         child.props.onClick(...args)
