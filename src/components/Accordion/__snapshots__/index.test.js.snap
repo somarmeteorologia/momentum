@@ -110,6 +110,7 @@ exports[`expect render with theme 1`] = `
     </div>
     <div
       class="body"
+      data-testid="body-accordion"
       style="opacity: 0; display: none;"
     >
       <div>

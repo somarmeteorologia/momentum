@@ -26,14 +26,28 @@ test('expect render with theme', () => {
 })
 
 test('expect open body with click', async () => {
-    const { getByText, container } = renderWithTheme(<Accordion accordions={accordions} />)
+    const { getByText, getByTestId } = renderWithTheme(<Accordion accordions={accordions} />)
     const header = getByText('Header')
     fireEvent.click(header)
-    const body = await waitForElement(() => container.getElementsByClassName('body')[0])
+    const body = await waitForElement(() => getByTestId('body-accordion'))
     expect(body).toHaveStyle('display : block')
 })
 
 test('expect full size', () => {
     const { container } = renderWithTheme(<Accordion full accordions={accordions} />)
     expect(container.firstChild).toHaveStyleRule('width', '100%')
+})
+
+test('expect close body with click', async done => {
+    const { getByText, getByTestId } = renderWithTheme(<Accordion accordions={accordions} />)
+    const header = getByText('Header')
+    fireEvent.click(header)
+    const body = await waitForElement(() => getByTestId('body-accordion'))
+    expect(body).toHaveStyle('display : block')
+    fireEvent.click(header)
+    setTimeout(() => {
+        const bodyClose = getByTestId('body-accordion')
+        expect(bodyClose).toHaveStyle('display : none')
+        done()
+    }, 400)
 })
