@@ -1,6 +1,7 @@
 .DS_STORE
 node_modules
 storybook-static
+coverage
 .env
 build
 .vscode
