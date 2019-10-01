@@ -1,5 +1,5 @@
 {
-  "presets": [["@babel/preset-env"], "@babel/preset-react"],
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
   "plugins": [
     "@babel/plugin-transform-spread",
     "@babel/plugin-proposal-class-properties",
@@ -13,6 +13,17 @@
           "styled-components",
           {
             "minify": false
+          }
+        ]
+      ]
+    },
+    "test": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "useBuiltIns": "usage",
+            "corejs": 3
           }
         ]
       ]

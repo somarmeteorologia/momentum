@@ -30,6 +30,10 @@ function Provider({
   )
 }
 
+Provider.defaultProps = {
+  onInterable: () => {}
+}
+
 Provider.propTypes = {
   onInterable: PropTypes.func,
   defaultInterables: PropTypes.arrayOf(
