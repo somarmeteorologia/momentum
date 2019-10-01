@@ -10,12 +10,12 @@ const Wrapper = styled.div`
   width: ${ifProp('full', '100%', '300px')};
 
   ${ifProp(
-    'auto',
-    css`
+  'auto',
+  css`
       min-width: 300px;
       width: auto;
     `
-  )}
+)}
 `
 
 const Container = styled.div`
@@ -127,7 +127,7 @@ export const Accordion = memo(({ accordions, auto, full }) => {
                 />
               </Iconable>
             </Headerable>
-            <Bodyable pose={active ? 'visible' : 'hidden'} className="body">
+            <Bodyable pose={active ? 'visible' : 'hidden'} className="body" data-testid='body-accordion'>
               {Body}
             </Bodyable>
           </Container>
