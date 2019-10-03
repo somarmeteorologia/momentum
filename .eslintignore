@@ -3,3 +3,4 @@ __snapshots__
 *.woff
 *.woff2
 *.png
+src/resources/img/*

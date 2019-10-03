@@ -3,6 +3,9 @@ import styled, { ThemeContext } from 'styled-components'
 import PropTypes from 'prop-types'
 import { prop, ifProp, theme } from 'styled-tools'
 import posed from 'react-pose'
+import PerfectScrollbar from 'react-perfect-scrollbar'
+
+import 'react-perfect-scrollbar/dist/css/styles.css'
 
 import { Icon } from '@components/Icon'
 
@@ -72,10 +75,12 @@ export const Navigation = ({ height, toOpen, onToggled }) => {
       pose={toggled ? animations.collapsed : animations.visible}
     >
       {!toggled && (
-        <Switcher
-          toOpen={toOpen}
-          height={containerRef.current && containerRef.current.offsetHeight}
-        />
+        <PerfectScrollbar>
+          <Switcher
+            toOpen={toOpen}
+            height={containerRef.current && containerRef.current.offsetHeight}
+          />
+        </PerfectScrollbar>
       )}
       {hasNavigationHover && (
         <Toggleable

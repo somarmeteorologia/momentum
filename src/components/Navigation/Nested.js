@@ -46,7 +46,6 @@ const Back = styled.div`
 const Container = styled.div`
   width: 100%;
   height: ${prop('height')}px;
-  overflow: auto;
   padding-top: 15px;
 `
 
