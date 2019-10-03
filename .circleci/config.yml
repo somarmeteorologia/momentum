@@ -16,8 +16,6 @@ jobs:
       - run:
           name: Tests
           command: yarn test
-      - store_artifacts:
-          path: coverage
       - codecov/upload:
           file: coverage/*.json
       - run:
