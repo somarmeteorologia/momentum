@@ -1,5 +1,6 @@
 .DS_Store
 .storybook
+.circleci
 storybook-static
 node_modules
 coverage
