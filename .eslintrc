@@ -5,6 +5,11 @@
     "es6": true,
     "jest": true
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "globals": {
     "cy": true,
     "process": true

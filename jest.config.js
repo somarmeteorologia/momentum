@@ -5,6 +5,7 @@ module.exports = {
   moduleFileExtensions: ['js'],
   verbose: true,
   moduleNameMapper: {
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     '@components(.*)$': `${PATH.source}/components/$1`
   },
   testPathIgnorePatterns: ['/node_modules/'],
