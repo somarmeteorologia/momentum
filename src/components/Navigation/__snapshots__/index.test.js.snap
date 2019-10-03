@@ -67,7 +67,7 @@ exports[`Not expect visual regression 1`] = `
   -ms-flex-align: center;
   align-items: center;
   margin-bottom: 15px;
-  padding: 15px;
+  padding: 15px 20px;
   background-color: #d7dcf2;
 }
 
@@ -89,7 +89,7 @@ exports[`Not expect visual regression 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  padding: 10px 5px 10px 0;
+  padding: 10px;
   margin-left: 5px;
   margin-bottom: 10px;
 }
