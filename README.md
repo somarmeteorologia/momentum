@@ -1,3 +1,6 @@
+[![CircleCI](https://circleci.com/gh/somarmeteorologia/momentum.svg?style=svg)](https://circleci.com/gh/somarmeteorologia/momentum)
+[![codecov](https://codecov.io/gh/somarmeteorologia/momentum/branch/master/graph/badge.svg)](https://codecov.io/gh/somarmeteorologia/momentum)
+
 # Momentum
 
 > Design System utilizado nos produtos e projetos da Somar Meteorologia.
