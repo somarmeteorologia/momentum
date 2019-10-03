@@ -1,4 +1,8 @@
 version: 2
+
+orbs:
+  codecov: codecov/codecov@1.0.2
+
 jobs:
   build:
     working_directory: ~/momentum
@@ -12,6 +16,10 @@ jobs:
       - run:
           name: Tests
           command: yarn test
+      - store_artifacts:
+          path: coverage
+      - codecov/upload:
+          file: coverage/*.json
       - run:
           name: Build
           command: |
