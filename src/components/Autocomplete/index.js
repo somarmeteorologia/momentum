@@ -25,10 +25,10 @@ const Autocompleteable = styled.div`
   height: 40px;
   border-radius: ${prop('theme.border.radius.four')};
   border: ${ifProp(
-    'hasError',
-    prop('theme.field.border.danger'),
-    prop('theme.field.border.primary')
-  )};
+  'hasError',
+  prop('theme.field.border.danger'),
+  prop('theme.field.border.primary')
+)};
   background-color: ${prop('theme.field.bg.primary')};
   color: ${prop('theme.field.text.primary')};
   outline: 0;
@@ -41,16 +41,16 @@ const Autocompleteable = styled.div`
   align-items: center;
 
   ${ifProp(
-    'focus',
-    css`
+  'focus',
+  css`
       border: ${ifProp(
-        'hasError',
-        prop('theme.field.border.danger'),
-        prop('theme.field.border.secondary')
-      )};
+    'hasError',
+    prop('theme.field.border.danger'),
+    prop('theme.field.border.secondary')
+  )};
     `,
-    null
-  )}
+  null
+)}
 `
 
 const Label = styled.span`
@@ -59,25 +59,25 @@ const Label = styled.span`
   font-size: ${prop('theme.font.size.twelve')};
   font-weight: ${prop('theme.font.weight.bold')};
   color: ${ifProp(
-    'disabled',
-    prop('theme.field.text.disabled'),
-    prop('theme.field.text.primary')
-  )};
+  'disabled',
+  prop('theme.field.text.disabled'),
+  prop('theme.field.text.primary')
+)};
   cursor: default;
 
   ${ifProp(
-    'required',
-    css`
+  'required',
+  css`
       &::after {
         content: '*';
         color: ${ifProp(
-          'disabled',
-          prop('theme.field.text.disabled'),
-          prop('theme.field.text.danger')
-        )};
+    'disabled',
+    prop('theme.field.text.disabled'),
+    prop('theme.field.text.danger')
+  )};
       }
     `
-  )}
+)}
 `
 
 const Selecties = posed(styled.ul`
@@ -105,15 +105,15 @@ const Selectable = styled.li`
   padding-right: 14px;
   font-size: ${prop('theme.font.size.fourteen')};
   font-weight: ${ifProp(
-    'selected',
-    prop('theme.font.weight.bold'),
-    prop('theme.font.weight.regular')
-  )};
+  'selected',
+  prop('theme.font.weight.bold'),
+  prop('theme.font.weight.regular')
+)};
   color: ${ifProp(
-    'selected',
-    prop('theme.field.text.active'),
-    prop('theme.field.text.tertiary')
-  )};
+  'selected',
+  prop('theme.field.text.active'),
+  prop('theme.field.text.tertiary')
+)};
   cursor: pointer;
 
   &:hover {
@@ -136,10 +136,10 @@ const Interable = styled.div`
   padding: 0 16px;
   margin-left: -1px;
   background-color: ${ifProp(
-    'isActive',
-    prop('theme.field.bg.active'),
-    prop('theme.field.bg.tertiary')
-  )};
+  'isActive',
+  prop('theme.field.bg.active'),
+  prop('theme.field.bg.tertiary')
+)};
   border-radius: ${prop('theme.border.radius.four')} 0 0
     ${prop('theme.border.radius.four')};
 `
@@ -170,17 +170,17 @@ const Input = styled.input`
 
   &::placeholder {
     color: ${ifProp(
-      'hasError',
-      prop('theme.field.text.danger'),
-      prop('theme.field.text.secondary')
-    )};
+  'hasError',
+  prop('theme.field.text.danger'),
+  prop('theme.field.text.secondary')
+)};
 
     ${ifProp(
-      'disabled',
-      css`
+  'disabled',
+  css`
         color: ${prop('theme.field.text.disabled')};
       `
-    )};
+)};
   }
 `
 
@@ -210,12 +210,12 @@ export const Autocomplete = memo(
     const [showCategories, setShowCategories] = useState(false)
     const [showOptions, setShowOptions] = useState(false)
     const [focus, setFocus] = useState(false)
-    const [hover, setHover] = useState({ id: undefined, has: false })
     const [category, setCategory] = useState(hasSelected)
     const [selected, setSelected] = useState('Digite aqui...')
     const [filteredOptions, setFilteredOptions] = useState([])
     const [value, setValue] = useState('')
     const [clicked, setClicked] = useState(false)
+    const [idHover, setIdHover] = useState(undefined)
 
     const toggleShowCategories = event => {
       event.preventDefault()
@@ -330,13 +330,13 @@ export const Autocomplete = memo(
                   setShowCategories(false)
                   setCategory({ id, icon, text, ...props })
                 }}
-                onMouseEnter={() => setHover({ id, has: true })}
-                onMouseLeave={() => setHover({ id, has: false })}
+                onMouseEnter={() => setIdHover(id)}
+                onMouseLeave={() => setIdHover(null)}
               >
                 {icon({
                   ...iconAjustment,
                   color:
-                    hover.has && hover.id === id
+                    idHover === id
                       ? field.icon.active
                       : field.icon.tertiary
                 })}
@@ -368,7 +368,7 @@ export const Autocomplete = memo(
 )
 
 Autocomplete.defaultProps = {
-  onChange: () => {},
+  onChange: () => { },
   error: {
     has: false
   },
