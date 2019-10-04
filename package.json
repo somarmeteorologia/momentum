@@ -12,8 +12,7 @@
     "test:commit": "jest --config jest.config.js --bail --coverage --findRelatedTests",
     "test:generate": "jest --json --outputFile=.jest-test-results.json || true",
     "prettier": "node_modules/.bin/prettier --config .prettierrc \"src/**/*.js\"",
-    "lint": "node_modules/.bin/eslint --config .eslintrc src/components/* --ext .js",
-    "commit": "npm run prettier && npm run lint"
+    "lint": "node_modules/.bin/eslint --config .eslintrc src/**/* --ext .js"
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",
