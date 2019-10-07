@@ -281,7 +281,8 @@ export const Autocomplete = memo(
                   color:
                     isActive() || clicked
                       ? field.icon.active
-                      : field.icon.secondary
+                      : field.icon.secondary,
+                  testID: 'icon'
                 })}
 
                 <Arrow pose={isActive() ? 'rotate' : 'initial'}>
@@ -312,6 +313,7 @@ export const Autocomplete = memo(
                 disabled={disabled}
                 required={required}
                 hasError={error.has}
+                data-testid='input-autocomplete'
               />
             </Autocompleteable>
           </Content>
@@ -338,7 +340,8 @@ export const Autocomplete = memo(
                   color:
                     idHover === id
                       ? field.icon.active
-                      : field.icon.tertiary
+                      : field.icon.tertiary,
+                  testID: 'list'
                 })}
                 <div className="text">{text}</div>
               </Selectable>
@@ -355,6 +358,7 @@ export const Autocomplete = memo(
                 value={value}
                 selected={text === selected}
                 onClick={whenSelected({ value, text, category })}
+                data-testid='option'
               >
                 {text}
               </Selectable>
