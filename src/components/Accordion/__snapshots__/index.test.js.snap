@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`expect render with theme 1`] = `
+exports[`Not expect visual regression 1`] = `
 .c4 {
   display: inline-block;
   display: -webkit-box;
@@ -80,9 +80,7 @@ exports[`expect render with theme 1`] = `
     <div
       class="c2"
     >
-      <div>
-        Header
-      </div>
+      Header
       <span
         class="icon c3"
         style="transform: none;"

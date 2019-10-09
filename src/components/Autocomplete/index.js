@@ -126,7 +126,7 @@ const Selectable = styled.li`
   }
 `
 
-const Interable = styled.div`
+const Interable = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -135,6 +135,7 @@ const Interable = styled.div`
   width: 64px;
   padding: 0 16px;
   margin-left: -1px;
+  border:0;
   background-color: ${ifProp(
   'isActive',
   prop('theme.field.bg.active'),
@@ -142,6 +143,7 @@ const Interable = styled.div`
 )};
   border-radius: ${prop('theme.border.radius.four')} 0 0
     ${prop('theme.border.radius.four')};
+  cursor: ${ifProp('disabled', 'not-allowed', 'pointer')};
 `
 
 const Arrow = posed(styled.span``)({
@@ -262,7 +264,7 @@ export const Autocomplete = memo(
         >
           <Content>
             {label && (
-              <Label required={required} disabled={disabled}>
+              <Label required={required} disabled={disabled} data-testid='label-autocomplete'>
                 {label}
               </Label>
             )}
@@ -273,15 +275,18 @@ export const Autocomplete = memo(
               hasError={error.has}
             >
               <Interable
-                onClick={!disabled ? toggleShowCategories : undefined}
+                onClick={toggleShowCategories}
                 isActive={isActive() || clicked}
+                data-testid='interable'
+                disabled={disabled}
               >
                 {category.icon({
                   ...iconAjustment,
                   color:
                     isActive() || clicked
                       ? field.icon.active
-                      : field.icon.secondary
+                      : field.icon.secondary,
+                  testID: 'icon'
                 })}
 
                 <Arrow pose={isActive() ? 'rotate' : 'initial'}>
@@ -312,6 +317,7 @@ export const Autocomplete = memo(
                 disabled={disabled}
                 required={required}
                 hasError={error.has}
+                data-testid='input-autocomplete'
               />
             </Autocompleteable>
           </Content>
@@ -338,7 +344,8 @@ export const Autocomplete = memo(
                   color:
                     idHover === id
                       ? field.icon.active
-                      : field.icon.tertiary
+                      : field.icon.tertiary,
+                  testID: 'list'
                 })}
                 <div className="text">{text}</div>
               </Selectable>
@@ -355,6 +362,7 @@ export const Autocomplete = memo(
                 value={value}
                 selected={text === selected}
                 onClick={whenSelected({ value, text, category })}
+                data-testid='option'
               >
                 {text}
               </Selectable>
