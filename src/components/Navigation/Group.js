@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled, { ThemeContext } from 'styled-components'
-import { prop } from 'styled-tools'
+import { theme } from 'styled-tools'
 import { Icon } from '@components/Icon'
 
 import { Context } from './Context'
@@ -10,7 +10,7 @@ import { setOpenById, useInterable } from './utils'
 const Container = styled.div`
   width: calc(100% - 10px);
   height: 50px;
-  border-radius: ${prop('theme.border.radius.four')};
+  border-radius: ${theme('border.radius.four')};
   line-height: 50px;
   cursor: pointer;
   display: flex;
@@ -19,14 +19,15 @@ const Container = styled.div`
   padding: 10px;
   margin-left: 5px;
   margin-bottom: 10px;
+  transition: all 100ms cubic-bezier(0.64, 0.04, 0.35, 1);
 
   &:hover {
-    background-color: ${prop('theme.navigation.bg.hover')};
+    background-color: ${theme('navigation.bg.hover')};
   }
 
   &:hover path,
   &:hover span {
-    color: ${prop('theme.navigation.text.hover')};
+    color: ${theme('navigation.text.hover')};
   }
 `
 
