@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
-import { prop } from 'styled-tools'
+import { theme } from 'styled-tools'
 
 const Container = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ const Container = styled.div`
   align-items: center;
   margin-bottom: 15px;
   padding: 15px 20px;
-  background-color: ${prop('theme.navigation.bg.secondary')};
+  background-color: ${theme('navigation.bg.secondary')};
 `
 
 const Title = ({ children }) => {

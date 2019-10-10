@@ -1,7 +1,7 @@
 import React, { useContext, Fragment, memo, useEffect, useState } from 'react'
 import styled, { ThemeContext, css } from 'styled-components'
 import PropTypes from 'prop-types'
-import { prop, ifProp } from 'styled-tools'
+import { prop, ifProp, theme } from 'styled-tools'
 
 import { Context } from './Context'
 import { Icon } from '@components/Icon'
@@ -10,7 +10,7 @@ import { setOpenById, titleMapper, getChildrensById } from './utils'
 
 const Back = styled.div`
   height: 50px;
-  background-color: ${prop('theme.navigation.bg.secondary')};
+  background-color: ${theme('navigation.bg.secondary')};
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -34,7 +34,7 @@ const Back = styled.div`
   ${ifProp(
     'isShadowed',
     css`
-      box-shadow: -2px 5px 16px -7px ${prop('theme.shadow.darker')};
+      box-shadow: -2px 5px 16px -7px ${theme('shadow.darker')};
 
       &:after {
         opacity: 1;
