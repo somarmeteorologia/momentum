@@ -38,6 +38,11 @@ storiesOf(`${GROUPS.COMPONENTS}|Button`, module)
       <Button disabled={true}>Disabled</Button>
     </>
   ))
+  .add('With link', () => (
+    <>
+      <Button href="https://google.com">Open Google</Button>
+    </>
+  ))
   .add('Size', () => (
     <>
       <Button size={Button.size.small}>Small</Button>
