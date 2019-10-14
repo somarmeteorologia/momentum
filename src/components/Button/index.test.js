@@ -14,13 +14,13 @@ const withProvider = ({ ...props }) => (
 )
 
 test('Not expect visual regression', () => {
-  const { container } = render(withProvider({}))
+  const { container } = render(withProvider())
 
   expect(container.firstChild).toMatchSnapshot()
 })
 
 test('Expect correct appearances', () => {
-  const { container, rerender } = render(withProvider({}))
+  const { container, rerender } = render(withProvider())
 
   expect(container.firstChild).toHaveStyleRule(
     'background-color',
@@ -45,8 +45,18 @@ test('Expect full width when with prop', () => {
   expect(container.firstChild).toHaveStyleRule('width', '100%')
 })
 
+test('Expect correct element based on property', () => {
+  const { container, rerender } = render(withProvider())
+
+  expect(container.firstChild).not.toHaveAttribute('href')
+
+  rerender(withProvider({ href: 'https://google.com' }))
+
+  expect(container.firstChild).toHaveAttribute('href')
+})
+
 test('Expect correct sizes', () => {
-  const { container, rerender } = render(withProvider({}))
+  const { container, rerender } = render(withProvider())
 
   expect(container.firstChild).toHaveStyleRule('height', '40px')
   expect(container.firstChild).toHaveStyleRule('font-size', font.size.fourteen)

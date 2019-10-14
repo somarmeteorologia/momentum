@@ -13,7 +13,7 @@ const Icon = styled.div`
   align-items: center;
 `
 
-const Content = styled.button`
+const content = element => styled(element)`
   border-radius: ${theme('border.radius.four')};
   font-family: ${theme('font.family.inter')};
   font-weight: ${theme('font.weight.bold')};
@@ -140,10 +140,10 @@ export const Button = memo(
     icon,
     children,
     onClick,
+    href,
     ...props
   }) => {
     const { button } = useContext(ThemeContext)
-
     const [color, setColor] = useState('')
 
     const setHoverColor = () =>
@@ -151,6 +151,19 @@ export const Button = memo(
 
     const setInitialColor = () =>
       types[appearence] && setColor(button.text[appearence])
+
+    const isLink = !!href
+
+    const linkProps = isLink
+      ? {
+          href,
+          target: '_blank'
+        }
+      : {}
+
+    const element = isLink ? 'a' : 'button'
+
+    const Content = content(element)
 
     useEffect(() => {
       setInitialColor()
@@ -167,6 +180,7 @@ export const Button = memo(
         onMouseEnter={setHoverColor}
         onMouseLeave={setInitialColor}
         {...props}
+        {...linkProps}
       >
         {loading ? (
           <Fragment>
@@ -208,7 +222,8 @@ Button.propTypes = {
   onClick: PropTypes.func,
   full: PropTypes.bool,
   uppercase: PropTypes.bool,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  href: PropTypes.string
 }
 
 Button.appearence = {
