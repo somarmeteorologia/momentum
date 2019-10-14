@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  cleanup,
-  fireEvent,
-  waitForElement,
-  wait
-} from '@testing-library/react'
+import { cleanup, fireEvent, wait } from '@testing-library/react'
 
 import { Accordion } from '@components/Accordion'
 import { renderWithTheme } from '../../test-utilities'
@@ -30,7 +25,10 @@ test('Not expect visual regression', () => {
 test('expect render with theme', () => {
   const { dark } = Theme
 
-  const { getByText } = renderWithTheme(<Accordion accordions={accordions} />, dark)
+  const { getByText } = renderWithTheme(
+    <Accordion accordions={accordions} />,
+    dark
+  )
 
   const divHeader = getByText('Header').closest('div')
   expect(divHeader).toHaveStyle(`background-color:${dark.accordion.bg.primary}`)
@@ -41,11 +39,16 @@ test('expect open body with click', async () => {
   const { getByText, getByTestId } = renderWithTheme(
     <Accordion accordions={accordions} />
   )
-  const header = getByText('Header')
-  fireEvent.click(header)
-  const body = await waitForElement(() => getByTestId('body-accordion'))
 
-  expect(body).toHaveStyle('display: block')
+  fireEvent.click(getByText('Header'))
+
+  await wait(
+    () => {
+      const body = getByTestId('body-accordion')
+      expect(body).toHaveStyle('display: block')
+    },
+    { interval: 500 }
+  )
 })
 
 test('expect full size', () => {
@@ -60,6 +63,7 @@ test('expect close body with click', async () => {
   const { getByText, getByTestId } = renderWithTheme(
     <Accordion accordions={accordions} />
   )
+
   const header = getByText('Header')
 
   fireEvent.click(header)
