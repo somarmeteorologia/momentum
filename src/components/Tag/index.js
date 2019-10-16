@@ -4,10 +4,7 @@ import PropTypes from 'prop-types'
 import { theme } from 'styled-tools'
 
 const Content = styled.div`
-  background-color: ${({ theme, color }) => {
-    console.log(color)
-    return theme.colors[color].fifty
-  }};
+  background-color: ${({ theme, color }) => theme.colors[color].fifty};
   border-radius: ${theme('border.radius.four')};
   padding: 2px 6px;
 `
