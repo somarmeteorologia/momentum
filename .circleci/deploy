@@ -1,20 +1,23 @@
 #!/bin/bash
 
-CIRCLE_BRANCH="feature/test"
 BRANCH_NORMALIZED="${CIRCLE_BRANCH//\//-}"
 
 sync_bucket() {
-  echo $1
   aws s3 sync ~/momentum/storybook-static $1 --region us-east-1 --delete
 }
 
 if [ "${CIRCLE_BRANCH}" == "master" ]; then
+  echo "create and sync bucket to master"
   sync_bucket s3://momentum.somar.io
 else
-  if aws s3api head-bucket --bucket normalize_bucket_name $BRANCH_NORMALIZED.momentum.somar.io 2>/dev/null; then
-    aws s3api create-bucket --bucket normalize_bucket_name $BRANCH_NORMALIZED.momentum.somar.io --region us-east-1
+  aws s3api head-bucket --bucket $BRANCH_NORMALIZED.momentum.somar.io || EXISTS=false
+
+  if [ $EXISTS ]; then
+    echo "create and sync bucket"
+    aws s3api create-bucket --bucket $BRANCH_NORMALIZED.momentum.somar.io --region us-east-1
     sync_bucket s3://$BRANCH_NORMALIZED.momentum.somar.io
   else
+    echo "sync bucket"
     sync_bucket s3://$BRANCH_NORMALIZED.momentum.somar.io
   fi
 fi
