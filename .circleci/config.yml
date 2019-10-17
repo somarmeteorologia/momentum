@@ -30,13 +30,5 @@ jobs:
       - deploy:
           name: Deploy to master
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              aws s3 sync ~/momentum/storybook-static s3://momentum.somar.io  --region us-east-1 --delete
-            else
-              if aws s3api head-bucket --bucket "${CIRCLE_BRANCH}.momentum.somar.io" 2>/dev/null; then
-                aws s3api create-bucket --bucket "${CIRCLE_BRANCH}.momentum.somar.io" --region us-east-1
-                aws s3 sync ~/momentum/storybook-static "s3://${CIRCLE_BRANCH}.momentum.somar.io"  --region us-east-1 --delete
-              else
-                aws s3 sync ~/momentum/storybook-static "s3://${CIRCLE_BRANCH}.momentum.somar.io"  --region us-east-1 --delete
-              fi
-            fi
+            chmod +x ~/momentum/.circleci/deploy
+            ~/momentum/.circleci/deploy
