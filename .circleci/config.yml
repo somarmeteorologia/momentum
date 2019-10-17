@@ -33,8 +33,3 @@ jobs:
           command: |
             chmod +x ~/momentum/.circleci/deploy
             ~/momentum/.circleci/deploy
-      - slack/notify:
-          channel: CNP24HLC9
-          color: "#42e2f4"
-          message: "Pessoal, a preview branch desse job está disponível em "
-          webhook: webhook
