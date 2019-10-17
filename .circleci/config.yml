@@ -28,7 +28,7 @@ jobs:
           name: Installing deploy dependencies
           command: sudo apt-get -y -qq install awscli
       - deploy:
-          name: Deploy to master
+          name: Deploy
           command: |
             chmod +x ~/momentum/.circleci/deploy
             ~/momentum/.circleci/deploy
