@@ -3,7 +3,7 @@
 BRANCH_NORMALIZED="${CIRCLE_BRANCH//\//-}"
 
 sync_bucket() {
-  aws s3 sync ~/Desktop/momentum/storybook-static $1 --region us-east-1 --delete
+  aws s3 sync ~/momentum/storybook-static $1 --region us-east-1 --delete
 }
 
 if [ "${CIRCLE_BRANCH}" == "master" ]; then
