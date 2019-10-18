@@ -23,15 +23,15 @@ storiesOf(`${GROUPS.COMPONENTS}|Tag`, module)
   ))
   .add('Default', () => (
     <>
-      <Tag>
+      <Tag color="#133BEC">
         <Text>Info</Text>
       </Tag>
 
-      <Tag color="yellow">
+      <Tag color="#FFC600">
         <Text>Warning</Text>
       </Tag>
 
-      <Tag color="red">
+      <Tag color="#FF0130">
         <Text>Danger</Text>
       </Tag>
     </>
