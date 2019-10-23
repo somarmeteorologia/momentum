@@ -1,7 +1,7 @@
 import React, { memo, useContext, useState } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import PropTypes from 'prop-types'
-import { prop } from 'styled-tools'
+import { theme } from 'styled-tools'
 import ReactTable from 'react-table'
 import withFixedColumns from 'react-table-hoc-fixed-columns'
 
@@ -15,29 +15,34 @@ const ReactTableFixedColumns = withFixedColumns(ReactTable)
 
 const Content = styled.div`
   width: 100%;
-  font-family: ${prop('theme.font.family.inter')};
+  font-family: ${theme('font.family.inter')};
+
+  .rthfc .rt-th,
+  .rthfc .rt-td {
+    background-color: ${theme('datatable.bg.primary')};
+  }
 
   .ReactTable {
     width: 100%;
     border: none;
-    background-color: ${prop('theme.datatable.bg.primary')};
-    color: ${prop('theme.datatable.text.primary')};
+    background-color: ${theme('datatable.bg.primary')};
+    color: ${theme('datatable.text.primary')};
 
     .rt-thead {
       &.-header {
         box-shadow: none;
-        border-bottom: ${prop('theme.datatable.border.primary')};
+        border-bottom: ${theme('datatable.border.primary')};
       }
 
       .rt-th {
-        font-weight: ${prop('theme.font.weight.bold')};
-        font-size: ${prop('theme.font.size.fourteen')};
+        font-weight: ${theme('font.weight.bold')};
+        font-size: ${theme('font.size.fourteen')};
         height: 60px;
         display: flex;
         align-items: center;
         padding: 0 15px;
         white-space: pre-wrap;
-        border-right: ${prop('theme.datatable.border.primary')} !important;
+        border-right: ${theme('datatable.border.primary')} !important;
 
         &.-sort-asc,
         &.-sort-desc {
@@ -48,23 +53,23 @@ const Content = styled.div`
 
     .rt-tbody {
       .rt-tr-group {
-        border-bottom: ${prop('theme.datatable.border.primary')};
+        border-bottom: ${theme('datatable.border.primary')};
       }
 
       .rt-td {
-        font-size: ${prop('theme.font.size.twelve')};
+        font-size: ${theme('font.size.twelve')};
         height: 50px;
         display: flex;
         align-items: center;
         padding: 0 15px;
         transition: background-color 0.1s ease-in;
-        border-right: ${prop('theme.datatable.border.primary')} !important;
+        border-right: ${theme('datatable.border.primary')} !important;
       }
     }
 
     .rt-tr:hover .rt-td {
-      background-color: ${prop('theme.datatable.bg.rowHover')};
-      color: ${prop('theme.datatable.text.hover')};
+      background-color: ${theme('datatable.bg.rowHover')};
+      color: ${theme('datatable.text.hover')};
     }
   }
 `

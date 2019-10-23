@@ -1,57 +1,73 @@
-// import React from 'react'
-// import { storiesOf } from '@storybook/react'
+import React from 'react'
+import { storiesOf } from '@storybook/react'
+import { prop } from 'styled-tools'
+import styled from 'styled-components'
 
-// import { GROUPS } from '@helpers/hierarchySeparators'
-// import { Colors } from '@helpers/components/Colors'
-// import { Fonts } from '@helpers/components/Fonts'
+import { GROUPS } from '@helpers/hierarchySeparators'
 
-// import { Reset } from '@components/Reset'
-// import { tokens } from '@components/Tokens'
+import { Reset } from '@components/Reset'
+import { DataTable } from '@components/DataTable'
+import { tokens } from '@components/Tokens'
 
-// const { text, bg, support, font } = tokens
+const { colors, font, border } = tokens
 
-// const { weight, size, family } = font
+const { keys } = Object
 
-// storiesOf(`${GROUPS.TOKENS}|Colors`, module)
-//   .addDecorator(story => (
-//     <>
-//       <Reset />
-//       {story()}
-//     </>
-//   ))
-//   .add('Text', () => <Colors property="text" title="Text" object={text} />)
-//   .add('Support', () => (
-//     <Colors property="support" title="Support" object={support} />
-//   ))
-//   .add('Background', () => (
-//     <Colors property="bg" title="Background" object={bg} />
-//   ))
+const columns = [
+  {
+    Header: 'Token',
+    accessor: 'token'
+  },
+  {
+    Header: 'Value',
+    accessor: 'value'
+  },
+  {
+    Header: 'Example',
+    accessor: 'example'
+  }
+]
 
-// storiesOf(`${GROUPS.TOKENS}|Fonts`, module)
-//   .addDecorator(story => (
-//     <>
-//       <Reset />
-//       {story()}
-//     </>
-//   ))
-//   .add('Weight', () => (
-//     <Fonts property="weight" title="Weight" object={weight} />
-//   ))
-//   .add('Size', () => <Fonts property="size" title="Size" object={size} />)
-//   .add('Family', () => (
-//     <Fonts property="family" title="Family" object={family} />
-//   ))
+const Example = styled.div`
+  width: 20px;
+  height: 20px;
+  background-color: ${prop('value')};
+`
 
-// storiesOf(`${GROUPS.TOKENS}|Borders`, module).addDecorator(story => (
-//   <>
-//     <Reset />
-//     {story()}
-//   </>
-// ))
+const buildArray = ({ object, property }) =>
+  keys(object).map(color => {
+    return keys(object[color]).map(hex => ({
+      token: `theme.${property}.${color}.${hex}`,
+      value: object[color][hex],
+      example: <Example value={object[color][hex]} />
+    }))
+  })
 
-// storiesOf(`${GROUPS.TOKENS}|Z-indexes`, module).addDecorator(story => (
-//   <>
-//     <Reset />
-//     {story()}
-//   </>
-// ))
+storiesOf(`${GROUPS.COMPONENTS}|Tokens`, module)
+  .addDecorator(story => (
+    <>
+      <Reset />
+      {story()}
+    </>
+  ))
+  .add('Colors', () => (
+    <DataTable
+      data={buildArray({ object: colors, property: 'colors' }).flat()}
+      columns={columns}
+      size={10}
+    />
+  ))
+  .add('Fonts', () => (
+    <DataTable
+      data={buildArray({ object: font, property: 'font' }).flat()}
+      columns={columns}
+      size={10}
+    />
+  ))
+  .add('Border', () => (
+    <DataTable
+      data={buildArray({ object: border, property: 'border' }).flat()}
+      columns={columns}
+      size={10}
+    />
+  ))
