@@ -1,0 +1,40 @@
+#!/bin/bash
+
+BRANCH_NORMALIZED="${CIRCLE_BRANCH//\//-}"
+
+sync_bucket() {
+  aws s3 sync ~/momentum/storybook-static $1 --region us-east-1 --delete
+}
+
+if [ "${CIRCLE_BRANCH}" == "master" ]; then
+  echo "Create and sync bucket to master"
+  sync_bucket s3://momentum.somar.io
+else
+  if aws s3 ls "s3://$BRANCH_NORMALIZED.momentum.somar.io" 2>&1 | grep -q 'NoSuchBucket'; then
+    echo "Create the bucket"
+    aws s3api create-bucket --bucket $BRANCH_NORMALIZED.momentum.somar.io --region us-east-1
+
+    echo "Assign public policy access"
+    aws s3api put-bucket-policy --bucket $BRANCH_NORMALIZED.momentum.somar.io --policy "{
+      \"Version\": \"2012-10-17\",
+      \"Statement\": [
+        {
+          \"Sid\": \"AllowPublicReadAccess\",
+          \"Effect\": \"Allow\",
+          \"Principal\": \"*\",
+          \"Action\": \"s3:GetObject\",
+          \"Resource\": \"arn:aws:s3:::$BRANCH_NORMALIZED.momentum.somar.io/*\"
+        }
+      ]
+    }"
+
+    echo "Active redirect to index"
+    aws s3 website s3://$BRANCH_NORMALIZED.momentum.somar.io --index-document index.html --error-document index.html
+
+    echo "Sync bucket"
+    sync_bucket s3://$BRANCH_NORMALIZED.momentum.somar.io
+  else
+    echo "Sync bucket"
+    sync_bucket s3://$BRANCH_NORMALIZED.momentum.somar.io
+  fi
+fi
