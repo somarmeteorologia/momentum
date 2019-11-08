@@ -69,7 +69,7 @@ const Field = styled.input.attrs({
 })`
   height: 40px;
   width: 32px;
-  padding: 11px 8px;
+  padding: 11px 6px;
   background-color: transparent;
   border: none;
   font-family: ${prop('theme.font.family.inter')};
