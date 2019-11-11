@@ -21,24 +21,24 @@ const Label = styled.span`
   font-size: ${prop('theme.font.size.twelve')};
   font-weight: ${prop('theme.font.weight.bold')};
   color: ${ifProp(
-    'disabled',
-    prop('theme.field.text.disabled'),
-    prop('theme.field.text.primary')
-  )};
+  'disabled',
+  prop('theme.field.text.disabled'),
+  prop('theme.field.text.primary')
+)};
 
   ${ifProp(
-    'required',
-    css`
+  'required',
+  css`
       &::after {
         content: '*';
         color: ${ifProp(
-          'disabled',
-          prop('theme.field.text.disabled'),
-          prop('theme.field.text.danger')
-        )};
+    'disabled',
+    prop('theme.field.text.disabled'),
+    prop('theme.field.text.danger')
+  )};
       }
     `
-  )}
+)}
 `
 
 const Inputable = styled.div`
@@ -49,10 +49,10 @@ const Inputable = styled.div`
   background-color: ${prop('theme.field.bg.primary')};
   border-radius: ${prop('theme.border.radius.four')};
   border: ${ifProp(
-    'hasError',
-    prop('theme.field.border.danger'),
-    prop('theme.field.border.primary')
-  )};
+  'hasError',
+  prop('theme.field.border.danger'),
+  prop('theme.field.border.primary')
+)};
   cursor: ${ifProp('disabled', 'not-allowed', 'initial')};
 `
 
@@ -69,7 +69,7 @@ const Field = styled.input.attrs({
 })`
   height: 40px;
   width: 32px;
-  padding: 11px 8px;
+  padding: 11px 6px;
   background-color: transparent;
   border: none;
   font-family: ${prop('theme.font.family.inter')};
@@ -84,17 +84,17 @@ const Field = styled.input.attrs({
 
   &::placeholder {
     color: ${ifProp(
-      'hasError',
-      prop('theme.field.text.danger'),
-      prop('theme.field.text.secondary')
-    )};
+  'hasError',
+  prop('theme.field.text.danger'),
+  prop('theme.field.text.secondary')
+)};
 
     ${ifProp(
-      'disabled',
-      css`
+  'disabled',
+  css`
         color: ${prop('theme.field.text.disabled')};
       `
-    )};
+)};
   }
 
   &::-webkit-outer-spin-button,
@@ -166,7 +166,10 @@ export const TimePicker = memo(
         ...time,
         [name]: value
       })
-      onChange(time)
+      onChange({
+        ...time,
+        [name]: value
+      })
     }
 
     const whenChange = ({ target }) => {
@@ -240,7 +243,7 @@ TimePicker.defaultProps = {
     seconds: ''
   },
   label: '',
-  onChange: () => {},
+  onChange: () => { },
   error: {
     has: false
   },
