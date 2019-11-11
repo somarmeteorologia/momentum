@@ -1,4 +1,4 @@
-import React, { memo, useState, useContext } from 'react'
+import React, { memo, useState, useContext, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css, ThemeContext } from 'styled-components'
 import { prop, ifProp } from 'styled-tools'
@@ -115,9 +115,13 @@ const Message = styled.span`
   color: ${prop('theme.field.text.danger')};
 `
 
+
 export const TimePicker = memo(
   ({ value, label, onChange, error, required, disabled, full }) => {
     const { field } = useContext(ThemeContext)
+    const hoursEl = useRef(null)
+    const minutesEl = useRef(null)
+    const secondsEl = useRef(null)
 
     const [time, setTime] = useState({
       hours: value.hours,
@@ -125,43 +129,58 @@ export const TimePicker = memo(
       seconds: value.seconds
     })
 
+    const FIELDS = {
+      hours: {
+        min: 0,
+        max: 23,
+        nextElement: minutesEl,
+        previousField: null
+      },
+      minutes: {
+        min: 0,
+        max: 59,
+        nextElement: secondsEl,
+        previousField: hoursEl
+      },
+      seconds: {
+        min: 0,
+        max: 59,
+        nextElement: null,
+        previousField: minutesEl
+      }
+    }
+    const MAX_LENGHT = 2
+
     const format = (name, value) => {
       if (value < 0) return '00'
 
       return value < 10 && value.length === 1 ? `0${value}` : value
     }
 
+    const nextField = (name, value) => {
+      if (value.toString().length >= MAX_LENGHT) {
+        if (FIELDS[name].nextElement && FIELDS[name].nextElement.current)
+          FIELDS[name].nextElement.current.focus()
+      }
+    }
+
     const limit = (name, value) => {
-      const range = {
-        hours: {
-          min: 0,
-          max: 23
-        },
-        minutes: {
-          min: 0,
-          max: 59
-        },
-        seconds: {
-          min: 0,
-          max: 59
-        }
-      }
-      const maxLength = 2
-
-      if (value.length > maxLength) return
-
-      if (value < range[name].min) {
-        return range[name].min
+      value = value.slice(0, MAX_LENGHT)
+      console.log(value, name, (value > FIELDS[name].max))
+      if (value < FIELDS[name].min) {
+        return FIELDS[name].min
       }
 
-      if (value > range[name].max) {
-        return range[name].max
+      if (value > FIELDS[name].max) {
+        return FIELDS[name].max
       }
 
       return value
     }
 
     const handleChange = (name, value) => {
+      nextField(name, value, MAX_LENGHT)
+
       setTime({
         ...time,
         [name]: value
@@ -174,14 +193,25 @@ export const TimePicker = memo(
 
     const whenChange = ({ target }) => {
       const { name, value } = target
-
       handleChange(name, limit(name, value))
     }
 
     const whenBlur = ({ target }) => {
       const { name, value } = target
-
       handleChange(name, format(name, value))
+    }
+
+    const handleKeyUp = ({ target, keyCode }) => {
+      const { name, value } = target
+
+      const backspaceKeyCode = 8
+
+      if ((keyCode === backspaceKeyCode) &&
+        (value.length === 0) &&
+        (FIELDS[name].previousField) &&
+        (FIELDS[name].previousField.current)) {
+        FIELDS[name].previousField.current.focus()
+      }
     }
 
     return (
@@ -209,6 +239,8 @@ export const TimePicker = memo(
             onBlur={whenBlur}
             required={required}
             disabled={disabled}
+            onKeyUp={handleKeyUp}
+            ref={hoursEl}
           />
           <Colon className="colon">:</Colon>
           <Field
@@ -218,6 +250,8 @@ export const TimePicker = memo(
             onBlur={whenBlur}
             required={required}
             disabled={disabled}
+            onKeyUp={handleKeyUp}
+            ref={minutesEl}
           />
           <Colon className="colon">:</Colon>
           <Field
@@ -227,6 +261,8 @@ export const TimePicker = memo(
             onBlur={whenBlur}
             required={required}
             disabled={disabled}
+            onKeyUp={handleKeyUp}
+            ref={secondsEl}
           />
         </Inputable>
 
