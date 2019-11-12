@@ -119,9 +119,9 @@ const Message = styled.span`
 export const TimePicker = memo(
   ({ value, label, onChange, error, required, disabled, full }) => {
     const { field } = useContext(ThemeContext)
-    const hoursEl = useRef(null)
-    const minutesEl = useRef(null)
-    const secondsEl = useRef(null)
+    const hoursRef = useRef(null)
+    const minutesRef = useRef(null)
+    const secondsRef = useRef(null)
 
     const [time, setTime] = useState({
       hours: value.hours,
@@ -133,40 +133,42 @@ export const TimePicker = memo(
       hours: {
         min: 0,
         max: 23,
-        nextElement: minutesEl,
+        nextElement: minutesRef,
         previousField: null
       },
       minutes: {
         min: 0,
         max: 59,
-        nextElement: secondsEl,
-        previousField: hoursEl
+        nextElement: secondsRef,
+        previousField: hoursRef
       },
       seconds: {
         min: 0,
         max: 59,
         nextElement: null,
-        previousField: minutesEl
+        previousField: minutesRef
       }
     }
     const MAX_LENGHT = 2
 
     const format = (name, value) => {
+      value = limit(name, value)
+
       if (value < 0) return '00'
 
       return value < 10 && value.length === 1 ? `0${value}` : value
     }
 
-    const nextField = (name, value) => {
-      if (value.toString().length >= MAX_LENGHT) {
-        if (FIELDS[name].nextElement && FIELDS[name].nextElement.current)
-          FIELDS[name].nextElement.current.focus()
-      }
+    const focusToNextField = (name, value) => {
+      const isGreaterThanMaxLength = value.toString().length >= MAX_LENGHT
+      const exists = FIELDS[name].nextElement && FIELDS[name].nextElement.current
+
+      isGreaterThanMaxLength && exists && FIELDS[name].nextElement.current.focus()
     }
 
     const limit = (name, value) => {
       value = value.slice(0, MAX_LENGHT)
-      console.log(value, name, (value > FIELDS[name].max))
+
       if (value < FIELDS[name].min) {
         return FIELDS[name].min
       }
@@ -179,8 +181,6 @@ export const TimePicker = memo(
     }
 
     const handleChange = (name, value) => {
-      nextField(name, value, MAX_LENGHT)
-
       setTime({
         ...time,
         [name]: value
@@ -194,6 +194,7 @@ export const TimePicker = memo(
     const whenChange = ({ target }) => {
       const { name, value } = target
       handleChange(name, limit(name, value))
+      focusToNextField(name, value, MAX_LENGHT)
     }
 
     const whenBlur = ({ target }) => {
@@ -201,17 +202,16 @@ export const TimePicker = memo(
       handleChange(name, format(name, value))
     }
 
-    const handleKeyUp = ({ target, keyCode }) => {
+    const handleKeyDown = ({ target, keyCode }) => {
       const { name, value } = target
 
       const backspaceKeyCode = 8
 
-      if ((keyCode === backspaceKeyCode) &&
-        (value.length === 0) &&
-        (FIELDS[name].previousField) &&
-        (FIELDS[name].previousField.current)) {
-        FIELDS[name].previousField.current.focus()
-      }
+      const pressedBackspace = keyCode === backspaceKeyCode
+      const exist = (FIELDS[name].previousField) && (FIELDS[name].previousField.current)
+      const isLenghtZero = value.length === 0
+
+      pressedBackspace && exist && isLenghtZero && FIELDS[name].previousField.current.focus()
     }
 
     return (
@@ -239,8 +239,8 @@ export const TimePicker = memo(
             onBlur={whenBlur}
             required={required}
             disabled={disabled}
-            onKeyUp={handleKeyUp}
-            ref={hoursEl}
+            onKeyDown={handleKeyDown}
+            ref={hoursRef}
           />
           <Colon className="colon">:</Colon>
           <Field
@@ -250,8 +250,8 @@ export const TimePicker = memo(
             onBlur={whenBlur}
             required={required}
             disabled={disabled}
-            onKeyUp={handleKeyUp}
-            ref={minutesEl}
+            onKeyDown={handleKeyDown}
+            ref={minutesRef}
           />
           <Colon className="colon">:</Colon>
           <Field
@@ -261,8 +261,8 @@ export const TimePicker = memo(
             onBlur={whenBlur}
             required={required}
             disabled={disabled}
-            onKeyUp={handleKeyUp}
-            ref={secondsEl}
+            onKeyDown={handleKeyDown}
+            ref={secondsRef}
           />
         </Inputable>
 
