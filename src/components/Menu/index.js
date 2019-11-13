@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { theme } from 'styled-tools'
 import PropTypes from 'prop-types'
@@ -48,7 +48,6 @@ const Menuable = ({
   draggable,
   ...props
 }) => {
-  const containerRef = useRef(null)
   const [hasMenuHover, setHasMenuHover] = useState(false)
   const [hasToggleHover, setHasToggleHover] = useState(false)
   const { menu } = useContext(ThemeContext)
@@ -56,7 +55,6 @@ const Menuable = ({
   return (
     <Container
       {...props}
-      ref={containerRef}
       data-testid="container"
       onMouseEnter={() => setHasMenuHover(true)}
       onMouseLeave={() => setHasMenuHover(false)}
