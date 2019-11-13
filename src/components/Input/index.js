@@ -27,24 +27,24 @@ const Label = styled.span`
   font-size: ${prop('theme.font.size.twelve')};
   font-weight: ${prop('theme.font.weight.bold')};
   color: ${ifProp(
-    'disabled',
-    prop('theme.field.text.disabled'),
-    prop('theme.field.text.primary')
-  )};
+  'disabled',
+  prop('theme.field.text.disabled'),
+  prop('theme.field.text.primary')
+)};
 
   ${ifProp(
-    'required',
-    css`
+  'required',
+  css`
       &::after {
         content: '*';
         color: ${ifProp(
-          'disabled',
-          prop('theme.field.text.disabled'),
-          prop('theme.field.text.danger')
-        )};
+    'disabled',
+    prop('theme.field.text.disabled'),
+    prop('theme.field.text.danger')
+  )};
       }
     `
-  )}
+)}
 `
 
 const Inputable = styled.input`
@@ -56,47 +56,47 @@ const Inputable = styled.input`
   background-color: ${prop('theme.field.bg.primary')};
   border-radius: ${prop('theme.border.radius.four')};
   border: ${ifProp(
-    'hasError',
-    prop('theme.field.border.danger'),
-    prop('theme.field.border.primary')
-  )};
+  'hasError',
+  prop('theme.field.border.danger'),
+  prop('theme.field.border.primary')
+)};
   cursor: ${ifProp('disabled', 'not-allowed', 'initial')};
 
   ${ifProp(
-    'icon',
-    switchProp('iconAlign', {
-      [iconAlign.left]: css`
+  'icon',
+  switchProp('iconAlign', {
+    [iconAlign.left]: css`
         padding-left: 36px;
       `,
-      [iconAlign.right]: css`
+    [iconAlign.right]: css`
         padding-right: 36px;
       `
-    }),
-    null
-  )}
+  }),
+  null
+)}
 
   &:focus {
     outline: none;
     border: ${ifProp(
-      'hasError',
-      prop('theme.field.border.danger'),
-      prop('theme.field.border.secondary')
-    )};
+  'hasError',
+  prop('theme.field.border.danger'),
+  prop('theme.field.border.secondary')
+)};
   }
 
   &::placeholder {
     color: ${ifProp(
-      'hasError',
-      prop('theme.field.text.danger'),
-      prop('theme.field.text.secondary')
-    )};
+  'hasError',
+  prop('theme.field.text.danger'),
+  prop('theme.field.text.secondary')
+)};
 
     ${ifProp(
-      'disabled',
-      css`
+  'disabled',
+  css`
         color: ${prop('theme.field.text.disabled')};
       `
-    )};
+)};
   }
 `
 
@@ -115,13 +115,13 @@ const Content = styled.div`
   line-height: 40px;
 
   ${switchProp('iconAlign', {
-    left: css`
+  left: css`
       left: 16px;
     `,
-    right: css`
+  right: css`
       right: 16px;
     `
-  })};
+})};
 `
 
 export const Input = memo(
@@ -144,8 +144,10 @@ export const Input = memo(
     const [text, setText] = useState(value)
 
     const whenChange = ({ target }) => {
-      setText(target.value)
-      onChange(text)
+      const { value } = target
+
+      setText(value)
+      onChange(value)
     }
 
     return (
@@ -192,7 +194,7 @@ Input.defaultProps = {
   placeholder: '',
   iconAlign: iconAlign.left,
   typing: typing.text,
-  onChange: () => {},
+  onChange: () => { },
   error: {
     has: false
   },
