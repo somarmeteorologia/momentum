@@ -1,19 +1,19 @@
 import React, { memo, useContext, useEffect } from 'react'
 import styled, { css, ThemeContext } from 'styled-components'
 import PropTypes from 'prop-types'
-import posed from 'react-pose'
-import { switchProp, prop } from 'styled-tools'
+import { motion } from 'framer-motion'
+import { switchProp, prop, theme } from 'styled-tools'
 
 import { Icon } from '@components/Icon'
 
-const Container = posed(styled.div`
+const Container = styled(motion.div)`
   width: 385px;
   height: 110px;
   padding: 16px;
-  border-radius: ${prop('theme.border.radius.four')};
-  background-color: ${prop('theme.notification.bg.primary')};
-  color: ${prop('theme.notification.text.primary')};
-  z-index: ${prop('theme.zindex.above')};
+  border-radius: ${theme('border.radius.four')};
+  background-color: ${theme('notification.bg.primary')};
+  color: ${theme('notification.text.primary')};
+  z-index: ${theme('zindex.above')};
   position: absolute;
   display: flex;
   justify-content: flex-start;
@@ -58,22 +58,7 @@ const Container = posed(styled.div`
     right: 16px;
     cursor: pointer;
   }
-`)({
-  hidden: {
-    applyAtEnd: {
-      display: 'none'
-    },
-    opacity: 0,
-    y: ({ position }) => (position.startsWith('top') ? -150 : 150)
-  },
-  visible: {
-    applyAtStart: {
-      display: 'flex'
-    },
-    opacity: 1,
-    y: 0
-  }
-})
+`
 
 const State = styled.div`
   width: 45px;
@@ -151,9 +136,23 @@ export const Notification = memo(
 
     return (
       <Container
-        initialPose="hidden"
-        pose={isOpen ? 'visible' : 'hidden'}
+        // initial="hidden"
+        animate={isOpen ? 'visible' : 'hidden'}
         position={position}
+        variants={{
+          hidden: {
+            transitionEnd: {
+              display: 'none'
+            },
+            opacity: 0,
+            y: ({ position }) => (position.startsWith('top') ? -150 : 150)
+          },
+          visible: {
+            display: 'flex',
+            opacity: 1,
+            y: 0
+          }
+        }}
       >
         <Icon
           name="close"

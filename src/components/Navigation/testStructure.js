@@ -27,6 +27,7 @@ export default [
       {
         id: 'cars',
         parent: 'monitoring',
+        onClick: () => console.log('when cars clicked'),
         onPrevent: () => console.log('prevented'),
         title: ({ getter, setter }) => (
           <Interable>
@@ -45,6 +46,7 @@ export default [
             id: 'volkswagen',
             type: Type.Group,
             parent: 'cars',
+            onClick: () => console.log('when volkswagen clicked'),
             title: ({ getter, setter }) => (
               <Interable>
                 <Switch

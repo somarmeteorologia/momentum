@@ -23,6 +23,7 @@ export default function Switcher({ toOpen, height }) {
         <Nested
           id={open.id}
           parent={open.parent}
+          onClick={() => console.log('oi')}
           onBack={open.onBack}
           height={height}
         />

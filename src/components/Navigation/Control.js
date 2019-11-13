@@ -5,6 +5,7 @@ import { ifProp } from 'styled-tools'
 
 import { Text } from '@components/Text'
 import { Icon } from '@components/Icon'
+import { Box } from '@components/Box'
 
 import Separator from './Separator'
 import Interable from './Interable'
@@ -23,7 +24,7 @@ const Content = styled.div`
   )}
 `
 
-const Header = styled(Text)`
+const Header = styled(Box)`
   cursor: pointer;
   display: flex;
   justify-content: flex-start;
@@ -48,19 +49,21 @@ export default function Control({ open, children }) {
 
   return (
     <Container onClick={toToggle}>
-      <Header
-        size={Text.size.twelve}
-        color={navigation.text.primary}
-        weight={Text.weight.bold}
-        bottom={5}
-      >
+      <Header bottom={5}>
         <Icon
           name={toggled ? 'less' : 'more'}
           width={10}
           height={10}
           right={5}
         />
-        Controle
+
+        <Text
+          size={Text.size.twelve}
+          color={navigation.text.primary}
+          weight={Text.weight.bold}
+        >
+          Controle
+        </Text>
       </Header>
       <Interable>
         <Content toggled={toggled}>{toggled && children}</Content>

@@ -1,8 +1,8 @@
 import React, { memo, useState, useContext } from 'react'
 import PropTypes from 'prop-types'
-import posed from 'react-pose'
 import styled, { css, ThemeContext } from 'styled-components'
-import { ifProp, prop } from 'styled-tools'
+import { ifProp, theme } from 'styled-tools'
+import { motion } from 'framer-motion'
 
 import { Icon } from '@components/Icon'
 
@@ -10,16 +10,16 @@ const Wrapper = styled.div`
   width: ${ifProp('full', '100%', '300px')};
 
   ${ifProp(
-  'auto',
-  css`
+    'auto',
+    css`
       min-width: 300px;
       width: auto;
     `
-)}
+  )}
 `
 
 const Container = styled.div`
-  font-family: ${prop('theme.font.family.inter')};
+  font-family: ${theme('font.family.inter')};
   width: 100%;
 
   &:not(:last-child) {
@@ -31,11 +31,11 @@ const Container = styled.div`
   .body {
     margin-top: 5px;
     padding: 14px 16px;
-    font-size: ${prop('theme.font.size.twelve')};
-    font-weight: ${prop('theme.font.weight.normal')};
-    color: ${prop('theme.accordion.text.primary')};
-    background-color: ${prop('theme.accordion.bg.primary')};
-    border-radius: ${prop('theme.border.radius.four')};
+    font-size: ${theme('font.size.twelve')};
+    font-weight: ${theme('font.weight.normal')};
+    color: ${theme('accordion.text.primary')};
+    background-color: ${theme('accordion.bg.primary')};
+    border-radius: ${theme('border.radius.four')};
     line-height: 150%;
   }
 `
@@ -46,11 +46,11 @@ const Headerable = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  font-size: ${prop('theme.font.size.fourteen')};
-  font-weight: ${prop('theme.font.weight.bold')};
-  color: ${prop('theme.accordion.text.primary')};
-  background-color: ${prop('theme.accordion.bg.primary')};
-  border-radius: ${prop('theme.border.radius.four')};
+  font-size: ${theme('font.size.fourteen')};
+  font-weight: ${theme('font.weight.bold')};
+  color: ${theme('accordion.text.primary')};
+  background-color: ${theme('accordion.bg.primary')};
+  border-radius: ${theme('border.radius.four')};
   cursor: pointer;
 
   .icon {
@@ -59,48 +59,20 @@ const Headerable = styled.div`
   }
 `
 
-const Bodyable = posed.div({
-  visible: {
-    applyAtStart: { display: 'block' },
-    opacity: 1,
-    transition: {
-      duration: 300,
-      ease: 'easeIn'
-    }
-  },
-  hidden: {
-    applyAtEnd: { display: 'none' },
-    opacity: 0,
-    transition: {
-      duration: 300,
-      ease: 'easeIn'
-    }
-  }
-})
+const Bodyable = motion.div
 
-const Iconable = posed(styled.span`
+// ({
+// })
+
+const Iconable = styled(motion.span)`
   width: 16px;
   height: 16px;
-`)({
-  open: {
-    rotate: 0,
-    transition: {
-      duration: 300,
-      ease: 'easeIn'
-    }
-  },
-  close: {
-    rotate: '45deg',
-    transition: {
-      duration: 300,
-      ease: 'easeIn'
-    }
-  }
-})
+`
 
 export const Accordion = memo(({ accordions, auto, full }) => {
   const { accordion } = useContext(ThemeContext)
   const [list, setList] = useState(accordions)
+
   const setActive = id => {
     const newList = list.map(item =>
       item.id === id ? { ...item, active: !item.active } : { ...item }
@@ -116,7 +88,20 @@ export const Accordion = memo(({ accordions, auto, full }) => {
           <Container key={id}>
             <Headerable onClick={() => setActive(id)}>
               {Header}
-              <Iconable pose={active ? 'close' : 'open'} className="icon">
+
+              <Iconable
+                className="icon"
+                initial="close"
+                animate={active ? 'open' : 'close'}
+                variants={{
+                  open: {
+                    rotate: 0
+                  },
+                  close: {
+                    rotate: '45deg'
+                  }
+                }}
+              >
                 <Icon
                   name={Icon.name.plus}
                   width={16}
@@ -127,7 +112,23 @@ export const Accordion = memo(({ accordions, auto, full }) => {
                 />
               </Iconable>
             </Headerable>
-            <Bodyable pose={active ? 'visible' : 'hidden'} className="body" data-testid='body-accordion'>
+            <Bodyable
+              animate={active ? 'visible' : 'hidden'}
+              className="body"
+              data-testid="body-accordion"
+              variants={{
+                visible: {
+                  display: 'block',
+                  opacity: 1
+                },
+                hidden: {
+                  transitionEnd: {
+                    display: 'none'
+                  },
+                  opacity: 0
+                }
+              }}
+            >
               {Body}
             </Bodyable>
           </Container>

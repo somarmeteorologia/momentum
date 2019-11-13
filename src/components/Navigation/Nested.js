@@ -91,7 +91,9 @@ function Nested({ parent, id, onBack, height }) {
           const Title = titleMapper[children.type]
           return (
             <Fragment key={children.id}>
-              <Title id={children.id}>{children.title}</Title>
+              <Title onClick={children.onClick} id={children.id}>
+                {children.title}
+              </Title>
             </Fragment>
           )
         })}
