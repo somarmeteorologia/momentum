@@ -1,8 +1,8 @@
 import React, { memo, useContext, Fragment } from 'react'
 import styled, { css, ThemeContext } from 'styled-components'
 import PropTypes from 'prop-types'
-import posed from 'react-pose'
-import { switchProp, prop } from 'styled-tools'
+import { motion } from 'framer-motion'
+import { switchProp, theme, prop } from 'styled-tools'
 
 import { Icon } from '@components/Icon'
 import { Closeable } from '@components/Closeable'
@@ -14,7 +14,7 @@ const Content = styled.div`
 `
 
 const Header = styled.div`
-  border-bottom: ${prop('theme.drawer.border.primary')};
+  border-bottom: ${theme('drawer.border.primary')};
   height: 60px;
   display: flex;
   align-items: center;
@@ -23,10 +23,10 @@ const Header = styled.div`
   position: relative;
 
   .title {
-    color: ${prop('theme.drawer.text.primary')};
-    font-family: ${prop('theme.font.family.inter')};
-    font-size: ${prop('theme.font.size.fourteen')};
-    font-weight: ${prop('theme.font.weight.bold')};
+    color: ${theme('drawer.text.primary')};
+    font-family: ${theme('font.family.inter')};
+    font-size: ${theme('font.size.fourteen')};
+    font-weight: ${theme('font.weight.bold')};
   }
 
   .close {
@@ -38,16 +38,16 @@ const Header = styled.div`
   }
 `
 
-const Animated = posed(styled.div`
-  z-index: ${prop('theme.zindex.modal')};
-  box-shadow: ${prop('theme.drawer.shadow.primary')};
+const Animated = styled(motion.div)`
+  z-index: ${theme('zindex.modal')};
+  box-shadow: ${theme('drawer.shadow.primary')};
   max-width: ${prop('width')}px;
   width: 100%;
   height: 100vh;
   overflow: hidden;
   position: absolute;
   top: 0;
-  background-color: ${prop('theme.drawer.bg.primary')};
+  background-color: ${theme('drawer.bg.primary')};
 
   ${switchProp('from', {
     right: css`
@@ -57,23 +57,7 @@ const Animated = posed(styled.div`
       left: 0;
     `
   })};
-`)({
-  visible: {
-    opacity: 1,
-    transform: 'translateX(0%)',
-    applyAtStart: {
-      display: 'block'
-    }
-  },
-  collapsed: {
-    opacity: 0,
-    transform: ({ from }) =>
-      from === 'right' ? 'translateX(100%)' : 'translateX(-100%)',
-    applyAtEnd: {
-      display: 'none'
-    }
-  }
-})
+`
 
 const renderContent = (title, toClose, drawer, children) => (
   <Fragment>
@@ -98,7 +82,22 @@ export const Drawer = memo(
     return (
       <Animated
         {...props}
-        pose={isOpen ? animations.visible : animations.collapsed}
+        variants={{
+          visible: {
+            opacity: 1,
+            transform: 'translateX(0%)',
+            display: 'block'
+          },
+          collapsed: {
+            opacity: 0,
+            transform: ({ from }) =>
+              from === 'right' ? 'translateX(100%)' : 'translateX(-100%)',
+            transitionEnd: {
+              display: 'none'
+            }
+          }
+        }}
+        animate={isOpen ? animations.visible : animations.collapsed}
       >
         {outsideClose ? (
           <Closeable whenClose={toClose}>

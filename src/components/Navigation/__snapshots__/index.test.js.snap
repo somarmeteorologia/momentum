@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Not expect visual regression 1`] = `
+.c6 {
+  display: inline-block;
+  padding: 0 5px;
+}
+
 .c3 {
   display: inline-block;
 }
@@ -38,11 +43,6 @@ exports[`Not expect visual regression 1`] = `
   -ms-flex-align: center;
   align-items: center;
   line-height: 0;
-}
-
-.c6 {
-  display: inline-block;
-  padding: 0 5px;
 }
 
 .c15 {
@@ -110,6 +110,7 @@ exports[`Not expect visual regression 1`] = `
 }
 
 .c0 {
+  width: 100%;
   background-color: #f1f3fA;
   height: 100%;
   position: relative;
@@ -228,7 +229,6 @@ exports[`Not expect visual regression 1`] = `
 <div
   class="c0"
   data-testid="container"
-  style="width: 270px;"
 >
   <div
     class="scrollbar-container ps"

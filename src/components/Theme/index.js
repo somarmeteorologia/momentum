@@ -267,13 +267,18 @@ export const Theme = {
         primary: white.hundred,
         hover: cornflower.fifty
       },
+      shadow: {
+        primary: 'none'
+      }
+    },
+    menu: {
+      bg: {
+        primary: ebony.thirteen
+      },
       toggle: {
         primary: ebony.sixteen,
         secondary: ebony.thirteen,
         tertiary: white.hundred
-      },
-      shadow: {
-        primary: 'none'
       }
     },
     player: {
@@ -588,13 +593,18 @@ export const Theme = {
         primary: ebony.twenty,
         hover: cornflower.fifty
       },
+      shadow: {
+        primary: `0 0 16px ${shadow.darker}`
+      }
+    },
+    menu: {
+      bg: {
+        primary: ebony.ninetySix
+      },
       toggle: {
         primary: white.hundred,
         secondary: ebony.ninety,
         tertiary: cornflower.fifty
-      },
-      shadow: {
-        primary: `0 0 16px ${shadow.darker}`
       }
     },
     player: {

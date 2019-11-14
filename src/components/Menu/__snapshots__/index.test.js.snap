@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Not expect visual regression 1`] = `
+.c0 {
+  width: 100%;
+  max-width: 300px;
+  height: 100vh;
+  background-color: #f1f3fA;
+  position: relative;
+}
+
+<div
+  class="c0"
+  data-testid="container"
+  style="left: 0px;"
+/>
+`;

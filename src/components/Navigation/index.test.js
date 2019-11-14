@@ -50,20 +50,6 @@ test('Expect back button must be working', () => {
   expect(queryByText(NEWSLETTER_TITLE)).toBeVisible()
 })
 
-test('Expect show and hide menu button must be working', () => {
-  const { getByTestId, queryByText } = render(withProvider({}))
-
-  expect(queryByText(NEWSLETTER_TITLE)).toBeVisible()
-
-  fireEvent.mouseEnter(getByTestId('container'))
-  fireEvent.click(getByTestId('toggleable'))
-  expect(queryByText(NEWSLETTER_TITLE)).toBeNull()
-
-  fireEvent.mouseEnter(getByTestId('container'))
-  fireEvent.click(getByTestId('toggleable'))
-  expect(queryByText(NEWSLETTER_TITLE)).toBeVisible()
-})
-
 test('Expect to navigate between groups', () => {
   const { getByTestId, queryByText } = render(withProvider({}))
 

@@ -1,6 +1,6 @@
 {
   "name": "@somarmeteorologia/momentum",
-  "version": "0.7.0",
+  "version": "1.0.0",
   "private": false,
   "source": "src/index.js",
   "main": "dist/index.js",
@@ -28,8 +28,8 @@
     "polished": "^3.4.1",
     "react-day-picker": "^7.3.0",
     "react-perfect-scrollbar": "^1.5.3",
-    "react-pose": "^4.0.8",
     "react-table": "^6.10.0",
+    "framer-motion": "^1.6.15",
     "react-table-hoc-fixed-columns": "^2.1.1",
     "styled-components": "^4.3.2",
     "styled-tools": "^1.7.1",

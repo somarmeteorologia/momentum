@@ -3,7 +3,7 @@ import styled, { css, ThemeContext } from 'styled-components'
 import PropTypes from 'prop-types'
 import v4 from 'uuid/v4'
 import { ifProp, prop } from 'styled-tools'
-import posed from 'react-pose'
+import { motion } from 'framer-motion'
 
 import { Icon } from '@components/Icon'
 import { Closeable } from '@components/Closeable'
@@ -84,7 +84,7 @@ const Selectable = styled.div`
   )}
 `
 
-const Options = posed(styled.ul`
+const Options = styled(motion.ul)`
   width: 100%;
   top: calc(100% + 4px);
   position: absolute;
@@ -94,10 +94,7 @@ const Options = posed(styled.ul`
   padding: 1px;
   border: ${prop('theme.field.border.tertiary')};
   box-shadow: ${prop('theme.field.shadow.primary')};
-`)({
-  visible: { applyAtStart: { display: 'block' }, opacity: 1 },
-  hidden: { applyAtEnd: { display: 'none' }, opacity: 0 }
-})
+`
 
 const Option = styled.li`
   display: flex;
@@ -220,7 +217,21 @@ export const Select = memo(
             />
           </Selectable>
 
-          <Options pose={show ? 'visible' : 'hidden'}>
+          <Options
+            animate={show ? 'visible' : 'hidden'}
+            variants={{
+              visible: {
+                opacity: 1,
+                display: 'block'
+              },
+              hidden: {
+                opacity: 0,
+                transitionEnd: {
+                  display: 'none'
+                }
+              }
+            }}
+          >
             {options.map(({ value, text }) => (
               <Option
                 key={v4()}

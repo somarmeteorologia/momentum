@@ -2,11 +2,10 @@ import React, { memo, useState, useContext } from 'react'
 import styled, { css, ThemeContext } from 'styled-components'
 import PropTypes from 'prop-types'
 import v4 from 'uuid/v4'
-import posed from 'react-pose'
-
+import { ifProp, theme } from 'styled-tools'
+import { motion } from 'framer-motion'
 import { Icon } from '@components/Icon'
 import { Closeable } from '@components/Closeable'
-import { ifProp, prop } from 'styled-tools'
 
 const Container = styled.div`
   width: ${ifProp('full', '100%', '240px')};
@@ -23,14 +22,14 @@ const Content = styled.label`
 const Autocompleteable = styled.div`
   width: 100%;
   height: 40px;
-  border-radius: ${prop('theme.border.radius.four')};
+  border-radius: ${theme('border.radius.four')};
   border: ${ifProp(
-  'hasError',
-  prop('theme.field.border.danger'),
-  prop('theme.field.border.primary')
-)};
-  background-color: ${prop('theme.field.bg.primary')};
-  color: ${prop('theme.field.text.primary')};
+    'hasError',
+    theme('field.border.danger'),
+    theme('field.border.primary')
+  )};
+  background-color: ${theme('field.bg.primary')};
+  color: ${theme('field.text.primary')};
   outline: 0;
   appearance: none;
   cursor: ${ifProp('disabled', 'not-allowed', 'pointer')};
@@ -41,84 +40,81 @@ const Autocompleteable = styled.div`
   align-items: center;
 
   ${ifProp(
-  'focus',
-  css`
+    'focus',
+    css`
       border: ${ifProp(
-    'hasError',
-    prop('theme.field.border.danger'),
-    prop('theme.field.border.secondary')
-  )};
+        'hasError',
+        theme('field.border.danger'),
+        theme('field.border.secondary')
+      )};
     `,
-  null
-)}
+    null
+  )}
 `
 
 const Label = styled.span`
   margin-bottom: 8px;
-  font-family: ${prop('theme.font.family.inter')};
-  font-size: ${prop('theme.font.size.twelve')};
-  font-weight: ${prop('theme.font.weight.bold')};
+  font-family: ${theme('font.family.inter')};
+  font-size: ${theme('font.size.twelve')};
+  font-weight: ${theme('font.weight.bold')};
   color: ${ifProp(
-  'disabled',
-  prop('theme.field.text.disabled'),
-  prop('theme.field.text.primary')
-)};
+    'disabled',
+    theme('field.text.disabled'),
+    theme('field.text.primary')
+  )};
   cursor: default;
 
   ${ifProp(
-  'required',
-  css`
+    'required',
+    css`
       &::after {
         content: '*';
         color: ${ifProp(
-    'disabled',
-    prop('theme.field.text.disabled'),
-    prop('theme.field.text.danger')
-  )};
+          'disabled',
+          theme('field.text.disabled'),
+          theme('field.text.danger')
+        )};
       }
     `
-)}
+  )}
 `
 
-const Selecties = posed(styled.ul`
+const Selecties = styled(motion.ul)`
   width: 100%;
   top: calc(100% + 4px);
   position: absolute;
-  border-radius: ${prop('theme.border.radius.four')};
-  background-color: ${prop('theme.field.bg.secondary')};
-  list-style: none;
   padding: 1px;
-  border: ${prop('theme.field.border.tertiary')};
-  box-shadow: ${prop('theme.field.shadow.primary')};
-`)({
-  visible: { applyAtStart: { display: 'block' }, opacity: 1 },
-  hidden: { applyAtEnd: { display: 'none' }, opacity: 0 }
-})
+  border-radius: ${theme('border.radius.four')};
+  background-color: ${theme('field.bg.secondary')};
+  list-style: none;
+  border: ${theme('field.border.tertiary')};
+  box-shadow: ${theme('field.shadow.primary')};
+`
 
 const Selectable = styled.li`
   display: flex;
   align-items: center;
   width: 100%;
   height: 40px;
-  border-radius: ${prop('theme.border.radius.four')};
+  border-radius: ${theme('border.radius.four')};
   padding-left: 14px;
   padding-right: 14px;
-  font-size: ${prop('theme.font.size.fourteen')};
+  font-size: ${theme('font.size.fourteen')};
   font-weight: ${ifProp(
-  'selected',
-  prop('theme.font.weight.bold'),
-  prop('theme.font.weight.regular')
-)};
+    'selected',
+    theme('font.weight.bold'),
+    theme('font.weight.regular')
+  )};
   color: ${ifProp(
-  'selected',
-  prop('theme.field.text.active'),
-  prop('theme.field.text.tertiary')
-)};
+    'selected',
+    theme('field.text.active'),
+    theme('field.text.tertiary')
+  )};
   cursor: pointer;
 
   &:hover {
-    color: ${prop('theme.field.text.quaternary')};
-    background-color: ${prop('theme.field.bg.hover')};
+    color: ${theme('field.text.quaternary')};
+    background-color: ${theme('field.bg.hover')};
   }
 
   .text {
@@ -135,26 +131,16 @@ const Interable = styled.button`
   width: 64px;
   padding: 0 16px;
   margin-left: -1px;
-  border:0;
+  border: 0;
   background-color: ${ifProp(
-  'isActive',
-  prop('theme.field.bg.active'),
-  prop('theme.field.bg.tertiary')
-)};
-  border-radius: ${prop('theme.border.radius.four')} 0 0
-    ${prop('theme.border.radius.four')};
+    'isActive',
+    theme('field.bg.active'),
+    theme('field.bg.tertiary')
+  )};
+  border-radius: ${theme('border.radius.four')} 0 0
+    ${theme('border.radius.four')};
   cursor: ${ifProp('disabled', 'not-allowed', 'pointer')};
 `
-
-const Arrow = posed(styled.span``)({
-  initial: {
-    rotate: 0
-  },
-
-  rotate: {
-    rotate: '180deg'
-  }
-})
 
 const Input = styled.input`
   width: 100%;
@@ -162,8 +148,8 @@ const Input = styled.input`
   padding: 0 16px;
   border: none;
   background: transparent;
-  font-size: ${prop('theme.font.size.fourteen')};
-  color: ${prop('theme.field.text.primary')};
+  font-size: ${theme('font.size.fourteen')};
+  color: ${theme('field.text.primary')};
   cursor: ${ifProp('disabled', 'not-allowed', 'text')};
 
   &:focus {
@@ -172,28 +158,38 @@ const Input = styled.input`
 
   &::placeholder {
     color: ${ifProp(
-  'hasError',
-  prop('theme.field.text.danger'),
-  prop('theme.field.text.secondary')
-)};
+      'hasError',
+      theme('field.text.danger'),
+      theme('field.text.secondary')
+    )};
 
     ${ifProp(
-  'disabled',
-  css`
-        color: ${prop('theme.field.text.disabled')};
+      'disabled',
+      css`
+        color: ${theme('field.text.disabled')};
       `
-)};
+    )};
   }
 `
 
 const Message = styled.span`
   margin-top: 8px;
-  font-family: ${prop('theme.font.family.inter')};
-  font-size: ${prop('theme.font.size.ten')};
-  color: ${prop('theme.field.text.danger')};
+  font-family: ${theme('font.family.inter')};
+  font-size: ${theme('font.size.ten')};
+  color: ${theme('field.text.danger')};
 `
 
 const iconAjustment = { width: 20, height: 20 }
+
+const variants = {
+  visible: { display: 'block', opacity: 1 },
+  hidden: {
+    transitionEnd: {
+      display: 'none'
+    },
+    opacity: 0
+  }
+}
 
 export const Autocomplete = memo(
   ({
@@ -264,7 +260,11 @@ export const Autocomplete = memo(
         >
           <Content>
             {label && (
-              <Label required={required} disabled={disabled} data-testid='label-autocomplete'>
+              <Label
+                required={required}
+                disabled={disabled}
+                data-testid="label-autocomplete"
+              >
                 {label}
               </Label>
             )}
@@ -277,7 +277,7 @@ export const Autocomplete = memo(
               <Interable
                 onClick={toggleShowCategories}
                 isActive={isActive() || clicked}
-                data-testid='interable'
+                data-testid="interable"
                 disabled={disabled}
               >
                 {category.icon({
@@ -289,7 +289,18 @@ export const Autocomplete = memo(
                   testID: 'icon'
                 })}
 
-                <Arrow pose={isActive() ? 'rotate' : 'initial'}>
+                <motion.span
+                  initial="initial"
+                  variants={{
+                    initial: {
+                      rotate: 0
+                    },
+                    rotate: {
+                      rotate: '180deg'
+                    }
+                  }}
+                  animate={isActive() ? 'rotate' : 'initial'}
+                >
                   <Icon
                     name="down"
                     width={10}
@@ -302,7 +313,7 @@ export const Autocomplete = memo(
                         : field.icon.secondary
                     }
                   />
-                </Arrow>
+                </motion.span>
               </Interable>
 
               <Input
@@ -317,14 +328,15 @@ export const Autocomplete = memo(
                 disabled={disabled}
                 required={required}
                 hasError={error.has}
-                data-testid='input-autocomplete'
+                data-testid="input-autocomplete"
               />
             </Autocompleteable>
           </Content>
 
           <Selecties
-            initialPose="hidden"
-            pose={showCategories ? 'visible' : 'hidden'}
+            initial="hidden"
+            animate={showCategories ? 'visible' : 'hidden'}
+            variants={variants}
           >
             {categories.map(({ id, text, icon, ...props }) => (
               <Selectable
@@ -342,9 +354,7 @@ export const Autocomplete = memo(
                 {icon({
                   ...iconAjustment,
                   color:
-                    idHover === id
-                      ? field.icon.active
-                      : field.icon.tertiary,
+                    idHover === id ? field.icon.active : field.icon.tertiary,
                   testID: 'list'
                 })}
                 <div className="text">{text}</div>
@@ -353,8 +363,9 @@ export const Autocomplete = memo(
           </Selecties>
 
           <Selecties
-            initialPose="hidden"
-            pose={showOptions ? 'visible' : 'hidden'}
+            initial="hidden"
+            animate={showOptions ? 'visible' : 'hidden'}
+            variants={variants}
           >
             {filteredOptions.map(({ value, text, category }) => (
               <Selectable
@@ -362,7 +373,7 @@ export const Autocomplete = memo(
                 value={value}
                 selected={text === selected}
                 onClick={whenSelected({ value, text, category })}
-                data-testid='option'
+                data-testid="option"
               >
                 {text}
               </Selectable>
@@ -376,7 +387,7 @@ export const Autocomplete = memo(
 )
 
 Autocomplete.defaultProps = {
-  onChange: () => { },
+  onChange: () => {},
   error: {
     has: false
   },

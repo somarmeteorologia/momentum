@@ -106,10 +106,10 @@ exports[`Not expect visual regression 1`] = `
   width: 100%;
   top: calc(100% + 4px);
   position: absolute;
+  padding: 1px;
   border-radius: 0.25rem;
   background-color: #fff;
   list-style: none;
-  padding: 1px;
   border: 1px solid #f1f3fA;
   box-shadow: 0 2px 4px rgba(50,71,151,0.15);
 }
@@ -283,7 +283,6 @@ exports[`Not expect visual regression 1`] = `
             </svg>
           </div>
           <span
-            class=""
             style="transform: none;"
           >
             <div
@@ -327,7 +326,7 @@ exports[`Not expect visual regression 1`] = `
     </label>
     <ul
       class="c9"
-      style="opacity: 0; display: none;"
+      style="display: none; opacity: 0;"
     >
       <li
         class="c10"
@@ -420,7 +419,7 @@ exports[`Not expect visual regression 1`] = `
     </ul>
     <ul
       class="c9"
-      style="opacity: 0; display: none;"
+      style="display: none; opacity: 0;"
     />
     <span
       class="c12"
