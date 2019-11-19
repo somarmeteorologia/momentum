@@ -88,7 +88,10 @@ const outlines = [
   'ecomp',
   'emed',
   'emop',
-  'segment'
+  'segment',
+  'map',
+  'list',
+  'person'
 ]
 
 const temperaturies = [

@@ -16,11 +16,11 @@ const Container = styled(Box)`
   line-height: 0;
 
   ${ifProp(
-    'onClick',
-    css`
+  'onClick',
+  css`
       cursor: pointer;
     `
-  )}
+)}
 `
 
 export const Icon = memo(({ name, color, ...props }) => {
@@ -95,6 +95,9 @@ const names = [
   'emed',
   'emop',
   'segment',
+  'map',
+  'list',
+  'person',
 
   'dayCC',
   'nightCC',
