@@ -90,7 +90,6 @@ const outlines = [
   'emop',
   'segment',
   'map',
-  'list',
   'person'
 ]
 
