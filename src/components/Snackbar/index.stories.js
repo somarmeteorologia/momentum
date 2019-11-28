@@ -52,3 +52,13 @@ storiesOf(`${GROUPS.COMPONENTS}|Snackbar`, module)
       </Toggle>
     </>
   ))
+  .add('Without close', () => (
+    <Snackbar
+      isOpen={true}
+      description={({ size, color }) => (
+        <Text size={size} color={color}>
+          This is an error report.
+        </Text>
+      )}
+    />
+  ))
