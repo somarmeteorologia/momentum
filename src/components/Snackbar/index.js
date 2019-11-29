@@ -30,64 +30,70 @@ const Content = styled.div`
   display: flex;
 `
 
-export const Snackbar = memo(({ description, isOpen, toClose, duration }) => {
-  const { snackbar } = useContext(ThemeContext)
+export const Snackbar = memo(
+  ({ description, isOpen, toClose, duration, ...props }) => {
+    const { snackbar } = useContext(ThemeContext)
 
-  useEffect(() => {
-    if (isOpen && duration) {
-      const timeout = setTimeout(() => {
-        toClose()
-      }, duration * 1000)
+    useEffect(() => {
+      if (isOpen && duration) {
+        const timeout = setTimeout(() => {
+          toClose && toClose()
+        }, duration * 1000)
 
-      return () => {
-        clearTimeout(timeout)
-      }
-    }
-  }, [isOpen])
-
-  return (
-    <Container
-      initial="hidden"
-      variants={{
-        hidden: {
-          transitionEnd: {
-            display: 'none'
-          },
-          y: 150,
-          opacity: 0
-        },
-        visible: {
-          display: 'flex',
-          y: 0,
-          opacity: 1
+        return () => {
+          clearTimeout(timeout)
         }
-      }}
-      animate={isOpen ? 'visible' : 'hidden'}
-    >
-      <Content>
-        {description({
-          size: Text.size.fourteen,
-          color: snackbar.text.primary
-        })}
-      </Content>
+      }
+    }, [isOpen])
 
-      <Close
-        left={10}
-        onClick={toClose}
-        color={snackbar.text.secondary}
-        size={Text.size.fourteen}
-        weight={Text.weight.bold}
+    return (
+      <Container
+        initial="hidden"
+        variants={{
+          hidden: {
+            transitionEnd: {
+              display: 'none'
+            },
+            y: 150,
+            x: '-50%',
+            opacity: 0
+          },
+          visible: {
+            display: 'flex',
+            y: 0,
+            x: '-50%',
+            opacity: 1
+          }
+        }}
+        animate={isOpen ? 'visible' : 'hidden'}
+        {...props}
       >
-        Fechar
-      </Close>
-    </Container>
-  )
-})
+        <Content>
+          {description({
+            size: Text.size.fourteen,
+            color: snackbar.text.primary
+          })}
+        </Content>
+
+        {toClose && (
+          <Close
+            left={10}
+            onClick={toClose}
+            color={snackbar.text.secondary}
+            size={Text.size.fourteen}
+            weight={Text.weight.bold}
+          >
+            Fechar
+          </Close>
+        )}
+      </Container>
+    )
+  }
+)
 
 Snackbar.defaultProps = {
   isOpen: false,
-  duration: 0,
-  toClose: () => {}
+  duration: 0
 }
 
 Snackbar.propTypes = {
