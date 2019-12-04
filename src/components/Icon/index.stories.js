@@ -90,7 +90,8 @@ const outlines = [
   'emop',
   'segment',
   'map',
-  'person'
+  'person',
+  'hamburguer'
 ]
 
 const temperaturies = [
