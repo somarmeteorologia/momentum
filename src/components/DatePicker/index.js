@@ -224,7 +224,7 @@ export const DatePicker = memo(
   }) => {
     const [placeholder, setPlaceholder] = useState('')
     const [isOpen, setIsOpen] = useState(false)
-    const [offset, setOffset] = useState({
+    const [position, setPosition] = useState({
       left: 0,
       top: 0
     })
@@ -248,7 +248,7 @@ export const DatePicker = memo(
       setPlaceholder(placeholder)
     }, [])
 
-    useEffect(() => {
+    const setPositionByOffset = () => {
       /**
        * @todo Corrigir regra de alinhamento por posição quando align igual a center
        */
@@ -259,10 +259,18 @@ export const DatePicker = memo(
 
       const top = inputRef.current.offsetTop + 50
 
-      setOffset({
+      setPosition({
         left,
         top
       })
+    }
+
+    useEffect(() => {
+      setPositionByOffset()
+
+      window.addEventListener('resize', setPositionByOffset)
+
+      return () => window.removeEventListener('resize', setPositionByOffset)
     }, [inputRef])
 
     const mapping = {
@@ -300,7 +308,7 @@ export const DatePicker = memo(
 
     const Picker = mapping[appearence]
 
-    const { left, top } = offset
+    const { left, top } = position
 
     return (
       <Content>
