@@ -9,6 +9,7 @@ import { Button } from '@components/Button'
 import { Text } from '@components/Text'
 import { Navigation } from '@components/Navigation'
 import { Icon } from '@components/Icon'
+import { DatePicker } from '@components/DatePicker'
 
 const { Context, useInterable, Type, Title } = Navigation
 
@@ -95,6 +96,56 @@ const AutoScroll = () => {
   )
 }
 
+const DontOverflowing = () => {
+  const defaultStucture = [
+    {
+      id: 'fruits',
+      type: Type.Category,
+      parent: 'monitoring',
+      title: ({ details }) => (
+        <Title>
+          <Icon
+            name="agriculture"
+            right={10}
+            width={20}
+            height={20}
+            color={details}
+          />
+          <Text size={Text.size.fourteen}>Fruits</Text>
+        </Title>
+      ),
+      children: [
+        {
+          id: 'apple',
+          parent: 'fruits',
+          type: Type.Group,
+          title: () => <Title>Apple</Title>,
+          children: [
+            {
+              id: 'content',
+              parent: 'apple',
+              type: Type.Item,
+              title: () => (
+                <DatePicker
+                  align={DatePicker.align.left}
+                  appearence={DatePicker.appearence.range}
+                />
+              ),
+              children: []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+
+  return (
+    <TesteableProvider defaultStructure={defaultStucture}>
+      <Default isLow={true} />
+    </TesteableProvider>
+  )
+}
+
 storiesOf(`${GROUPS.COMPONENTS}|Navigation`, module)
   .addDecorator(story => (
     <>
@@ -112,4 +163,5 @@ storiesOf(`${GROUPS.COMPONENTS}|Navigation`, module)
       <AtSpecific />
     </TesteableProvider>
   ))
+  .add('Do not overflowing content', () => <DontOverflowing />)
   .add('Auto scroll', () => <AutoScroll />)

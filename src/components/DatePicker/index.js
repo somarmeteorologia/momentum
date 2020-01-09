@@ -1,4 +1,5 @@
 import React, { memo, useState, useContext, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import PropTypes from 'prop-types'
 import styled, { ThemeContext } from 'styled-components'
 import { prop, ifProp, theme } from 'styled-tools'
@@ -8,6 +9,7 @@ import 'react-day-picker/lib/style.css'
 
 import { Icon } from '@components/Icon'
 import { Closeable } from '@components/Closeable'
+
 import { Day } from './Day'
 import { Week } from './Week'
 import { Range } from './Range'
@@ -40,6 +42,7 @@ const Container = styled.div`
   font-family: ${theme('font.family.inter')};
   box-shadow: ${theme('datepicker.shadow.primary')};
   position: absolute;
+  top: ${prop('top')}px;
   left: ${prop('left')}px;
   background: linear-gradient(
     180deg,
@@ -221,7 +224,10 @@ export const DatePicker = memo(
   }) => {
     const [placeholder, setPlaceholder] = useState('')
     const [isOpen, setIsOpen] = useState(false)
-    const [offset, setOffset] = useState(0)
+    const [offset, setOffset] = useState({
+      left: 0,
+      top: 0
+    })
     const { datepicker } = useContext(ThemeContext)
     const inputRef = useRef(null)
     const containerRef = useRef(null)
@@ -246,13 +252,55 @@ export const DatePicker = memo(
       /**
        * @todo Corrigir regra de alinhamento por posição quando align igual a center
        */
-      const offset =
+      const left =
         align === DatePicker.align.left
           ? inputRef.current.offsetLeft
           : inputRef.current.offsetLeft - 654 / 2
 
-      setOffset(offset)
+      const top = inputRef.current.offsetTop + 50
+
+      setOffset({
+        left,
+        top
+      })
     }, [inputRef])
+
+    const mapping = {
+      day: () => (
+        <Day
+          navbar={Navbar}
+          initialDate={initialDate}
+          onDayChange={onDayChange}
+          setPlaceholder={setPlaceholder}
+          toClose={toClose}
+          {...props}
+        />
+      ),
+      week: () => (
+        <Week
+          navbar={Navbar}
+          initialDate={initialDate}
+          onWeekChange={onWeekChange}
+          setPlaceholder={setPlaceholder}
+          toClose={toClose}
+          {...props}
+        />
+      ),
+      range: () => (
+        <Range
+          navbar={Navbar}
+          initialDate={initialDate}
+          onRangeChange={onRangeChange}
+          setPlaceholder={setPlaceholder}
+          toClose={toClose}
+          {...props}
+        />
+      )
+    }
+
+    const Picker = mapping[appearence]
+
+    const { left, top } = offset
 
     return (
       <Content>
@@ -268,44 +316,15 @@ export const DatePicker = memo(
           <p>{placeholder}</p>
         </Input>
 
-        {isOpen && (
-          <Closeable whenClose={toClose}>
-            <Container ref={containerRef} left={offset}>
-              {isDay() && (
-                <Day
-                  navbar={Navbar}
-                  initialDate={initialDate}
-                  onDayChange={onDayChange}
-                  setPlaceholder={setPlaceholder}
-                  toClose={toClose}
-                  {...props}
-                />
-              )}
-
-              {isWeek() && (
-                <Week
-                  navbar={Navbar}
-                  initialDate={initialDate}
-                  onWeekChange={onWeekChange}
-                  setPlaceholder={setPlaceholder}
-                  toClose={toClose}
-                  {...props}
-                />
-              )}
-
-              {isRange() && (
-                <Range
-                  navbar={Navbar}
-                  initialDate={initialDate}
-                  onRangeChange={onRangeChange}
-                  setPlaceholder={setPlaceholder}
-                  toClose={toClose}
-                  {...props}
-                />
-              )}
-            </Container>
-          </Closeable>
-        )}
+        {isOpen &&
+          createPortal(
+            <Closeable whenClose={toClose}>
+              <Container ref={containerRef} left={left} top={top}>
+                <Picker />
+              </Container>
+            </Closeable>,
+            document.body
+          )}
       </Content>
     )
   }
