@@ -124,7 +124,17 @@ const Hidden = styled.input.attrs({ type: 'checkbox' })`
 `
 
 export const Switch = memo(
-  ({ active, label, labelAlign, id, onChange, disabled, size, ...props }) => {
+  ({
+    active,
+    label,
+    onClickLabel,
+    labelAlign,
+    id,
+    onChange,
+    disabled,
+    size,
+    ...props
+  }) => {
     const setActive = ({ target }) => {
       const { checked } = target
 
@@ -143,7 +153,14 @@ export const Switch = memo(
           <Content size={size} active={active} disabled={disabled}>
             <Icon disabled={disabled} size={size} />
           </Content>
-          <Label labelAlign={labelAlign} disabled={disabled} size={size}>
+          <Label
+            onClick={event => {
+              onClickLabel && event.preventDefault() && onClickLabel()
+            }}
+            labelAlign={labelAlign}
+            disabled={disabled}
+            size={size}
+          >
             {label}
           </Label>
         </Container>
