@@ -1,136 +1,79 @@
 import React from 'react'
-import styled from 'styled-components'
-import { prop } from 'styled-tools'
 
-const Content = styled.div`
-  width: ${prop('width')}px;
-  height: ${prop('height')}px;
-  position: relative;
+const DIFFERENCE_BETWEEN_COLORS = 2305083
 
-  .circle {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-
-    &:before {
-      content: '';
-      display: block;
-      margin: 0 auto;
-      width: 15%;
-      height: 15%;
-      background-color: ${prop('color')};
-      border-radius: ${prop('theme.border.radius.fifty')};
-      animation: bounceDelay 1.2s infinite ease-in-out both;
-    }
-  }
-
-  .circle2 {
-    transform: rotate(30deg);
-
-    &::before {
-      animation-delay: -1.1s;
-    }
-  }
-  .circle3 {
-    transform: rotate(60deg);
-
-    &:before {
-      animation-delay: -1s;
-    }
-  }
-  .circle4 {
-    transform: rotate(90deg);
-
-    &:before {
-      animation-delay: -0.9s;
-    }
-  }
-  .circle5 {
-    transform: rotate(120deg);
-
-    &:before {
-      animation-delay: -0.8s;
-    }
-  }
-  .circle6 {
-    transform: rotate(150deg);
-
-    &:before {
-      animation-delay: -0.7s;
-    }
-  }
-  .circle7 {
-    transform: rotate(180deg);
-
-    &:before {
-      animation-delay: -0.6s;
-    }
-  }
-  .circle8 {
-    transform: rotate(210deg);
-
-    &:before {
-      animation-delay: -0.5s;
-    }
-  }
-  .circle9 {
-    transform: rotate(240deg);
-
-    &:before {
-      animation-delay: -0.4s;
-    }
-  }
-  .circle10 {
-    transform: rotate(270deg);
-
-    &:before {
-      animation-delay: -0.3s;
-    }
-  }
-  .circle11 {
-    transform: rotate(300deg);
-
-    &:before {
-      animation-delay: -0.2s;
-    }
-  }
-  .circle12 {
-    transform: rotate(330deg);
-
-    &:before {
-      animation-delay: -0.1s;
-    }
-  }
-
-  @keyframes bounceDelay {
-    0%,
-    80%,
-    100% {
-      transform: scale(0);
-    }
-    40% {
-      transform: scale(1);
-    }
-  }
-`
+function getInsideColor(color) {
+  return `#${(
+    parseInt(color.slice(1, 8), 16) + DIFFERENCE_BETWEEN_COLORS
+  ).toString(16)}`
+}
 
 export function Loading({ width, height, color }) {
   return (
-    <Content color={color} height={height} width={width}>
-      <div className="circle1 circle" />
-      <div className="circle2 circle" />
-      <div className="circle3 circle" />
-      <div className="circle4 circle" />
-      <div className="circle5 circle" />
-      <div className="circle6 circle" />
-      <div className="circle7 circle" />
-      <div className="circle8 circle" />
-      <div className="circle9 circle" />
-      <div className="circle10 circle" />
-      <div className="circle11 circle" />
-      <div className="circle12 circle" />
-    </Content>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      width={width}
+      height={height}
+      viewBox="0 0 100 100"
+      preserveAspectRatio="xMidYMid"
+    >
+      <circle
+        cx="50"
+        cy="50"
+        r="24.8735"
+        fill="none"
+        stroke={getInsideColor(color)}
+        strokeWidth="2"
+      >
+        <animate
+          attributeName="r"
+          repeatCount="indefinite"
+          dur="2.1739130434782608s"
+          values="0;40"
+          keyTimes="0;1"
+          keySplines="0 0.2 0.8 1"
+          calcMode="spline"
+          begin="-1.0869565217391304s"
+        ></animate>
+        <animate
+          attributeName="opacity"
+          repeatCount="indefinite"
+          dur="2.1739130434782608s"
+          values="1;0"
+          keyTimes="0;1"
+          keySplines="0.2 0 0.8 1"
+          calcMode="spline"
+          begin="-1.0869565217391304s"
+        ></animate>
+      </circle>
+      <circle
+        cx="50"
+        cy="50"
+        r="39.8435"
+        fill="none"
+        stroke={color}
+        strokeWidth="2"
+      >
+        <animate
+          attributeName="r"
+          repeatCount="indefinite"
+          dur="2.1739130434782608s"
+          values="0;40"
+          keyTimes="0;1"
+          keySplines="0 0.2 0.8 1"
+          calcMode="spline"
+        ></animate>
+        <animate
+          attributeName="opacity"
+          repeatCount="indefinite"
+          dur="2.1739130434782608s"
+          values="1;0"
+          keyTimes="0;1"
+          keySplines="0.2 0 0.8 1"
+          calcMode="spline"
+        ></animate>
+      </circle>
+    </svg>
   )
 }
