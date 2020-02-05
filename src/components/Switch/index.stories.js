@@ -13,7 +13,7 @@ const Containerable = styled(Container)`
   justify-content: space-evenly;
 `
 
-const Toggle = ({ label, labelAlign, id, disabled, size }) => {
+const Toggle = ({ label, labelAlign, id, disabled, size, onClickLabel }) => {
   const [on, setOn] = useState(false)
 
   return (
@@ -21,6 +21,7 @@ const Toggle = ({ label, labelAlign, id, disabled, size }) => {
       id={id}
       size={size}
       label={label}
+      onClickLabel={onClickLabel}
       labelAlign={labelAlign}
       disabled={disabled}
       active={on}
@@ -43,6 +44,13 @@ storiesOf(`${GROUPS.COMPONENTS}|Switch`, module)
       <Toggle id="3" label="Top" labelAlign={Switch.labelAlign.top} />
       <Toggle id="4" label="Left" labelAlign={Switch.labelAlign.left} />
     </>
+  ))
+  .add('Label event', () => (
+    <Toggle
+      id="1"
+      label="Label with custom event"
+      onClickLabel={() => console.log('Ignore another events')}
+    />
   ))
   .add('Large', () => (
     <>
