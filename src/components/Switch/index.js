@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
-import { switchProp, prop, ifProp } from 'styled-tools'
+import { switchProp, ifProp, theme } from 'styled-tools'
 
 import { Box } from '@components/Box'
 
@@ -10,11 +10,11 @@ const BoxAdjusted = styled(Box)`
 `
 
 const Content = styled.div`
-  border-radius: ${prop('theme.border.radius.twentyFour')};
+  border-radius: ${theme('border.radius.twentyFour')};
   background-color: ${ifProp(
     'active',
-    prop('theme.selector.bg.on'),
-    prop('theme.selector.bg.off')
+    theme('selector.bg.on'),
+    theme('selector.bg.off')
   )};
   justify-content: ${ifProp('active', 'flex-end', 'flex-start')};
   cursor: ${ifProp('disabled', 'not-allowed', 'pointer')};
@@ -37,11 +37,11 @@ const Content = styled.div`
 `
 
 const Icon = styled.div`
-  border-radius: ${prop('theme.border.radius.fifty')};
+  border-radius: ${theme('border.radius.fifty')};
   background-color: ${ifProp(
     'disabled',
-    prop('theme.selector.icon.disabled'),
-    prop('theme.selector.icon.primary')
+    theme('selector.icon.disabled'),
+    theme('selector.icon.primary')
   )};
 
   ${switchProp('size', {
@@ -57,20 +57,20 @@ const Icon = styled.div`
 `
 
 const Label = styled.span`
-  font-family: ${prop('theme.font.family.inter')};
+  font-family: ${theme('font.family.inter')};
   color: ${ifProp(
     'disabled',
-    prop('theme.selector.text.disabled'),
-    prop('theme.selector.text.primary')
+    theme('selector.text.disabled'),
+    theme('selector.text.primary')
   )};
   cursor: ${ifProp('disabled', 'not-allowed', 'pointer')};
 
   ${switchProp('size', {
     default: css`
-      font-size: ${prop('theme.font.size.twelve')};
+      font-size: ${theme('font.size.twelve')};
     `,
     large: css`
-      font-size: ${prop('theme.font.size.fourteen')};
+      font-size: ${theme('font.size.fourteen')};
     `
   })}
 
@@ -124,7 +124,17 @@ const Hidden = styled.input.attrs({ type: 'checkbox' })`
 `
 
 export const Switch = memo(
-  ({ active, label, labelAlign, id, onChange, disabled, size, ...props }) => {
+  ({
+    active,
+    label,
+    onClickLabel,
+    labelAlign,
+    id,
+    onChange,
+    disabled,
+    size,
+    ...props
+  }) => {
     const setActive = ({ target }) => {
       const { checked } = target
 
@@ -143,7 +153,19 @@ export const Switch = memo(
           <Content size={size} active={active} disabled={disabled}>
             <Icon disabled={disabled} size={size} />
           </Content>
-          <Label labelAlign={labelAlign} disabled={disabled} size={size}>
+          <Label
+            onClick={event => {
+              if (!onClickLabel) {
+                return
+              }
+
+              event.preventDefault()
+              onClickLabel()
+            }}
+            labelAlign={labelAlign}
+            disabled={disabled}
+            size={size}
+          >
             {label}
           </Label>
         </Container>
