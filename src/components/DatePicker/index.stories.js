@@ -25,20 +25,20 @@ storiesOf(`${GROUPS.COMPONENTS}|DatePicker`, module)
     <DatePicker
       align={DatePicker.align.left}
       appearence={DatePicker.appearence.day}
-      onDayChange={day => console.log(day)}
+      onDayChange={console.log}
     />
   ))
   .add('Week', () => (
     <DatePicker
       align={DatePicker.align.left}
       appearence={DatePicker.appearence.week}
-      onWeekChange={week => console.log(week)}
+      onWeekChange={console.log}
     />
   ))
   .add('Range', () => (
     <DatePicker
       align={DatePicker.align.left}
       appearence={DatePicker.appearence.range}
-      onRangeChange={range => console.log(range)}
+      onRangeChange={console.log}
     />
   ))
