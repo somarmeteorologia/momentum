@@ -24,7 +24,7 @@ export function Loading({ width, height, color }) {
         r="24.8735"
         fill="none"
         stroke={getInsideColor(color)}
-        strokeWidth="2"
+        strokeWidth="6"
       >
         <animate
           attributeName="r"
@@ -53,7 +53,7 @@ export function Loading({ width, height, color }) {
         r="39.8435"
         fill="none"
         stroke={color}
-        strokeWidth="2"
+        strokeWidth="6"
       >
         <animate
           attributeName="r"
