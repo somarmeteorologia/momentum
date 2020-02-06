@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useState, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
 import DayPicker, { DateUtils } from 'react-day-picker'
@@ -19,44 +19,49 @@ export const Range = memo(
       enteredTo: null
     })
 
-    const isSelectingFirstDay = (from, to, day) => {
+    const isSelectingFirstDay = ({ from, to, day }) => {
       const isBeforeFirstDay = from && DateUtils.isDayBefore(day, from)
       const isRangeSelected = from && to
+
       return !from || isBeforeFirstDay || isRangeSelected
     }
 
-    const handleDayClick = day => {
+    const onDayClick = useCallback(
+      day => {
+        const { from, to } = range
+
+        if (from && to && day >= from && day <= to) {
+          setRange({
+            from: null,
+            to: null,
+            enteredTo: null
+          })
+        }
+
+        if (isSelectingFirstDay({ from, to, day })) {
+          setRange({
+            from: day,
+            to: null,
+            enteredTo: null
+          })
+        } else {
+          setRange({
+            from,
+            to: day,
+            enteredTo: day
+          })
+
+          onRangeChange(range)
+          toClose()
+        }
+      },
+      [range, setRange]
+    )
+
+    const onDayMouseEnter = day => {
       const { from, to } = range
 
-      if (from && to && day >= from && day <= to) {
-        setRange({
-          from: null,
-          to: null,
-          enteredTo: null
-        })
-        return
-      }
-      if (isSelectingFirstDay(from, to, day)) {
-        setRange({
-          from: day,
-          to: null,
-          enteredTo: null
-        })
-      } else {
-        setRange({
-          from,
-          to: day,
-          enteredTo: day
-        })
-        onRangeChange(range)
-        toClose()
-      }
-    }
-
-    const handleDayMouseEnter = day => {
-      const { from, to } = range
-
-      !isSelectingFirstDay(from, to, day) &&
+      !isSelectingFirstDay({ from, to, day }) &&
         setRange({
           from,
           to,
@@ -75,15 +80,15 @@ export const Range = memo(
 
     return (
       <DayPicker
+        locale="pt-br"
         className="Range"
         numberOfMonths={2}
         fromMonth={range.from}
         selectedDays={[range.from, { from: range.from, to: range.enteredTo }]}
         modifiers={{ start: range.from, end: range.enteredTo }}
-        onDayClick={handleDayClick}
-        onDayMouseEnter={handleDayMouseEnter}
+        onDayClick={onDayClick}
+        onDayMouseEnter={onDayMouseEnter}
         showOutsideDays
-        locale="pt-br"
         months={MONTHS}
         weekdaysLong={WEEKDAYS_LONG}
         weekdaysShort={WEEKDAYS_SHORT}

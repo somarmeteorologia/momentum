@@ -44,6 +44,7 @@ const Container = styled.div`
   position: absolute;
   top: ${prop('top')}px;
   left: ${prop('left')}px;
+  z-index: ${theme('zindex.above')};
   background: linear-gradient(
     180deg,
     ${theme('datepicker.bg.secondary')} 0%,
@@ -249,23 +250,27 @@ export const DatePicker = memo(
     }, [])
 
     const setPositionByOffset = () => {
+      const { top, left } = inputRef.current.getBoundingClientRect()
+
       /**
        * @todo Corrigir regra de alinhamento por posição quando align igual a center
        */
-      const left =
-        align === DatePicker.align.left
-          ? inputRef.current.offsetLeft
-          : inputRef.current.offsetLeft - 654 / 2
+      const adjustedLeft =
+        align === DatePicker.align.left ? left : left - 654 / 2
 
-      const top = inputRef.current.offsetTop + 50
+      const adjustedTop = top + 50
 
       setPosition({
-        left,
-        top
+        left: adjustedLeft,
+        top: adjustedTop
       })
     }
 
     useEffect(() => {
+      if (!inputRef.current) {
+        return
+      }
+
       setPositionByOffset()
 
       window.addEventListener('resize', setPositionByOffset)
@@ -274,7 +279,7 @@ export const DatePicker = memo(
     }, [inputRef])
 
     const mapping = {
-      day: () => (
+      day: (
         <Day
           navbar={Navbar}
           initialDate={initialDate}
@@ -284,7 +289,7 @@ export const DatePicker = memo(
           {...props}
         />
       ),
-      week: () => (
+      week: (
         <Week
           navbar={Navbar}
           initialDate={initialDate}
@@ -294,7 +299,7 @@ export const DatePicker = memo(
           {...props}
         />
       ),
-      range: () => (
+      range: (
         <Range
           navbar={Navbar}
           initialDate={initialDate}
@@ -328,7 +333,7 @@ export const DatePicker = memo(
           createPortal(
             <Closeable whenClose={toClose}>
               <Container ref={containerRef} left={left} top={top}>
-                <Picker />
+                {Picker}
               </Container>
             </Closeable>,
             document.body
