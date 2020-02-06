@@ -27,7 +27,7 @@ yarn start
 
 ### Gerando uma nova versão
 
-O primeiro passo após suas novas alterações estarem feitas e já com o merge na master é confirmar se a master está atualizada através do `git pull`, também verificar se a versão no `package.json` foi alterada para a devida. Lembrando que utilizamos versionamento semântico, saiba mais [aqui](https://semver.org/).
+O primeiro passo após suas novas alterações estarem feitas e já com o merge na master, confirmar se a mesma está atualizada através do `git pull`, também verificar se a versão no `package.json` foi alterada para a devida, respeitando os padrões definidos de versionamento semântico, saiba mais [aqui](https://semver.org/).
 
 Agora, é necessário gerar o build com as novas alterações,
 
