@@ -89,13 +89,13 @@ function Nested({ parent, id, onBack, height }) {
       <Container id="container" height={height - HEIGHT_BACK_COMPONENT}>
         {getChildrensById(structure, id).map(children => {
           const Title = titleMapper[children.type]
-          return (
+          return !children.isHidden ? (
             <Fragment key={children.id}>
               <Title onClick={children.onClick} id={children.id}>
                 {children.title}
               </Title>
             </Fragment>
-          )
+          ) : null
         })}
       </Container>
     </Fragment>

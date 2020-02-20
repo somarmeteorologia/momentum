@@ -17,7 +17,7 @@ export default function Root() {
             {getChildrensById(structure, children.id).map(children => {
               const Title = titleMapper[children.type]
 
-              return (
+              return !children.isHidden ? (
                 <Fragment key={v4()}>
                   <Title
                     id={children.id}
@@ -28,7 +28,7 @@ export default function Root() {
                     {children.title}
                   </Title>
                 </Fragment>
-              )
+              ) : null
             })}
           </Fragment>
         )

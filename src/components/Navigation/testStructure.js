@@ -131,6 +131,24 @@ export default [
             ),
             type: Type.Group,
             children: []
+          },
+          {
+            id: 'fiat',
+            isHidden: true,
+            parent: 'cars',
+            title: ({ getter, setter }) => (
+              <Interable>
+                <Switch
+                  id="switch"
+                  label="Fiat"
+                  labelAlign="right"
+                  active={getter('switch')}
+                  onChange={() => setter('switch', !getter('switch'))}
+                />
+              </Interable>
+            ),
+            type: Type.Group,
+            children: []
           }
         ]
       },
