@@ -44,6 +44,15 @@ const defaultInterables = [
     ]
   },
   {
+    id: 'fiat',
+    interables: [
+      {
+        id: 'switch',
+        value: true
+      }
+    ]
+  },
+  {
     id: 'gol',
     interables: [
       {

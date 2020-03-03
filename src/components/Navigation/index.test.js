@@ -14,6 +14,8 @@ const TO_BACK = 'Voltar'
 
 const CARS_CONTENT = 'Ford'
 
+const CARS_FIAT = 'Fiat'
+
 const withProvider = ({ toOpen }) => (
   <ThemeProvider theme={Theme.light}>
     <TesteableProvider>
@@ -64,6 +66,15 @@ test('Expect to navigate between groups', () => {
 
   fireEvent.click(queryByText(TO_BACK))
   expect(queryByText(NEWSLETTER_TITLE)).toBeVisible()
+})
+
+test('Expect not show item hidden', () => {
+  const toOpen = () => 'cars'
+
+  const { queryByText } = render(withProvider({ toOpen }))
+
+  expect(queryByText(CARS_CONTENT)).toBeVisible()
+  expect(queryByText(CARS_FIAT)).toBeNull()
 })
 
 test('Expect to interact with switchers', () => {})
