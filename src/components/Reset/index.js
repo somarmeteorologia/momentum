@@ -1,9 +1,8 @@
+import React from 'react'
+import { Helmet } from 'react-helmet'
 import { createGlobalStyle } from 'styled-components'
 
-export const Reset = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300,400&display=swap');
-  @import url('https://rsms.me/inter/inter.css');
-
+export const Global = createGlobalStyle`
   * {
     box-sizing: border-box;
     margin: 0;
@@ -30,3 +29,16 @@ export const Reset = createGlobalStyle`
     font-family: 'Inter', sans-serif;
   }
 `
+
+export const Reset = () => (
+  <>
+    <Helmet>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400&display=swap"
+      />
+      <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    </Helmet>
+    <Global />
+  </>
+)

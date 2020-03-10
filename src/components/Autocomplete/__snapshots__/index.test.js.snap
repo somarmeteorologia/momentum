@@ -249,7 +249,7 @@ exports[`Not expect visual regression 1`] = `
           data-testid="interable"
         >
           <div
-            class="c4"
+            class="sc-AxjAm c4"
             data-testid="icon-state"
             height="20"
             width="20"
@@ -286,7 +286,7 @@ exports[`Not expect visual regression 1`] = `
             style="transform: none;"
           >
             <div
-              class="c5"
+              class="sc-AxjAm c5"
               height="10"
               width="10"
             >
@@ -333,7 +333,7 @@ exports[`Not expect visual regression 1`] = `
         value="city"
       >
         <div
-          class="c4"
+          class="sc-AxjAm c4"
           data-testid="list-city"
           height="20"
           width="20"
@@ -377,7 +377,7 @@ exports[`Not expect visual regression 1`] = `
         value="state"
       >
         <div
-          class="c4"
+          class="sc-AxjAm c4"
           data-testid="list-state"
           height="20"
           width="20"
