@@ -1,6 +1,6 @@
 import React from 'react'
 import { configure, addDecorator } from '@storybook/react'
-import { setOptions } from '@storybook/addon-options'
+import { withOptions } from '@storybook/addon-options'
 import { withNotes } from '@storybook/addon-notes'
 import { addParameters } from '@storybook/react'
 
@@ -35,7 +35,7 @@ addDecorator(story => (
 
 addDecorator(withNotes)
 
-setOptions({
+withOptions({
   hierarchySeparator: /\//,
   hierarchyRootSeparator: /\|/,
   name: 'Momentum UI',

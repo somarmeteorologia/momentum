@@ -86,7 +86,7 @@ exports[`Not expect visual regression 1`] = `
         style="transform: rotate(45deg) translateZ(0);"
       >
         <div
-          class="c4"
+          class="sc-AxjAm c4"
           height="16"
           width="16"
         >
