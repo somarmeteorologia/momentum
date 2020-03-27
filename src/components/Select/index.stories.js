@@ -28,6 +28,7 @@ storiesOf(`${GROUPS.COMPONENTS}|Select`, module)
   .add('Default', () => (
     <>
       <Select
+        raw={true}
         options={[
           { value: 1, text: 'Banana' },
           { value: 2, text: 'Apple' },

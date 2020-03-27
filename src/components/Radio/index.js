@@ -23,7 +23,7 @@ const isValidOption = child =>
   isValidElement(child) && child.type.displayName === 'Option'
 
 export const Radio = memo(
-  ({ size, labelAlign, name, onChange, children, orientation }) => {
+  ({ size, labelAlign, name, onChange, raw, children, orientation }) => {
     const options = Object.assign({}, ...map(children))
 
     const childrens = Children.map(children, child => {
@@ -39,6 +39,7 @@ export const Radio = memo(
     return (
       <Provider
         size={size}
+        raw={raw}
         onChange={onChange}
         initial={options}
         labelAlign={labelAlign}

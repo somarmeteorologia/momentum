@@ -1,7 +1,7 @@
 import React, { memo, useState, useContext } from 'react'
 import styled, { css, ThemeContext } from 'styled-components'
 import PropTypes from 'prop-types'
-import { ifProp, switchProp, prop } from 'styled-tools'
+import { ifProp, switchProp, theme } from 'styled-tools'
 
 const iconAlign = {
   left: 'left',
@@ -17,89 +17,89 @@ const Container = styled.label`
 
 const Label = styled.span`
   margin-bottom: 8px;
-  font-family: ${prop('theme.font.family.inter')};
-  font-size: ${prop('theme.font.size.twelve')};
-  font-weight: ${prop('theme.font.weight.bold')};
+  font-family: ${theme('font.family.inter')};
+  font-size: ${theme('font.size.twelve')};
+  font-weight: ${theme('font.weight.bold')};
   color: ${ifProp(
-  'disabled',
-  prop('theme.field.text.disabled'),
-  prop('theme.field.text.primary')
-)};
+    'disabled',
+    theme('field.text.disabled'),
+    theme('field.text.primary')
+  )};
 
   ${ifProp(
-  { required: true },
-  css`
+    { required: true },
+    css`
       &::after {
         content: '*';
         color: ${ifProp(
-    'disabled',
-    prop('theme.field.text.disabled'),
-    prop('theme.field.text.danger')
-  )};
+          'disabled',
+          theme('field.text.disabled'),
+          theme('field.text.danger')
+        )};
       }
     `
-)}
+  )}
 `
 
 const Textareable = styled.textarea`
   resize: none;
   height: 90px;
   padding: 11px 14px;
-  font-family: ${prop('theme.font.family.inter')};
-  font-size: ${prop('theme.font.size.fourteen')};
-  color: ${prop('theme.field.text.primary')};
-  background-color: ${prop('theme.field.bg.primary')};
-  border-radius: ${prop('theme.border.radius.four')};
-  border: ${ifProp(
-  'hasError',
-  prop('theme.field.border.danger'),
-  prop('theme.field.border.primary')
-)};
+  font-family: ${theme('font.family.inter')};
+  font-size: ${theme('font.size.fourteen')};
+  color: ${theme('field.text.primary')};
+  background-color: ${theme('field.bg.primary')};
+  border-radius: ${theme('border.radius.four')};
   cursor: ${ifProp('disabled', 'not-allowed', 'initial')};
+  border: ${ifProp(
+    'hasError',
+    theme('field.border.danger'),
+    theme('field.border.primary')
+  )};
 
   ${ifProp(
-  'icon',
-  switchProp('iconAlign', {
-    [iconAlign.left]: css`
+    'icon',
+    switchProp('iconAlign', {
+      [iconAlign.left]: css`
         padding-left: 36px;
       `,
-    [iconAlign.right]: css`
+      [iconAlign.right]: css`
         padding-right: 36px;
       `
-  }),
-  null
-)}
+    }),
+    null
+  )}
 
   &:focus {
     outline: none;
     border: ${ifProp(
-  'hasError',
-  prop('theme.field.border.danger'),
-  prop('theme.field.border.secondary')
-)};
+      'hasError',
+      theme('field.border.danger'),
+      theme('field.border.secondary')
+    )};
   }
 
   &::placeholder {
     color: ${ifProp(
-  'hasError',
-  prop('theme.field.text.danger'),
-  prop('theme.field.text.secondary')
-)};
+      'hasError',
+      theme('field.text.danger'),
+      theme('field.text.secondary')
+    )};
 
     ${ifProp(
-  'disabled',
-  css`
-        color: ${prop('theme.field.text.disabled')};
+      'disabled',
+      css`
+        color: ${theme('field.text.disabled')};
       `
-)};
+    )};
   }
 `
 
 const Message = styled.span`
   margin-top: 8px;
-  font-family: ${prop('theme.font.family.inter')};
-  font-size: ${prop('theme.font.size.ten')};
-  color: ${prop('theme.field.text.danger')};
+  font-family: ${theme('font.family.inter')};
+  font-size: ${theme('font.size.ten')};
+  color: ${theme('field.text.danger')};
 `
 
 const Content = styled.div`
@@ -110,13 +110,13 @@ const Content = styled.div`
   line-height: 40px;
 
   ${switchProp('iconAlign', {
-  left: css`
+    left: css`
       left: 16px;
     `,
-  right: css`
+    right: css`
       right: 16px;
     `
-})};
+  })};
 `
 
 export const Textarea = memo(
@@ -126,6 +126,7 @@ export const Textarea = memo(
     onChange,
     placeholder,
     icon,
+    raw,
     iconAlign,
     error,
     success,
@@ -137,11 +138,11 @@ export const Textarea = memo(
     const { field } = useContext(ThemeContext)
     const [text, setText] = useState(value)
 
-    const whenChange = ({ target }) => {
-      const { value } = target
+    const whenChange = event => {
+      const { value } = event.target
 
       setText(value)
-      onChange(value)
+      onChange(raw ? event : value)
     }
 
     return (
@@ -186,7 +187,7 @@ Textarea.defaultProps = {
   label: '',
   placeholder: '',
   iconAlign: iconAlign.left,
-  onChange: () => { },
+  onChange: () => {},
   error: {
     has: false
   },

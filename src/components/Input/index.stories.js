@@ -27,7 +27,12 @@ storiesOf(`${GROUPS.COMPONENTS}|Input`, module)
   ))
   .add('Default', () => (
     <>
-      <Input placeholder="Your document" />
+      <Input placeholder="Your document" onChange={console.log} />
+    </>
+  ))
+  .add('Raw value', () => (
+    <>
+      <Input raw={true} placeholder="Your document" onChange={console.log} />
     </>
   ))
   .add('With label', () => (

@@ -1,8 +1,8 @@
-import React, { memo, useState, useContext } from 'react'
+import React, { memo, useState, useContext, useRef, useEffect } from 'react'
 import styled, { css, ThemeContext } from 'styled-components'
 import PropTypes from 'prop-types'
 import v4 from 'uuid/v4'
-import { ifProp, prop } from 'styled-tools'
+import { ifProp, theme } from 'styled-tools'
 import { motion } from 'framer-motion'
 
 import { Icon } from '@components/Icon'
@@ -21,13 +21,13 @@ const Container = styled.div`
 
 const Label = styled.span`
   margin-bottom: 8px;
-  font-family: ${prop('theme.font.family.inter')};
-  font-size: ${prop('theme.font.size.twelve')};
-  font-weight: ${prop('theme.font.weight.bold')};
+  font-family: ${theme('font.family.inter')};
+  font-size: ${theme('font.size.twelve')};
+  font-weight: ${theme('font.weight.bold')};
   color: ${ifProp(
     'disabled',
-    prop('theme.field.text.disabled'),
-    prop('theme.field.text.primary')
+    theme('field.text.disabled'),
+    theme('field.text.primary')
   )};
   cursor: default;
 
@@ -38,8 +38,8 @@ const Label = styled.span`
         content: '*';
         color: ${ifProp(
           'disabled',
-          prop('theme.field.text.disabled'),
-          prop('theme.field.text.danger')
+          theme('field.text.disabled'),
+          theme('field.text.danger')
         )};
       }
     `
@@ -50,15 +50,15 @@ const Selectable = styled.div`
   width: 100%;
   height: 40px;
   padding: 0 16px;
-  font-size: ${prop('theme.font.size.fifteen')};
-  border-radius: ${prop('theme.border.radius.four')};
+  font-size: ${theme('font.size.fifteen')};
+  border-radius: ${theme('border.radius.four')};
   border: ${ifProp(
     'active',
-    prop('theme.field.border.secondary'),
-    prop('theme.field.border.primary')
+    theme('field.border.secondary'),
+    theme('field.border.primary')
   )};
-  background-color: ${prop('theme.field.bg.primary')};
-  color: ${prop('theme.field.text.quaternary')};
+  background-color: ${theme('field.bg.primary')};
+  color: ${theme('field.text.quaternary')};
   outline: 0;
   appearance: none;
   cursor: ${ifProp('disabled', 'not-allowed', 'pointer')};
@@ -71,8 +71,8 @@ const Selectable = styled.div`
   &:hover {
     border: ${ifProp(
       'disabled',
-      prop('theme.field.border.primary'),
-      prop('theme.field.border.secondary')
+      theme('field.border.primary'),
+      theme('field.border.secondary')
     )};
   }
 
@@ -84,42 +84,42 @@ const Selectable = styled.div`
   )}
 `
 
-const Options = styled(motion.ul)`
+const Options = styled(motion.div)`
   width: 100%;
   top: calc(100% + 4px);
   position: absolute;
-  border-radius: ${prop('theme.border.radius.four')};
-  background-color: ${prop('theme.field.bg.secondary')};
+  border-radius: ${theme('border.radius.four')};
+  background-color: ${theme('field.bg.secondary')};
   list-style: none;
   padding: 1px;
-  border: ${prop('theme.field.border.tertiary')};
-  box-shadow: ${prop('theme.field.shadow.primary')};
+  border: ${theme('field.border.tertiary')};
+  box-shadow: ${theme('field.shadow.primary')};
 `
 
-const Option = styled.li`
+const Option = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
   height: 40px;
-  border-radius: ${prop('theme.border.radius.four')};
+  border-radius: ${theme('border.radius.four')};
   padding-left: 14px;
   padding-right: 14px;
-  font-size: ${prop('theme.font.size.fourteen')};
+  font-size: ${theme('font.size.fourteen')};
   font-weight: ${ifProp(
     'selected',
-    prop('theme.font.weight.bold'),
-    prop('theme.font.weight.regular')
+    theme('font.weight.bold'),
+    theme('font.weight.regular')
   )};
   color: ${ifProp(
     'selected',
-    prop('theme.field.text.active'),
-    prop('theme.field.text.tertiary')
+    theme('field.text.active'),
+    theme('field.text.tertiary')
   )};
   cursor: pointer;
 
   &:hover {
-    color: ${prop('theme.field.text.quaternary')};
-    background-color: ${prop('theme.field.bg.hover')};
+    color: ${theme('field.text.quaternary')};
+    background-color: ${theme('field.bg.hover')};
   }
 `
 
@@ -133,18 +133,18 @@ const Content = styled.div`
 `
 
 const Title = styled.span`
-  font-size: ${prop('theme.font.size.fourteen')};
-  font-weight: ${prop('theme.font.weight.regular')};
+  font-size: ${theme('font.size.fourteen')};
+  font-weight: ${theme('font.weight.regular')};
   color: ${ifProp(
     'hasSelected',
-    prop('theme.field.text.selected'),
-    prop('theme.field.text.secondary')
+    theme('field.text.selected'),
+    theme('field.text.secondary')
   )};
 
   ${ifProp(
     'disabled',
     css`
-      color: ${prop('theme.field.text.disabled')};
+      color: ${theme('field.text.disabled')};
     `
   )};
 `
@@ -152,14 +152,16 @@ const Title = styled.span`
 export const Select = memo(
   ({
     options,
-    onChange,
     icon,
     defaultValue,
     label,
     disabled,
+    raw,
     required,
+    onChange,
     full
   }) => {
+    const ref = useRef()
     const { field } = useContext(ThemeContext)
     const [show, setShow] = useState(false)
     const [selected, setSelected] = useState(defaultValue)
@@ -171,17 +173,30 @@ export const Select = memo(
       setFocus(false)
     }
 
-    const whenSelected = ({ text, value }) => () => {
+    const whenSelected = ({ text }) => () => {
       toggleShow()
       setSelected(text)
-      onChange(value)
+
+      ref.current.dispatchEvent(
+        new Event('change', {
+          bubbles: true
+        })
+      )
     }
 
-    const whenFocus = () => {
-      setFocus(!focus)
+    const whenChange = event => {
+      const { value } = event.target
+
+      onChange(raw ? event : value)
     }
+
+    const whenFocus = () => setFocus(!focus)
 
     const hasSelected = () => Select.defaultValue.label !== selected
+
+    useEffect(() => {
+      ref.current.addEventListener('change', whenChange)
+    }, [ref])
 
     return (
       <Container full={full}>
@@ -203,6 +218,7 @@ export const Select = memo(
                 {icon({ width: 14, height: 14, color: field.icon.primary })}
               </Content>
             )}
+
             <Title
               hasSelected={Select.defaultValue.label !== selected}
               disabled={disabled}
@@ -216,6 +232,8 @@ export const Select = memo(
               color={hasSelected() ? field.arrow.selected : field.arrow.primary}
             />
           </Selectable>
+
+          <input ref={ref} type="hidden" value={selected} />
 
           <Options
             animate={show ? 'visible' : 'hidden'}
