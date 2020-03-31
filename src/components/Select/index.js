@@ -159,7 +159,8 @@ export const Select = memo(
     raw,
     required,
     onChange,
-    full
+    full,
+    ...props
   }) => {
     const ref = useRef()
     const { field } = useContext(ThemeContext)
@@ -233,7 +234,7 @@ export const Select = memo(
             />
           </Selectable>
 
-          <input ref={ref} type="hidden" value={selected} />
+          <input ref={ref} type="hidden" value={selected} {...props} />
 
           <Options
             animate={show ? 'visible' : 'hidden'}

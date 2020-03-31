@@ -4,16 +4,8 @@ import { ThemeProvider } from 'styled-components'
 
 import { Theme } from '@components/Theme'
 
-function renderWithTheme(ui, theme = Theme.light) {
-    return {
-        ...render(
-            <ThemeProvider theme={theme}>
-                {ui}
-            </ThemeProvider>
-        )
-    }
-}
-
-export {
-    renderWithTheme
+export const renderWithTheme = (ui, theme = Theme.light) => {
+  return {
+    ...render(<ThemeProvider theme={theme}>{ui}</ThemeProvider>)
+  }
 }
