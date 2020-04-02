@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
-import { switchProp, ifProp, prop } from 'styled-tools'
+import { switchProp, ifProp, theme } from 'styled-tools'
 
 import { Box } from '@components/Box'
 
@@ -15,11 +15,11 @@ const Content = styled.div`
 `
 
 const Icon = styled.span`
-  border-radius: ${prop('theme.border.radius.two')};
+  border-radius: ${theme('border.radius.two')};
   background-color: ${ifProp(
     'disabled',
-    prop('theme.selector.icon.disabled'),
-    prop('theme.selector.icon.primary')
+    theme('selector.icon.disabled'),
+    theme('selector.icon.primary')
   )};
 
   ${switchProp('size', {
@@ -50,19 +50,15 @@ const Hidden = styled.input.attrs({ type: 'checkbox' })`
 const Styled = styled.div`
   border: ${ifProp(
     'disabled',
-    prop('theme.selector.border.disabled'),
-    ifProp(
-      'checked',
-      prop('theme.selector.border.on'),
-      prop('theme.selector.border.off')
-    )
+    theme('selector.border.disabled'),
+    ifProp('checked', theme('selector.border.on'), theme('selector.border.off'))
   )};
   background-color: ${ifProp(
     'checked',
-    prop('theme.selector.bg.on'),
+    theme('selector.bg.on'),
     'transparent'
   )};
-  border-radius: ${prop('theme.border.radius.four')};
+  border-radius: ${theme('border.radius.four')};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,17 +99,17 @@ const Container = styled.label`
 const Label = styled.span`
   color: ${ifProp(
     'disabled',
-    prop('theme.selector.text.disabled'),
-    prop('theme.selector.text.primary')
+    theme('selector.text.disabled'),
+    theme('selector.text.primary')
   )};
-  font-family: ${prop('theme.font.family.inter')};
+  font-family: ${theme('font.family.inter')};
 
   ${switchProp('size', {
     default: css`
-      font-size: ${prop('theme.font.size.twelve')};
+      font-size: ${theme('font.size.twelve')};
     `,
     large: css`
-      font-size: ${prop('theme.font.size.fourteen')};
+      font-size: ${theme('font.size.fourteen')};
     `
   })};
 
@@ -134,11 +130,21 @@ const Label = styled.span`
 `
 
 export const Checkbox = memo(
-  ({ checked, label, onChange, id, disabled, labelAlign, size, ...props }) => {
-    const setChecked = ({ target }) => {
-      const { checked } = target
+  ({
+    checked,
+    label,
+    onChange,
+    id,
+    disabled,
+    raw,
+    labelAlign,
+    size,
+    ...props
+  }) => {
+    const whenChange = event => {
+      const { checked } = event.target
 
-      onChange(checked)
+      onChange(raw ? event : checked)
     }
 
     return (
@@ -149,7 +155,7 @@ export const Checkbox = memo(
               id={id}
               checked={checked}
               value={checked}
-              onChange={setChecked}
+              onChange={whenChange}
               disabled={disabled}
               {...props}
             />

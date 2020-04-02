@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Not expect visual regression 1`] = `
+.c5 {
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.c4 {
+  -webkit-transform: scaleY(-1);
+  -ms-transform: scaleY(-1);
+  transform: scaleY(-1);
+}
+
+.c3 {
+  display: inline-block;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  line-height: 0;
+}
+
+.c0 {
+  width: 240px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+}
+
+.c1 {
+  width: 100%;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 0.25rem;
+  border: 1px solid #b1bbe5;
+  background-color: #f1f3fA;
+  color: #fff;
+  outline: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1:hover {
+  border: 1px solid #6479cb;
+}
+
+.c6 {
+  width: 100%;
+  top: calc(100% + 4px);
+  position: absolute;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  list-style: none;
+  padding: 1px;
+  border: 1px solid #f1f3fA;
+  box-shadow: 0 2px 4px rgba(50,71,151,0.15);
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  border-radius: 0.25rem;
+  padding-left: 14px;
+  padding-right: 14px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-family: Inter,sans-serif;
+  font-weight: 500;
+  color: #19244d;
+}
+
+.c7:hover {
+  color: #fff;
+  background-color: #133BEC;
+}
+
+.c2 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6479cb;
+}
+
+<div
+  class="c0"
+>
+  <div>
+    <div
+      class="c1"
+    >
+      <span
+        class="c2"
+      >
+        Selecionar
+      </span>
+      <div
+        class="sc-AxjAm c3"
+        height="20"
+        width="6"
+      >
+        <div
+          class="c4"
+        >
+          <div
+            class="c5"
+          >
+            <svg
+              fill="none"
+              height="20"
+              viewBox="0 0 9 15"
+              width="6"
+            >
+              <path
+                d="M1.55469 14L7.33247 7.5L1.55469 1"
+                stroke="#6479cb"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-miterlimit="10"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="c6"
+    >
+      <div
+        class="c7"
+        value="1"
+      >
+        Banana
+      </div>
+      <div
+        class="c7"
+        value="2"
+      >
+        Apple
+      </div>
+    </div>
+  </div>
+</div>
+`;

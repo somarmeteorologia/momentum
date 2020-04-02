@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 import styled from 'styled-components'
 import { storiesOf } from '@storybook/react'
+import { useFormik } from 'formik'
 
 import { GROUPS } from '@helpers/hierarchySeparators'
 import { Container } from '@helpers/components/Container'
@@ -18,6 +19,17 @@ const Wrapper = styled.div`
   align-items: flex-end;
 `
 
+const Formik = memo(({ options }) => {
+  const { setFieldValue } = useFormik({
+    initialValues: {},
+    onSubmit: console.info
+  })
+
+  return (
+    <Select options={options} onChange={value => setFieldValue('raw', value)} />
+  )
+})
+
 storiesOf(`${GROUPS.COMPONENTS}|Select`, module)
   .addDecorator(story => (
     <Containerable>
@@ -26,34 +38,39 @@ storiesOf(`${GROUPS.COMPONENTS}|Select`, module)
     </Containerable>
   ))
   .add('Default', () => (
-    <>
-      <Select
-        options={[
-          { value: 1, text: 'Banana' },
-          { value: 2, text: 'Apple' },
-          { value: 3, text: 'Orange' }
-        ]}
-      />
-    </>
+    <Select
+      options={[
+        { value: 1, text: 'Banana' },
+        { value: 2, text: 'Apple' },
+        { value: 3, text: 'Orange' }
+      ]}
+    />
+  ))
+  .add('With Formik', () => (
+    <Formik
+      options={[
+        { value: 1, text: 'Banana' },
+        { value: 2, text: 'Apple' },
+        { value: 3, text: 'Orange' }
+      ]}
+    />
   ))
   .add('With icon', () => (
-    <>
-      <Select
-        icon={({ color, width, height }) => (
-          <Icon
-            name={Icon.name.checked}
-            color={color}
-            width={width}
-            height={height}
-          />
-        )}
-        options={[
-          { value: 1, text: 'Banana' },
-          { value: 2, text: 'Apple' },
-          { value: 3, text: 'Orange' }
-        ]}
-      />
-    </>
+    <Select
+      icon={({ color, width, height }) => (
+        <Icon
+          name={Icon.name.checked}
+          color={color}
+          width={width}
+          height={height}
+        />
+      )}
+      options={[
+        { value: 1, text: 'Banana' },
+        { value: 2, text: 'Apple' },
+        { value: 3, text: 'Orange' }
+      ]}
+    />
   ))
   .add('With label', () => (
     <>

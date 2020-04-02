@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Not expect visual regression 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  width: 240px;
+}
+
+.c1 {
+  resize: none;
+  height: 90px;
+  padding: 11px 14px;
+  font-family: Inter,sans-serif;
+  font-size: 0.875rem;
+  color: #19244d;
+  background-color: #f1f3fA;
+  border-radius: 0.25rem;
+  cursor: initial;
+  border: 1px solid #b1bbe5;
+}
+
+.c1:focus {
+  outline: none;
+  border: 1px solid #6479cb;
+}
+
+.c1::-webkit-input-placeholder {
+  color: #6479cb;
+}
+
+.c1::-moz-placeholder {
+  color: #6479cb;
+}
+
+.c1:-ms-input-placeholder {
+  color: #6479cb;
+}
+
+.c1::placeholder {
+  color: #6479cb;
+}
+
+<label
+  class="c0"
+>
+  
+  <textarea
+    class="c1"
+    placeholder=""
+  />
+</label>
+`;
