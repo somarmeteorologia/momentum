@@ -20,12 +20,10 @@ const Wrapper = styled.div`
 `
 
 const Formik = memo(({ options }) => {
-  const { values, setFieldValue } = useFormik({
+  const { setFieldValue } = useFormik({
     initialValues: {},
     onSubmit: console.info
   })
-
-  console.log(values)
 
   return (
     <Select options={options} onChange={value => setFieldValue('raw', value)} />
