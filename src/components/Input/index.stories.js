@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { storiesOf } from '@storybook/react'
+import { useFormik } from 'formik'
 
 import { GROUPS } from '@helpers/hierarchySeparators'
 import { Container } from '@helpers/components/Container'
@@ -18,6 +19,27 @@ const Wrapper = styled.div`
   align-items: flex-end;
 `
 
+const Formik = () => {
+  const { handleChange, values } = useFormik({
+    initialValues: {
+      input: ''
+    },
+    onSubmit: console.info
+  })
+
+  const { input } = values
+
+  return (
+    <Input
+      id="input"
+      raw={true}
+      placeholder="Your document"
+      onChange={handleChange}
+      value={input}
+    />
+  )
+}
+
 storiesOf(`${GROUPS.COMPONENTS}|Input`, module)
   .addDecorator(story => (
     <Containerable>
@@ -25,16 +47,8 @@ storiesOf(`${GROUPS.COMPONENTS}|Input`, module)
       {story()}
     </Containerable>
   ))
-  .add('Default', () => (
-    <>
-      <Input placeholder="Your document" onChange={console.log} />
-    </>
-  ))
-  .add('Raw value', () => (
-    <>
-      <Input raw={true} placeholder="Your document" onChange={console.log} />
-    </>
-  ))
+  .add('Default', () => <Input placeholder="Your document" />)
+  .add('With Formik', () => <Formik />)
   .add('With label', () => (
     <>
       <Input placeholder="Your document" label="Field label" />
@@ -42,29 +56,25 @@ storiesOf(`${GROUPS.COMPONENTS}|Input`, module)
     </>
   ))
   .add('With error', () => (
-    <>
-      <Input
-        placeholder="Your document"
-        error={{ has: true, message: 'Your document' }}
-      />
-    </>
+    <Input
+      placeholder="Your document"
+      error={{ has: true, message: 'Your document' }}
+    />
   ))
   .add('With success', () => (
-    <>
-      <Input
-        placeholder="Your e-mail"
-        icon={({ color, width, height }) => (
-          <Icon
-            name={Icon.name.checked}
-            color={color}
-            width={width}
-            height={height}
-          />
-        )}
-        iconAlign={Input.iconAlign.right}
-        success={{ has: true, message: 'Your document' }}
-      />
-    </>
+    <Input
+      placeholder="Your e-mail"
+      icon={({ color, width, height }) => (
+        <Icon
+          name={Icon.name.checked}
+          color={color}
+          width={width}
+          height={height}
+        />
+      )}
+      iconAlign={Input.iconAlign.right}
+      success={{ has: true, message: 'Your document' }}
+    />
   ))
   .add('With icon', () => (
     <>

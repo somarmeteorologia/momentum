@@ -80,6 +80,7 @@
     "url-loader": "^2.0.1",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.9",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^4.2.2",
+    "formik": "^2.1.4"
   }
 }

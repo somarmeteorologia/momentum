@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { storiesOf } from '@storybook/react'
+import { useFormik } from 'formik'
 
 import { GROUPS } from '@helpers/hierarchySeparators'
 import { Container } from '@helpers/components/Container'
@@ -13,6 +14,21 @@ const Containerable = styled(Container)`
   justify-content: space-evenly;
 `
 
+const Formik = () => {
+  const { setFieldValue } = useFormik({
+    initialValues: {},
+    onSubmit: console.info
+  })
+
+  return (
+    <Radio name="bottom" onChange={checked => setFieldValue('option', checked)}>
+      <Radio.Option id="apple" label="Apple" checked />
+      <Radio.Option id="banana" label="Banana" />
+      <Radio.Option id="orange" label="Orange" />
+    </Radio>
+  )
+}
+
 storiesOf(`${GROUPS.COMPONENTS}|Radio`, module)
   .addDecorator(story => (
     <Containerable>
@@ -23,8 +39,9 @@ storiesOf(`${GROUPS.COMPONENTS}|Radio`, module)
   .add('Orientation', () => (
     <>
       <Radio name="bottom" onChange={console.log}>
-        <Radio.Option id="apple" label="Row" checked />
-        <Radio.Option id="banana" label="Row" />
+        <Radio.Option id="apple" label="Apple" checked />
+        <Radio.Option id="banana" label="Banana" />
+        <Radio.Option id="orange" label="Orange" />
       </Radio>
 
       <Radio orientation={Radio.orientation.column} name="top">
@@ -33,6 +50,7 @@ storiesOf(`${GROUPS.COMPONENTS}|Radio`, module)
       </Radio>
     </>
   ))
+  .add('With Formik', () => <Formik />)
   .add('Label Align', () => (
     <>
       <Radio name="bottom">

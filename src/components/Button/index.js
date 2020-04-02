@@ -104,6 +104,7 @@ const content = element => styled(element)`
       background-color: ${theme('button.bg.disabled')};
       color: ${theme('button.text.disabled')};
       border: ${theme('button.border.disabled')};
+      cursor: not-allowed;
 
       &:hover {
         background-color: ${theme('button.bg.disabled')};

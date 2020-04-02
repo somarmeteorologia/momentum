@@ -1,4 +1,4 @@
-import React, { memo, useState, useContext, useRef, useEffect } from 'react'
+import React, { memo, useState, useContext } from 'react'
 import styled, { css, ThemeContext } from 'styled-components'
 import PropTypes from 'prop-types'
 import v4 from 'uuid/v4'
@@ -104,7 +104,10 @@ const Option = styled.div`
   border-radius: ${theme('border.radius.four')};
   padding-left: 14px;
   padding-right: 14px;
+  cursor: pointer;
   font-size: ${theme('font.size.fourteen')};
+  font-family: ${theme('font.family.inter')};
+
   font-weight: ${ifProp(
     'selected',
     theme('font.weight.bold'),
@@ -115,7 +118,6 @@ const Option = styled.div`
     theme('field.text.active'),
     theme('field.text.tertiary')
   )};
-  cursor: pointer;
 
   &:hover {
     color: ${theme('field.text.quaternary')};
@@ -156,19 +158,17 @@ export const Select = memo(
     defaultValue,
     label,
     disabled,
-    raw,
     required,
     onChange,
-    full,
-    ...props
+    full
   }) => {
-    const ref = useRef()
     const { field } = useContext(ThemeContext)
     const [show, setShow] = useState(false)
     const [selected, setSelected] = useState(defaultValue)
     const [focus, setFocus] = useState(focus)
 
     const toggleShow = () => setShow(!show)
+
     const toCloseOutside = () => {
       setShow(false)
       setFocus(false)
@@ -176,28 +176,14 @@ export const Select = memo(
 
     const whenSelected = ({ text }) => () => {
       toggleShow()
+
       setSelected(text)
-
-      ref.current.dispatchEvent(
-        new Event('change', {
-          bubbles: true
-        })
-      )
-    }
-
-    const whenChange = event => {
-      const { value } = event.target
-
-      onChange(raw ? event : value)
+      onChange(text)
     }
 
     const whenFocus = () => setFocus(!focus)
 
     const hasSelected = () => Select.defaultValue.label !== selected
-
-    useEffect(() => {
-      ref.current.addEventListener('change', whenChange)
-    }, [ref])
 
     return (
       <Container full={full}>
@@ -233,8 +219,6 @@ export const Select = memo(
               color={hasSelected() ? field.arrow.selected : field.arrow.primary}
             />
           </Selectable>
-
-          <input ref={ref} type="hidden" value={selected} {...props} />
 
           <Options
             animate={show ? 'visible' : 'hidden'}

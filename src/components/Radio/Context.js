@@ -1,19 +1,14 @@
-import React, { createContext, useState, useRef, useEffect } from 'react'
+import React, { createContext, useState } from 'react'
 
 export const Context = createContext()
 
-function Provider({ size, labelAlign, onChange, children, initial, raw }) {
+function Provider({ size, labelAlign, onChange, children, initial }) {
   const [checkable, setCheckable] = useState(initial)
-  const ref = useRef()
 
   const setCheckableWithChange = value => {
     setCheckable(value)
 
-    ref.current.dispatchEvent(
-      new Event('change', {
-        bubbles: true
-      })
-    )
+    onChange(getChecked(value))
   }
 
   const getChecked = value => Object.keys(value).filter(key => value[key])
@@ -25,25 +20,7 @@ function Provider({ size, labelAlign, onChange, children, initial, raw }) {
     labelAlign
   }
 
-  const whenChange = event => {
-    const { value } = event.target
-
-    onChange(raw ? event : value)
-  }
-
-  useEffect(() => {
-    ref.current.addEventListener('change', whenChange)
-  }, [ref])
-
-  return (
-    <Context.Provider value={value}>
-      <>
-        <input ref={ref} type="hidden" value={getChecked(checkable)} />
-
-        {children}
-      </>
-    </Context.Provider>
-  )
+  return <Context.Provider value={value}>{children}</Context.Provider>
 }
 
 const Consumer = Context.Consumer

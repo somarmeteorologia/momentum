@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { storiesOf } from '@storybook/react'
+import { useFormik } from 'formik'
 
 import { GROUPS } from '@helpers/hierarchySeparators'
 import { Container } from '@helpers/components/Container'
@@ -18,6 +19,27 @@ const Wrapper = styled.div`
   align-items: flex-end;
 `
 
+const Formik = () => {
+  const { handleChange, values } = useFormik({
+    initialValues: {
+      textarea: ''
+    },
+    onSubmit: console.info
+  })
+
+  const { textarea } = values
+
+  return (
+    <Textarea
+      id="textarea"
+      raw={true}
+      placeholder="Your document"
+      onChange={handleChange}
+      value={textarea}
+    />
+  )
+}
+
 storiesOf(`${GROUPS.COMPONENTS}|Textarea`, module)
   .addDecorator(story => (
     <Containerable>
@@ -30,6 +52,7 @@ storiesOf(`${GROUPS.COMPONENTS}|Textarea`, module)
       <Textarea placeholder="Your document" />
     </>
   ))
+  .add('With Formik', () => <Formik />)
   .add('With label', () => (
     <>
       <Textarea placeholder="Your document" label="Field label" />
