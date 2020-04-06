@@ -2,7 +2,7 @@ import React, { memo, useContext, useEffect } from 'react'
 import styled, { css, ThemeContext } from 'styled-components'
 import PropTypes from 'prop-types'
 import { motion } from 'framer-motion'
-import { switchProp, prop, theme } from 'styled-tools'
+import { switchProp, theme } from 'styled-tools'
 
 import { Icon } from '@components/Icon'
 
@@ -65,20 +65,20 @@ const State = styled.div`
   min-width: 45px;
   height: 45px;
   min-height: 45px;
-  border-radius: ${prop('theme.border.radius.four')};
+  border-radius: ${theme('border.radius.four')};
   display: flex;
   justify-content: center;
   align-items: center;
 
   ${switchProp('state', {
     primary: css`
-      background-color: ${prop('theme.notification.state.primary')};
+      background-color: ${theme('notification.state.primary')};
     `,
     danger: css`
-      background-color: ${prop('theme.notification.state.danger')};
+      background-color: ${theme('notification.state.danger')};
     `,
     warning: css`
-      background-color: ${prop('theme.notification.state.warning')};
+      background-color: ${theme('notification.state.warning')};
     `
   })};
 `
@@ -94,7 +94,7 @@ const Content = styled.div`
 
 const Title = styled.div`
   margin-bottom: 5px;
-  color: ${prop('theme.colors.red.fifty')};
+  color: ${theme('colors.red.fifty')};
 `
 
 export const Notification = memo(
@@ -111,15 +111,13 @@ export const Notification = memo(
     const { notification } = useContext(ThemeContext)
 
     useEffect(() => {
-      if (isOpen) {
-        if (duration) {
-          const timeout = setTimeout(() => {
-            toClose()
-          }, duration * 1000)
+      if (isOpen && duration) {
+        const timeout = setTimeout(() => {
+          toClose()
+        }, duration * 1000)
 
-          return () => {
-            clearTimeout(timeout)
-          }
+        return () => {
+          clearTimeout(timeout)
         }
       }
     }, [isOpen])
@@ -136,7 +134,7 @@ export const Notification = memo(
 
     return (
       <Container
-        // initial="hidden"
+        initial="hidden"
         animate={isOpen ? 'visible' : 'hidden'}
         position={position}
         variants={{
