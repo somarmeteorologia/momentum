@@ -187,7 +187,8 @@ export const Theme = {
       state: {
         primary: cornflower.fifty,
         danger: red.fifty,
-        warning: yellow.fifty
+        warning: yellow.fifty,
+        success: green.fifty
       }
     },
     field: {
@@ -513,7 +514,8 @@ export const Theme = {
       state: {
         primary: cornflower.fifty,
         danger: red.fifty,
-        warning: yellow.fifty
+        warning: yellow.fifty,
+        success: green.fifty
       }
     },
     field: {

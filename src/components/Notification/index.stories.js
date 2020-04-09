@@ -15,12 +15,12 @@ import { Text } from '@components/Text'
 const { keys } = Object
 
 const generatePosition = state => {
-  const [first, second, third] = [...keys(Notification.position)].slice(0, 3)
+  const [one, two, three] = [...keys(Notification.position)].slice(0, 3)
 
   const values = {
-    primary: first,
-    danger: second,
-    warning: third
+    primary: one,
+    danger: two,
+    warning: three
   }
 
   return values[state]
@@ -160,7 +160,6 @@ storiesOf(`${GROUPS.COMPONENTS}|Notification`, module)
                       culpa qui officia deserunt mollit anim id est laborum.
                     </Text>
                   )}
-                />
                 />
               </>
             ))}

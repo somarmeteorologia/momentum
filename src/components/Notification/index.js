@@ -79,6 +79,9 @@ const State = styled.div`
     `,
     warning: css`
       background-color: ${theme('notification.state.warning')};
+    `,
+    success: css`
+      background-color: ${theme('notification.state.success')};
     `
   })};
 `
@@ -197,7 +200,8 @@ Notification.propTypes = {
 Notification.state = {
   primary: 'primary',
   danger: 'danger',
-  warning: 'warning'
+  warning: 'warning',
+  success: 'success'
 }
 
 Notification.position = {
