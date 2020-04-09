@@ -137,6 +137,7 @@ export const Notification = memo(
 
     return (
       <Container
+        data-testid="notification"
         initial="hidden"
         animate={isOpen ? 'visible' : 'hidden'}
         position={position}
@@ -146,12 +147,12 @@ export const Notification = memo(
               display: 'none'
             },
             opacity: 0,
-            y: ({ position }) => (position.startsWith('top') ? -150 : 150)
+            y: position.startsWith('top') ? '-150%' : '150%'
           },
           visible: {
             display: 'flex',
             opacity: 1,
-            y: 0
+            y: '0%'
           }
         }}
       >
@@ -164,7 +165,7 @@ export const Notification = memo(
           color={notification.close.primary}
         />
 
-        <State state={state}>
+        <State data-testid="state" state={state}>
           {icon({
             color: chooseColor(state)
           })}
@@ -190,7 +191,7 @@ Notification.defaultProps = {
 Notification.propTypes = {
   duration: PropTypes.number,
   toClose: PropTypes.func,
-  state: PropTypes.oneOf(['primary', 'danger', 'warning']),
+  state: PropTypes.oneOf(['primary', 'danger', 'warning', 'success']),
   title: PropTypes.func.isRequired,
   description: PropTypes.func.isRequired,
   icon: PropTypes.func.isRequired,

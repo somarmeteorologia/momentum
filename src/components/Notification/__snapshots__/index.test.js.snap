@@ -1,0 +1,244 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Not expect visual regression 1`] = `
+.c6 {
+  display: inline-block;
+}
+
+.c1 {
+  display: inline-block;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  line-height: 0;
+  cursor: pointer;
+}
+
+.c3 {
+  display: inline-block;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  line-height: 0;
+}
+
+.c0 {
+  width: 385px;
+  height: 110px;
+  padding: 16px;
+  border-radius: 0.25rem;
+  background-color: #111732;
+  color: #fff;
+  z-index: 9999;
+  position: absolute;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  top: 25px;
+  right: 25px;
+}
+
+.c0 .close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+}
+
+.c2 {
+  width: 45px;
+  min-width: 45px;
+  height: 45px;
+  min-height: 45px;
+  border-radius: 0.25rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #133BEC;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  min-height: 80px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.c5 {
+  margin-bottom: 5px;
+  color: #FF0130;
+}
+
+.c7 {
+  font-family: Inter,sans-serif;
+  font-weight: 600;
+  display: block;
+  color: #fff;
+  font-size: 1rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c8 {
+  font-family: Inter,sans-serif;
+  font-weight: 500;
+  display: block;
+  color: #fff;
+  font-size: 0.8125rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+<div
+  class="c0"
+  data-testid="notification"
+  style="display: none; opacity: 0; transform: translateY(-150%) translateZ(0);"
+>
+  <div
+    class="c1 close"
+    height="14"
+    width="14"
+  >
+    <svg
+      fill="none"
+      height="14"
+      viewBox="0 0 21 20"
+      width="14"
+    >
+      <path
+        d="M20.75 1.99988L18.75 -0.00012207L10.75 7.99988L2.75 -0.00012207L0.75 1.99988L8.75 9.99988L0.75 17.9999L2.75 19.9999L10.75 11.9999L18.75 19.9999L20.75 17.9999L12.75 9.99988L20.75 1.99988Z"
+        fill="#fff"
+      />
+    </svg>
+  </div>
+  <div
+    class="c2"
+    data-testid="state"
+  >
+    <div
+      class="c3"
+      height="20"
+      width="20"
+    >
+      <svg
+        fill="none"
+        height="20"
+        viewBox="0 0 32 32"
+        width="20"
+      >
+        <mask
+          fill="#fff"
+          height="20"
+          id="path-1-outside-1"
+          maskUnits="userSpaceOnUse"
+          width="20"
+          x="0"
+          y="0"
+        >
+          <rect
+            fill="#fff"
+            height="20"
+            width="20"
+          />
+          <path
+            clip-rule="evenodd"
+            d="M16 1C7.72933 1 1 7.729 1 15.9997C1 24.271 7.72933 31 16 31C24.2707 31 31 24.2707 31 15.9997C31 7.729 24.271 1 16 1ZM2.06137 15.9997C2.06137 8.31368 8.31404 2.06068 16 2.06068C19.6527 2.06068 22.9797 3.47502 25.4677 5.78168L5.78237 25.4674C3.47504 22.979 2.06137 19.6527 2.06137 15.9997ZM6.53226 26.2177C9.02026 28.5243 12.3473 29.9387 15.9999 29.9387C23.6859 29.9387 29.9386 23.6857 29.9389 15.9993C29.9389 12.3467 28.5249 9.01999 26.2179 6.53166L6.53226 26.2177Z"
+            fill-rule="evenodd"
+          />
+        </mask>
+        <path
+          clip-rule="evenodd"
+          d="M16 1C7.72933 1 1 7.729 1 15.9997C1 24.271 7.72933 31 16 31C24.2707 31 31 24.2707 31 15.9997C31 7.729 24.271 1 16 1ZM2.06137 15.9997C2.06137 8.31368 8.31404 2.06068 16 2.06068C19.6527 2.06068 22.9797 3.47502 25.4677 5.78168L5.78237 25.4674C3.47504 22.979 2.06137 19.6527 2.06137 15.9997ZM6.53226 26.2177C9.02026 28.5243 12.3473 29.9387 15.9999 29.9387C23.6859 29.9387 29.9386 23.6857 29.9389 15.9993C29.9389 12.3467 28.5249 9.01999 26.2179 6.53166L6.53226 26.2177Z"
+          fill="#fff"
+          fill-rule="evenodd"
+        />
+        <path
+          d="M25.4677 5.78168L25.6091 5.9231C25.6476 5.88467 25.6687 5.83225 25.6677 5.7779C25.6666 5.72356 25.6435 5.67197 25.6037 5.63502L25.4677 5.78168ZM5.78237 25.4674L5.63572 25.6033C5.67267 25.6432 5.72426 25.6663 5.7786 25.6673C5.83294 25.6683 5.88536 25.6472 5.92379 25.6088L5.78237 25.4674ZM6.53226 26.2177L6.39083 26.0762C6.3524 26.1147 6.33127 26.1671 6.33229 26.2214C6.33332 26.2758 6.35642 26.3274 6.39628 26.3643L6.53226 26.2177ZM29.9389 15.9993L30.1389 15.9993V15.9993H29.9389ZM26.2179 6.53166L26.3646 6.39569C26.3276 6.35583 26.276 6.33272 26.2217 6.3317C26.1674 6.33067 26.1149 6.35181 26.0765 6.39024L26.2179 6.53166ZM1.2 15.9997C1.2 7.83946 7.83978 1.2 16 1.2V0.8C7.61888 0.8 0.8 7.61854 0.8 15.9997H1.2ZM16 30.8C7.83979 30.8 1.2 24.1605 1.2 15.9997H0.8C0.8 24.3815 7.61888 31.2 16 31.2V30.8ZM30.8 15.9997C30.8 24.1602 24.1602 30.8 16 30.8V31.2C24.3811 31.2 31.2 24.3811 31.2 15.9997H30.8ZM16 1.2C24.1605 1.2 30.8 7.83946 30.8 15.9997H31.2C31.2 7.61854 24.3815 0.8 16 0.8V1.2ZM16 1.86068C8.20357 1.86068 1.86137 8.20323 1.86137 15.9997H2.26137C2.26137 8.42413 8.4245 2.26068 16 2.26068V1.86068ZM25.6037 5.63502C23.0804 3.29562 19.7054 1.86068 16 1.86068V2.26068C19.6 2.26068 22.879 3.65442 25.3317 5.92835L25.6037 5.63502ZM5.92379 25.6088L25.6091 5.9231L25.3263 5.64026L5.64095 25.3259L5.92379 25.6088ZM1.86137 15.9997C1.86137 19.7053 3.29563 23.0797 5.63572 25.6033L5.92903 25.3314C3.65445 22.8784 2.26137 19.6 2.26137 15.9997H1.86137ZM15.9999 29.7387C12.3999 29.7387 9.12092 28.3449 6.66823 26.071L6.39628 26.3643C8.91959 28.7037 12.2946 30.1387 15.9999 30.1387V29.7387ZM29.7389 15.9993C29.7386 23.5752 23.5755 29.7387 15.9999 29.7387V30.1387C23.7964 30.1387 30.1386 23.7961 30.1389 15.9993L29.7389 15.9993ZM26.0713 6.66764C28.3455 9.12066 29.7389 12.3993 29.7389 15.9993H30.1389C30.1389 12.294 28.7043 8.91933 26.3646 6.39569L26.0713 6.66764ZM6.67368 26.3591L26.3593 6.67308L26.0765 6.39024L6.39083 26.0762L6.67368 26.3591Z"
+          fill="#fff"
+          mask="url(#path-1-outside-1)"
+        />
+      </svg>
+    </div>
+  </div>
+  <div
+    class="c4"
+  >
+    <div
+      class="c5"
+    >
+      <div
+        class="c6"
+        color="#fff"
+        display="block"
+      >
+        <h6
+          class="c7"
+          color="#fff"
+          display="block"
+        >
+          Título
+        </h6>
+      </div>
+    </div>
+    <div
+      class="c6"
+      color="#fff"
+      display="block"
+    >
+      <span
+        class="c8"
+        color="#fff"
+        display="block"
+      >
+        Descrição
+      </span>
+    </div>
+  </div>
+</div>
+`;
