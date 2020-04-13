@@ -9,3 +9,7 @@ export const renderWithTheme = (ui, theme = Theme.light) => {
     ...render(<ThemeProvider theme={theme}>{ui}</ThemeProvider>)
   }
 }
+
+export const withTheme = Component => (
+  <ThemeProvider theme={Theme.light}>{Component}</ThemeProvider>
+)
