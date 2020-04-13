@@ -56,8 +56,6 @@ test('Expect correct state', () => {
 })
 
 test('Expect not is open, after open', async () => {
-  jest.useFakeTimers()
-
   const { getByTestId, rerender } = render(
     withTheme(<Notificable isOpen={false} />)
   )

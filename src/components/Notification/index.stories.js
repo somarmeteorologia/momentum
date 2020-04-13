@@ -15,12 +15,13 @@ import { Text } from '@components/Text'
 const { keys } = Object
 
 const generatePosition = state => {
-  const [one, two, three] = [...keys(Notification.position)].slice(0, 3)
+  const [one, two, three, four] = [...keys(Notification.position)].slice(0, 4)
 
   const values = {
     primary: one,
     danger: two,
-    warning: three
+    warning: three,
+    success: four
   }
 
   return values[state]
