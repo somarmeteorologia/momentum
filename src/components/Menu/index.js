@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, memo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { theme } from 'styled-tools'
 import PropTypes from 'prop-types'
@@ -7,11 +7,11 @@ import { motion } from 'framer-motion'
 import { Icon } from '@components/Icon'
 
 const Container = styled(motion.div)`
-  width: 100%;
-  max-width: 300px;
   height: 100vh;
   background-color: ${theme('menu.bg.primary')};
   position: relative;
+  display: block;
+  box-shadow: ${theme('navigation.shadow.primary')};
 `
 
 const Toggleable = styled.div`
@@ -34,109 +34,169 @@ const Toggleable = styled.div`
   }
 `
 
-const Draggable = styled(motion.div)`
-  width: 320px;
-  position: absolute;
+const Handler = styled(motion.div)`
+  width: 300px;
+  height: 100%;
+  box-sizing: content-box;
+  padding-right: 20px;
+  position: fixed;
+  display: block;
   z-index: ${theme('zindex.above')};
+  top: 0;
+  left: 0;
+  touch-action: pan-y;
 `
 
-const Menuable = ({
-  children,
-  onToggled,
-  toggled,
-  setToggled,
-  draggable,
-  ...props
-}) => {
-  const [hasMenuHover, setHasMenuHover] = useState(false)
-  const [hasToggleHover, setHasToggleHover] = useState(false)
-  const { menu } = useContext(ThemeContext)
+const Overlay = styled(motion.div)`
+  width: calc(100% - 300px);
+  height: 100%;
+  position: absolute;
+  z-index: ${theme('zindex.above')};
+  right: 0;
+  top: 0;
+  background-color: transparent;
+`
 
-  return (
-    <Container
-      {...props}
-      data-testid="container"
-      onMouseEnter={() => setHasMenuHover(true)}
-      onMouseLeave={() => setHasMenuHover(false)}
-    >
-      {children}
+const Content = styled(motion.div)``
 
-      {!draggable && hasMenuHover && (
-        <Toggleable
-          data-testid="toggleable"
-          onMouseEnter={() => setHasToggleHover(true)}
-          onMouseLeave={() => setHasToggleHover(false)}
-          onClick={() => {
-            setToggled(!toggled)
-            onToggled(!toggled)
-          }}
-        >
-          <Icon
-            width={10}
-            height={10}
-            name={toggled ? 'right' : 'left'}
-            color={
-              hasToggleHover ? menu.toggle.secondary : menu.toggle.tertiary
-            }
-          />
-        </Toggleable>
-      )}
-    </Container>
-  )
-}
+const Menuable = memo(
+  ({ children, onChange, isOpen, setOpen, draggable, ...props }) => {
+    const [hasMenuHover, setHasMenuHover] = useState(false)
+    const [hasToggleHover, setHasToggleHover] = useState(false)
+    const { menu } = useContext(ThemeContext)
 
-export const Menu = ({ onToggled, children, draggable }) => {
-  const [toggled, setToggled] = useState(false)
-  const { animations } = useContext(ThemeContext)
+    return (
+      <Container
+        {...props}
+        data-testid="menu"
+        onMouseEnter={() => setHasMenuHover(true)}
+        onMouseLeave={() => setHasMenuHover(false)}
+      >
+        {children}
 
-  return (
-    <>
-      {draggable ? (
-        <Draggable
-          data-testid="draggable"
-          drag="x"
-          dragConstraints={{ left: -300, right: 0 }}
-          dragTransition={{ bounceStiffness: 600, bounceDamping: 10 }}
-        >
+        {!draggable && hasMenuHover && (
+          <Toggleable
+            data-testid="toggleable"
+            onMouseEnter={() => setHasToggleHover(true)}
+            onMouseLeave={() => setHasToggleHover(false)}
+            onClick={() => {
+              setOpen(!isOpen)
+              onChange(!isOpen)
+            }}
+          >
+            <Icon
+              width={10}
+              height={10}
+              name={isOpen ? 'right' : 'left'}
+              color={
+                hasToggleHover ? menu.toggle.secondary : menu.toggle.tertiary
+              }
+            />
+          </Toggleable>
+        )}
+      </Container>
+    )
+  }
+)
+
+export const Menu = memo(
+  ({ isOpen, setOpen, onChange, children, draggable }) => {
+    const { animations } = useContext(ThemeContext)
+
+    const onPan = (_, info) => setOpen(info.offset.x < 0)
+
+    return (
+      <>
+        {draggable ? (
+          <>
+            <Handler
+              initial={animations.visible}
+              variants={{
+                visible: {
+                  x: 0
+                },
+                collapsed: {
+                  x: -300
+                }
+              }}
+              animate={isOpen ? animations.collapsed : animations.visible}
+              onPan={onPan}
+            >
+              <Menuable
+                isOpen={isOpen}
+                draggable={draggable}
+                setOpen={setOpen}
+                onChange={onChange}
+              >
+                <Content
+                  initial={animations.visible}
+                  animate={isOpen ? animations.collapsed : animations.visible}
+                  variants={{
+                    visible: {
+                      opacity: 1,
+                      x: 0
+                    },
+                    collapsed: {
+                      opacity: 0,
+                      x: -300
+                    }
+                  }}
+                >
+                  {children}
+                </Content>
+              </Menuable>
+            </Handler>
+
+            {!isOpen && <Overlay onClick={() => setOpen(true)} />}
+          </>
+        ) : (
           <Menuable
             draggable={draggable}
-            toggled={toggled}
-            setToggled={setToggled}
-            onToggled={onToggled}
+            initial={animations.visible}
+            animate={isOpen ? animations.collapsed : animations.visible}
+            variants={{
+              visible: {
+                minWidth: '300px'
+              },
+              collapsed: {
+                minWidth: '20px'
+              }
+            }}
+            isOpen={isOpen}
+            setOpen={setOpen}
+            onChange={onChange}
           >
-            {children}
+            <Content
+              initial={animations.visible}
+              animate={isOpen ? animations.collapsed : animations.visible}
+              variants={{
+                visible: {
+                  opacity: 1,
+                  x: 0
+                },
+                collapsed: {
+                  opacity: 0,
+                  x: -300
+                }
+              }}
+            >
+              {children}
+            </Content>
           </Menuable>
-        </Draggable>
-      ) : (
-        <Menuable
-          draggable={draggable}
-          initial={animations.visible}
-          animate={toggled ? animations.collapsed : animations.visible}
-          variants={{
-            visible: {
-              left: 0
-            },
-            collapsed: {
-              left: -280
-            }
-          }}
-          toggled={toggled}
-          setToggled={setToggled}
-          onToggled={onToggled}
-        >
-          {children}
-        </Menuable>
-      )}
-    </>
-  )
-}
+        )}
+      </>
+    )
+  }
+)
 
 Menu.propTypes = {
-  onToggled: PropTypes.func,
+  onChange: PropTypes.func,
+  isOpen: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func.isRequired,
   draggable: PropTypes.bool
 }
 
 Menu.defaultProps = {
   draggable: false,
-  onToggled: () => {}
+  onChange: () => {}
 }

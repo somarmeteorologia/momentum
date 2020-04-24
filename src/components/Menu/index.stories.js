@@ -1,10 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { storiesOf } from '@storybook/react'
+import styled from 'styled-components'
 
 import { GROUPS } from '@helpers/hierarchySeparators'
 
 import { Reset } from '@components/Reset'
-import { Menu } from '@components/Menu'
+import { Menu as Menuable } from '@components/Menu'
+
+const Content = styled.div`
+  width: 100%;
+`
+
+const Container = styled.div`
+  display: flex;
+`
+
+const Menu = ({ draggable }) => {
+  const [isOpen, setOpen] = useState(false)
+
+  return <Menuable draggable={draggable} isOpen={isOpen} setOpen={setOpen} />
+}
 
 storiesOf(`${GROUPS.COMPONENTS}|Menu`, module)
   .addDecorator(story => (
@@ -14,8 +29,20 @@ storiesOf(`${GROUPS.COMPONENTS}|Menu`, module)
     </>
   ))
   .add('Default', () => (
-    <Menu>
-      <div>content</div>
-    </Menu>
+    <Container>
+      <Menu>
+        <div>content</div>
+      </Menu>
+
+      <Content />
+    </Container>
   ))
-  .add('Dragging', () => <Menu draggable={true} />)
+  .add('Dragging', () => (
+    <>
+      <Menu draggable={true}>
+        <div>content</div>
+      </Menu>
+
+      <Content />
+    </>
+  ))

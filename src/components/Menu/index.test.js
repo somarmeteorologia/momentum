@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { render, fireEvent, wait } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 
 import { Theme } from '@components/Theme'
-import { Menu } from '@components/Menu'
+import { Menu as Menuable } from '@components/Menu'
+
+const Menu = ({ draggable }) => {
+  const [isOpen, setOpen] = useState(false)
+
+  return <Menuable draggable={draggable} isOpen={isOpen} setOpen={setOpen} />
+}
 
 const withProvider = ({ children, ...props }) => (
   <ThemeProvider theme={Theme.light}>
@@ -26,19 +32,19 @@ test('Expect show and hide menu button must be working', async () => {
     })
   )
 
-  expect(getByTestId('container')).toHaveStyle('left: 0px')
+  expect(getByTestId('menu')).toHaveStyle('min-width: 300px')
 
-  fireEvent.mouseEnter(getByTestId('container'))
+  fireEvent.mouseEnter(getByTestId('menu'))
   fireEvent.click(getByTestId('toggleable'))
 
   await wait(() => {
-    expect(getByTestId('container')).toHaveStyle('left: -280px')
+    expect(getByTestId('menu')).toHaveStyle('min-width: 20px')
   }, INTERVAL)
 
-  fireEvent.mouseEnter(getByTestId('container'))
+  fireEvent.mouseEnter(getByTestId('menu'))
   fireEvent.click(getByTestId('toggleable'))
 
   await wait(() => {
-    expect(getByTestId('container')).toHaveStyle('left: 0px')
+    expect(getByTestId('menu')).toHaveStyle('min-width: 300px')
   }, INTERVAL)
 })
