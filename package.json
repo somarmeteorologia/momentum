@@ -1,6 +1,6 @@
 {
   "name": "@somarmeteorologia/momentum",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "private": false,
   "source": "src/index.js",
   "main": "dist/index.js",
