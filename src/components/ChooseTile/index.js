@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 
 import { Icon } from '@components/Icon'
 import { Text } from '@components/Text'
-
+import { Env } from '@environment'
 
 const TILE = {
   mono: {
@@ -132,8 +132,8 @@ const Choose = memo(({ id, name, type, onClick, tile, isOpen }) => {
 
   return (
     <Content
-      onClick={onClick}
       initial="exit"
+      onClick={onClick}
       animate={isOpen ? 'enter' : 'exit'}
       variants={{
         enter: () => ({
@@ -201,7 +201,9 @@ export const ChooseTile = memo(({ setTile, tile }) => {
   return (
     <>
       <TileLayer
-        url={`https://api.mapbox.com/styles/v1/somar-olavo/${tile.value}/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic29tYXItb2xhdm8iLCJhIjoiY2pscXphaXJrMmxhYjNsbjM0bmZzMmY1ciJ9.FBzDk-1pBrBkqNiwLbr5xQ`}
+        url={`https://api.mapbox.com/styles/v1/somar-olavo/${
+          tile.value
+        }/tiles/256/{z}/{x}/{y}?access_token=${Env.getEnv(Env.TILE_KEY)}`}
       />
 
       <Container>

@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const Dotenv = require('dotenv-webpack')
 
 const PATH = require('./path')
 
@@ -22,6 +23,7 @@ module.exports = {
     extensions: ['.js'],
     symlinks: true,
     alias: {
+      '@environment': `${PATH.source}/environment`,
       '@components': `${PATH.source}/components`,
       '@resources': `${PATH.source}/resources`
     }
@@ -30,7 +32,8 @@ module.exports = {
   plugins: [
     new webpack.EnvironmentPlugin({
       ENV: JSON.stringify(process.env.ENV)
-    })
+    }),
+    new Dotenv()
   ],
 
   externals: {

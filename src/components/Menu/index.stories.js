@@ -15,10 +15,14 @@ const Container = styled.div`
   display: flex;
 `
 
-const Menu = ({ draggable }) => {
+const Menu = ({ draggable, children }) => {
   const [isOpen, setOpen] = useState(false)
 
-  return <Menuable draggable={draggable} isOpen={isOpen} setOpen={setOpen} />
+  return (
+    <Menuable draggable={draggable} isOpen={isOpen} setOpen={setOpen}>
+      {children}
+    </Menuable>
+  )
 }
 
 storiesOf(`${GROUPS.COMPONENTS}|Menu`, module)
