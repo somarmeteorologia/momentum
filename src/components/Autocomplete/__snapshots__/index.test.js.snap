@@ -109,6 +109,7 @@ exports[`Not expect visual regression 1`] = `
   padding: 1px;
   border-radius: 0.25rem;
   background-color: #fff;
+  z-index: 9999;
   list-style: none;
   border: 1px solid #f1f3fA;
   box-shadow: 0 2px 4px rgba(50,71,151,0.15);
