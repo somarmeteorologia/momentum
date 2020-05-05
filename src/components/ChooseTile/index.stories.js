@@ -7,6 +7,7 @@ import { GROUPS } from '@helpers/hierarchySeparators'
 
 import { Reset } from '@components/Reset'
 import { ChooseTile } from '@components/ChooseTile'
+import { Env } from '@environment'
 
 const center = {
   lat: -25.2155,
@@ -25,7 +26,11 @@ const MapWithChooseTile = () => {
 
   return (
     <Container center={center} zoom={7}>
-      <ChooseTile setTile={setTile} tile={tile} />
+      <ChooseTile
+        setTile={setTile}
+        tile={tile}
+        tileKey={Env.getEnv(Env.TILE_KEY)}
+      />
     </Container>
   )
 }

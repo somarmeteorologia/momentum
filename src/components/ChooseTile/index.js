@@ -7,7 +7,6 @@ import { motion } from 'framer-motion'
 
 import { Icon } from '@components/Icon'
 import { Text } from '@components/Text'
-import { Env } from '@environment'
 
 const TILE = {
   mono: {
@@ -184,7 +183,7 @@ Choose.propTypes = {
   })
 }
 
-export const ChooseTile = memo(({ setTile, tile }) => {
+export const ChooseTile = memo(({ setTile, tile, tileKey }) => {
   const { colors } = useContext(ThemeContext)
   const [isOpen, setIsOpen] = useState(false)
 
@@ -201,9 +200,7 @@ export const ChooseTile = memo(({ setTile, tile }) => {
   return (
     <>
       <TileLayer
-        url={`https://api.mapbox.com/styles/v1/somar-olavo/${
-          tile.value
-        }/tiles/256/{z}/{x}/{y}?access_token=${Env.getEnv(Env.TILE_KEY)}`}
+        url={`https://api.mapbox.com/styles/v1/somar-olavo/${tile.value}/tiles/256/{z}/{x}/{y}?access_token=${tileKey}`}
       />
 
       <Container>
