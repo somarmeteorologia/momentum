@@ -133,10 +133,14 @@ export const Menu = memo(
                   animate={isOpen ? animations.collapsed : animations.visible}
                   variants={{
                     visible: {
+                      display: 'block',
                       opacity: 1,
                       x: 0
                     },
                     collapsed: {
+                      transitionEnd: {
+                        display: 'none'
+                      },
                       opacity: 0,
                       x: -300
                     }
@@ -171,10 +175,14 @@ export const Menu = memo(
               animate={isOpen ? animations.collapsed : animations.visible}
               variants={{
                 visible: {
+                  display: 'block',
                   opacity: 1,
                   x: 0
                 },
                 collapsed: {
+                  transitionEnd: {
+                    display: 'none'
+                  },
                   opacity: 0,
                   x: -300
                 }

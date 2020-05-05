@@ -16,7 +16,7 @@ exports[`Not expect visual regression 1`] = `
 >
   <div
     class=""
-    style="opacity: 1; transform: none;"
+    style="display: block; opacity: 1; transform: none;"
   />
 </div>
 `;
