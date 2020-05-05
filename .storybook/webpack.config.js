@@ -1,8 +1,9 @@
 const merge = require('webpack-merge')
-const PATH = require('./path')
-const path = require('path')
+const Dotenv = require('dotenv-webpack')
 
-module.exports = function({ config }, env) {
+const PATH = require('./path')
+
+module.exports = function({ config }) {
   const ourConfig = {
     devtool: 'eval-source-map',
 
@@ -12,10 +13,13 @@ module.exports = function({ config }, env) {
       extensions: ['.js', '.css'],
       alias: {
         '@helpers': PATH.storybook,
+        '@environment': `${PATH.source}/environment`,
         '@resources': `${PATH.source}/resources`,
         '@components': `${PATH.source}/components`
       }
     },
+
+    plugins: [new Dotenv()],
 
     module: {
       rules: [

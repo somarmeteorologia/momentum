@@ -86,6 +86,7 @@ const Selecties = styled(motion.ul)`
   padding: 1px;
   border-radius: ${theme('border.radius.four')};
   background-color: ${theme('field.bg.secondary')};
+  z-index: ${theme('zindex.above')};
   list-style: none;
   border: ${theme('field.border.tertiary')};
   box-shadow: ${theme('field.shadow.primary')};
