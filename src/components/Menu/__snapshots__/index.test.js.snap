@@ -12,7 +12,7 @@ exports[`Not expect visual regression 1`] = `
 <div
   class="c0"
   data-testid="menu"
-  style="min-width: 300px;"
+  style="width: 300px;"
 >
   <div
     class=""

@@ -160,10 +160,10 @@ export const Menu = memo(
             animate={isOpen ? animations.collapsed : animations.visible}
             variants={{
               visible: {
-                minWidth: '300px'
+                width: '300px'
               },
               collapsed: {
-                minWidth: '20px'
+                width: '20px'
               }
             }}
             isOpen={isOpen}

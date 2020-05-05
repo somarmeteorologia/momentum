@@ -32,19 +32,19 @@ test('Expect show and hide menu button must be working', async () => {
     })
   )
 
-  expect(getByTestId('menu')).toHaveStyle('min-width: 300px')
+  expect(getByTestId('menu')).toHaveStyle('width: 300px')
 
   fireEvent.mouseEnter(getByTestId('menu'))
   fireEvent.click(getByTestId('toggleable'))
 
   await wait(() => {
-    expect(getByTestId('menu')).toHaveStyle('min-width: 20px')
+    expect(getByTestId('menu')).toHaveStyle('width: 20px')
   }, INTERVAL)
 
   fireEvent.mouseEnter(getByTestId('menu'))
   fireEvent.click(getByTestId('toggleable'))
 
   await wait(() => {
-    expect(getByTestId('menu')).toHaveStyle('min-width: 300px')
+    expect(getByTestId('menu')).toHaveStyle('width: 300px')
   }, INTERVAL)
 })
