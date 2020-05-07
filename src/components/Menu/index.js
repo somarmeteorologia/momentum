@@ -8,6 +8,7 @@ import { Icon } from '@components/Icon'
 
 const Container = styled(motion.div)`
   height: 100vh;
+  z-index: ${theme('zindex.above')};
   background-color: ${theme('menu.bg.primary')};
   position: relative;
   display: block;
