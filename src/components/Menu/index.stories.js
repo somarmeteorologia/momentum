@@ -16,7 +16,7 @@ const Container = styled.div`
 `
 
 const Menu = ({ draggable, children }) => {
-  const [isOpen, setOpen] = useState(false)
+  const [isOpen, setOpen] = useState(true)
 
   return (
     <Menuable draggable={draggable} isOpen={isOpen} setOpen={setOpen}>
