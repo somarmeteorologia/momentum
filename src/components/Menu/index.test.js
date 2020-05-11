@@ -6,7 +6,7 @@ import { Theme } from '@components/Theme'
 import { Menu as Menuable } from '@components/Menu'
 
 const Menu = ({ draggable }) => {
-  const [isOpen, setOpen] = useState(false)
+  const [isOpen, setOpen] = useState(true)
 
   return <Menuable draggable={draggable} isOpen={isOpen} setOpen={setOpen} />
 }

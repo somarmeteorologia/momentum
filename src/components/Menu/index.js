@@ -55,7 +55,7 @@ const Overlay = styled(motion.div)`
   z-index: ${theme('zindex.above')};
   right: 0;
   top: 0;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.3);
 `
 
 const Content = styled(motion.div)``
@@ -88,7 +88,7 @@ const Menuable = memo(
             <Icon
               width={10}
               height={10}
-              name={isOpen ? 'right' : 'left'}
+              name={isOpen ? 'left' : 'right'}
               color={
                 hasToggleHover ? menu.toggle.secondary : menu.toggle.tertiary
               }
@@ -100,11 +100,13 @@ const Menuable = memo(
   }
 )
 
+const transition = { ease: 'easeOut' }
+
 export const Menu = memo(
   ({ isOpen, setOpen, onChange, children, draggable }) => {
     const { animations } = useContext(ThemeContext)
 
-    const onPan = (_, info) => setOpen(info.offset.x < 0)
+    const onPan = (_, info) => setOpen(info.offset.x > 0)
 
     return (
       <>
@@ -114,13 +116,15 @@ export const Menu = memo(
               initial={animations.visible}
               variants={{
                 visible: {
+                  transition,
                   x: 0
                 },
                 collapsed: {
+                  transition,
                   x: -300
                 }
               }}
-              animate={isOpen ? animations.collapsed : animations.visible}
+              animate={isOpen ? animations.visible : animations.collapsed}
               onPan={onPan}
             >
               <Menuable
@@ -131,17 +135,19 @@ export const Menu = memo(
               >
                 <Content
                   initial={animations.visible}
-                  animate={isOpen ? animations.collapsed : animations.visible}
+                  animate={isOpen ? animations.visible : animations.collapsed}
                   variants={{
                     visible: {
                       display: 'block',
                       opacity: 1,
+                      transition,
                       x: 0
                     },
                     collapsed: {
                       transitionEnd: {
                         display: 'none'
                       },
+                      transition,
                       opacity: 0,
                       x: -300
                     }
@@ -152,19 +158,39 @@ export const Menu = memo(
               </Menuable>
             </Handler>
 
-            {!isOpen && <Overlay onClick={() => setOpen(true)} />}
+            <Overlay
+              initial={animations.visible}
+              animate={isOpen ? animations.visible : animations.collapsed}
+              onClick={() => setOpen(false)}
+              variants={{
+                visible: {
+                  opacity: 1,
+                  display: 'block',
+                  transition: { ...transition, delay: 0.5 }
+                },
+                collapsed: {
+                  opacity: 0,
+                  transitionEnd: {
+                    display: 'none'
+                  },
+                  transition
+                }
+              }}
+            />
           </>
         ) : (
           <Menuable
             draggable={draggable}
             initial={animations.visible}
-            animate={isOpen ? animations.collapsed : animations.visible}
+            animate={isOpen ? animations.visible : animations.collapsed}
             variants={{
               visible: {
-                width: '300px'
+                width: '300px',
+                transition
               },
               collapsed: {
-                width: '20px'
+                width: '20px',
+                transition
               }
             }}
             isOpen={isOpen}
@@ -173,17 +199,19 @@ export const Menu = memo(
           >
             <Content
               initial={animations.visible}
-              animate={isOpen ? animations.collapsed : animations.visible}
+              animate={isOpen ? animations.visible : animations.collapsed}
               variants={{
                 visible: {
                   display: 'block',
                   opacity: 1,
+                  transition,
                   x: 0
                 },
                 collapsed: {
                   transitionEnd: {
                     display: 'none'
                   },
+                  transition,
                   opacity: 0,
                   x: -300
                 }
