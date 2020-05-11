@@ -55,7 +55,7 @@ const Overlay = styled(motion.div)`
   z-index: ${theme('zindex.above')};
   right: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: ${theme('shadow.overlay')};
 `
 
 const Content = styled(motion.div)``

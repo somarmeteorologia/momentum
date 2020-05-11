@@ -9,7 +9,8 @@ export const tokens = {
   colors,
   shadow: {
     default: rgba('#324797', 0.15),
-    darker: rgba('#324797', 0.25)
+    darker: rgba('#324797', 0.25),
+    overlay: rgba('#000', 0.3)
   },
   border: {
     radius: {
