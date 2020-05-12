@@ -2,18 +2,42 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { storiesOf } from '@storybook/react'
 import useInterval from '@use-it/interval'
+import { Map } from 'react-leaflet'
+import { ChooseTile } from '@components/ChooseTile'
+import { Env } from '@environment'
 
 import { GROUPS } from '@helpers/hierarchySeparators'
-import { Container } from '@helpers/components/Container'
 
 import { Reset } from '@components/Reset'
 import { Player } from '@components/Player'
 
-const Containerable = styled(Container)`
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: flex-start;
+const center = {
+  lat: -25.2155,
+  lng: -50.9689
+}
+
+const Container = styled(Map)`
+  width: 100%;
+  height: 100vh;
 `
+
+const { TILE } = ChooseTile
+
+const MapWithChooseTile = ({ children }) => {
+  const [tile, setTile] = useState(TILE.dark)
+
+  return (
+    <Container center={center} zoom={7}>
+      {children}
+
+      <ChooseTile
+        setTile={setTile}
+        tile={tile}
+        tileKey={Env.getEnv(Env.TILE_KEY)}
+      />
+    </Container>
+  )
+}
 
 const Progress = () => {
   const [played, setPlayed] = useState(true)
@@ -55,13 +79,9 @@ const Progress = () => {
 
 storiesOf(`${GROUPS.COMPONENTS}|Player`, module)
   .addDecorator(story => (
-    <Containerable>
-      <Reset />
-      {story()}
-    </Containerable>
-  ))
-  .add('Default', () => (
     <>
-      <Progress />
+      <Reset />
+      <MapWithChooseTile>{story()}</MapWithChooseTile>
     </>
   ))
+  .add('Default', () => <Progress />)
