@@ -81,7 +81,8 @@ storiesOf(`${GROUPS.COMPONENTS}|Player`, module)
   .addDecorator(story => (
     <>
       <Reset />
-      <MapWithChooseTile>{story()}</MapWithChooseTile>
+      {story()}
+      <MapWithChooseTile />
     </>
   ))
   .add('Default', () => <Progress />)
