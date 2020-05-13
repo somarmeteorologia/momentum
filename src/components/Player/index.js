@@ -82,6 +82,8 @@ const Tooltip = styled.div`
   border-radius: ${theme('border.radius.four')};
   background-color: ${theme('player.bg.secondary')};
   text-align: center;
+  position: relative;
+  bottom: 25px;
 
   &::after {
     content: '';
@@ -105,7 +107,7 @@ export function Player({
 }) {
   const { player } = useContext(ThemeContext)
   const date = indexes[index]
-  const percentage = (index / indexes.length) * 100
+  const percentage = (index / (indexes.length - 1)) * 100
 
   let count = 0
   let timeout
