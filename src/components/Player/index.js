@@ -76,8 +76,6 @@ const Tooltip = styled.div`
   height: 23px;
   line-height: 23px;
   padding: 0 10px;
-  position: absolute;
-  bottom: 15px;
   left: calc(${prop('percentage')}% - 48px);
   border-radius: ${theme('border.radius.four')};
   background-color: ${theme('player.bg.secondary')};
