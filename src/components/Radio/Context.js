@@ -11,7 +11,7 @@ function Provider({ size, labelAlign, onChange, children, initial }) {
     onChange(getChecked(value))
   }
 
-  const getChecked = value => Object.keys(value).filter(key => value[key])
+  const getChecked = value => Object.keys(value).find(key => value[key])
 
   const value = {
     setCheckable: setCheckableWithChange,
