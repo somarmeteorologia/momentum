@@ -1,6 +1,6 @@
 import React, { useContext, useState, memo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
-import { theme } from 'styled-tools'
+import { theme, prop } from 'styled-tools'
 import PropTypes from 'prop-types'
 import { motion } from 'framer-motion'
 
@@ -36,7 +36,7 @@ const Toggleable = styled.div`
 `
 
 const Handler = styled(motion.div)`
-  width: 300px;
+  width: ${prop('width')}px;
   height: 100%;
   box-sizing: content-box;
   padding-right: 20px;
@@ -49,7 +49,7 @@ const Handler = styled(motion.div)`
 `
 
 const Overlay = styled(motion.div)`
-  width: calc(100% - 300px);
+  width: calc(100% - ${prop('width')}px);
   height: 100%;
   position: absolute;
   z-index: ${theme('zindex.above')};
@@ -103,7 +103,7 @@ const Menuable = memo(
 const transition = { ease: 'easeOut' }
 
 export const Menu = memo(
-  ({ isOpen, setOpen, onChange, children, draggable }) => {
+  ({ isOpen, setOpen, onChange, children, draggable, width }) => {
     const { animations } = useContext(ThemeContext)
 
     const onPan = (_, info) => setOpen(info.offset.x > 0)
@@ -121,11 +121,12 @@ export const Menu = memo(
                 },
                 collapsed: {
                   transition,
-                  x: -300
+                  x: -width
                 }
               }}
               animate={isOpen ? animations.visible : animations.collapsed}
               onPan={onPan}
+              width={width}
             >
               <Menuable
                 isOpen={isOpen}
@@ -149,7 +150,7 @@ export const Menu = memo(
                       },
                       transition,
                       opacity: 0,
-                      x: -300
+                      x: -width
                     }
                   }}
                 >
@@ -176,6 +177,7 @@ export const Menu = memo(
                   transition
                 }
               }}
+              width={width}
             />
           </>
         ) : (
@@ -185,7 +187,7 @@ export const Menu = memo(
             animate={isOpen ? animations.visible : animations.collapsed}
             variants={{
               visible: {
-                width: '300px',
+                width: `${width}px`,
                 transition
               },
               collapsed: {
@@ -213,7 +215,7 @@ export const Menu = memo(
                   },
                   transition,
                   opacity: 0,
-                  x: -300
+                  x: -width
                 }
               }}
             >
@@ -235,5 +237,6 @@ Menu.propTypes = {
 
 Menu.defaultProps = {
   draggable: false,
-  onChange: () => {}
+  onChange: () => {},
+  width: 300
 }

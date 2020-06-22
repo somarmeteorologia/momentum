@@ -15,11 +15,16 @@ const Container = styled.div`
   display: flex;
 `
 
-const Menu = ({ draggable, children }) => {
+const Menu = ({ draggable, children, width }) => {
   const [isOpen, setOpen] = useState(true)
 
   return (
-    <Menuable draggable={draggable} isOpen={isOpen} setOpen={setOpen}>
+    <Menuable
+      draggable={draggable}
+      isOpen={isOpen}
+      setOpen={setOpen}
+      width={width}
+    >
       {children}
     </Menuable>
   )
@@ -44,6 +49,15 @@ storiesOf(`${GROUPS.COMPONENTS}|Menu`, module)
   .add('Dragging', () => (
     <>
       <Menu draggable={true}>
+        <div>content</div>
+      </Menu>
+
+      <Content />
+    </>
+  ))
+  .add('Custom width', () => (
+    <>
+      <Menu width={350}>
         <div>content</div>
       </Menu>
 
