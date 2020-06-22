@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import PropTypes from 'prop-types'
-import { prop, ifProp } from 'styled-tools'
+import { prop, ifProp, theme } from 'styled-tools'
 
 import { Icon } from '@components/Icon'
 
@@ -13,20 +13,21 @@ const Content = styled.div`
   left: 50%;
   bottom: 30px;
   transform: translateX(-50%);
-  z-index: ${prop('theme.zindex.above')};
-  background-color: ${prop('theme.player.bg.primary')};
-  border-radius: ${prop('theme.border.radius.twentyFour')};
-  opacity: ${prop('theme.player.bg.opacity')};
+  z-index: ${theme('zindex.above')};
+  background-color: ${theme('player.bg.primary')};
+  border-radius: ${theme('border.radius.twentyFour')};
+  opacity: ${theme('player.bg.opacity')};
   display: flex;
   justify-content: center;
   align-items: center;
+  user-select: none;
 `
 
 const Timeline = styled.div`
   width: 100%;
   height: 3px;
-  border-radius: ${prop('theme.border.radius.twentyFour')};
-  background-color: ${prop('theme.player.progress.off')};
+  border-radius: ${theme('border.radius.twentyFour')};
+  background-color: ${theme('player.progress.off')};
   margin-right: 15px;
   display: flex;
   justify-content: space-between;
@@ -36,10 +37,10 @@ const Timeline = styled.div`
   &::before {
     width: ${prop('percentage')}%;
     height: 3px;
-    border-radius: ${prop('theme.border.radius.twentyFour')};
+    border-radius: ${theme('border.radius.twentyFour')};
     content: '';
     display: block;
-    background-color: ${prop('theme.player.progress.on')};
+    background-color: ${theme('player.progress.on')};
     position: absolute;
   }
 `
@@ -52,8 +53,8 @@ const Controls = styled.div`
   height: 100%;
 
   .action {
-    background-color: ${prop('theme.player.icon.primary')};
-    border-radius: ${prop('theme.border.radius.fifty')};
+    background-color: ${theme('player.icon.primary')};
+    border-radius: ${theme('border.radius.fifty')};
     width: 24px;
     height: 24px;
     display: flex;
@@ -69,22 +70,22 @@ const Interactive = styled(Icon)`
 `
 
 const Tooltip = styled.div`
-  font-family: ${prop('theme.font.family.inter')};
-  font-size: ${prop('theme.font.size.twelve')};
-  box-shadow: ${prop('theme.player.shadow.primary')};
+  font-family: ${theme('font.family.inter')};
+  font-size: ${theme('font.size.twelve')};
+  box-shadow: ${theme('player.shadow.primary')};
   height: 23px;
   line-height: 23px;
   padding: 0 10px;
-  position: absolute;
-  bottom: 15px;
   left: calc(${prop('percentage')}% - 48px);
-  border-radius: ${prop('theme.border.radius.four')};
-  background-color: ${prop('theme.player.bg.secondary')};
+  border-radius: ${theme('border.radius.four')};
+  background-color: ${theme('player.bg.secondary')};
   text-align: center;
+  position: relative;
+  bottom: 25px;
 
   &::after {
     content: '';
-    background-color: ${prop('theme.player.bg.secondary')};
+    background-color: ${theme('player.bg.secondary')};
     width: 10px;
     height: 10px;
     display: block;
@@ -104,7 +105,7 @@ export function Player({
 }) {
   const { player } = useContext(ThemeContext)
   const date = indexes[index]
-  const percentage = (index / indexes.length) * 100
+  const percentage = (index / (indexes.length - 1)) * 100
 
   let count = 0
   let timeout
@@ -135,6 +136,7 @@ export function Player({
           width={16}
           height={14}
         />
+
         <Interactive
           className="action"
           name={played ? 'pause' : 'play'}
@@ -143,6 +145,7 @@ export function Player({
           width={14}
           height={14}
         />
+
         <Interactive
           name="advance"
           color={player.icon.primary}
