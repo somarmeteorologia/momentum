@@ -91,7 +91,8 @@ const outlines = [
   'segment',
   'map',
   'person',
-  'hamburguer'
+  'hamburguer',
+  'heavyRain'
 ]
 
 const temperaturies = [
