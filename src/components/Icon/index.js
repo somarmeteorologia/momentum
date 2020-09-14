@@ -99,6 +99,7 @@ const names = [
   'list',
   'person',
   'hamburguer',
+  'heavyRain',
 
   'dayCC',
   'nightCC',
