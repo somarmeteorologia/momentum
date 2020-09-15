@@ -174,11 +174,11 @@ export const Select = memo(
       setFocus(false)
     }
 
-    const whenSelected = ({ text }) => () => {
+    const whenSelected = ({ value, text }) => () => {
       toggleShow()
 
       setSelected(text)
-      onChange(text)
+      onChange(value)
     }
 
     const whenFocus = () => setFocus(!focus)
@@ -222,6 +222,7 @@ export const Select = memo(
 
           <Options
             animate={show ? 'visible' : 'hidden'}
+            initial="hidden"
             variants={{
               visible: {
                 opacity: 1,

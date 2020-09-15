@@ -44,6 +44,7 @@ storiesOf(`${GROUPS.COMPONENTS}|Select`, module)
         { value: 2, text: 'Apple' },
         { value: 3, text: 'Orange' }
       ]}
+      onChange={value => console.log(value)}
     />
   ))
   .add('With Formik', () => (
