@@ -1,39 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Not expect visual regression 1`] = `
-.c7 {
+.c4 {
+  display: inline-block;
+}
+
+.c6 {
+  display: inline-block;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.c8 {
   -webkit-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
 }
 
-.c6 {
+.c7 {
   -webkit-transform: scaleY(-1);
   -ms-transform: scaleY(-1);
   transform: scaleY(-1);
 }
 
-.c4 {
-  display: inline-block;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  line-height: 0;
-}
-
 .c5 {
-  display: inline-block;
-  margin-right: 5px;
-  margin-left: 5px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -102,7 +92,7 @@ exports[`Not expect visual regression 1`] = `
   align-items: center;
 }
 
-.c9 {
+.c10 {
   width: 100%;
   top: calc(100% + 4px);
   position: absolute;
@@ -115,7 +105,7 @@ exports[`Not expect visual regression 1`] = `
   box-shadow: 0 2px 4px rgba(50,71,151,0.15);
 }
 
-.c10 {
+.c11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -135,16 +125,16 @@ exports[`Not expect visual regression 1`] = `
   cursor: pointer;
 }
 
-.c10:hover {
+.c11:hover {
   color: #fff;
   background-color: #133BEC;
 }
 
-.c10 .text {
+.c11 .text {
   margin-left: 10px;
 }
 
-.c11 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -164,12 +154,12 @@ exports[`Not expect visual regression 1`] = `
   cursor: pointer;
 }
 
-.c11:hover {
+.c12:hover {
   color: #fff;
   background-color: #133BEC;
 }
 
-.c11 .text {
+.c12 .text {
   margin-left: 10px;
 }
 
@@ -197,7 +187,7 @@ exports[`Not expect visual regression 1`] = `
   cursor: pointer;
 }
 
-.c8 {
+.c9 {
   width: 100%;
   height: 40px;
   padding: 0 16px;
@@ -208,27 +198,27 @@ exports[`Not expect visual regression 1`] = `
   cursor: text;
 }
 
-.c8:focus {
+.c9:focus {
   outline: none;
 }
 
-.c8::-webkit-input-placeholder {
+.c9::-webkit-input-placeholder {
   color: #6479cb;
 }
 
-.c8::-moz-placeholder {
+.c9::-moz-placeholder {
   color: #6479cb;
 }
 
-.c8:-ms-input-placeholder {
+.c9:-ms-input-placeholder {
   color: #6479cb;
 }
 
-.c8::placeholder {
+.c9::placeholder {
   color: #6479cb;
 }
 
-.c12 {
+.c13 {
   margin-top: 8px;
   font-family: Inter,sans-serif;
   font-size: 0.625rem;
@@ -250,7 +240,7 @@ exports[`Not expect visual regression 1`] = `
           data-testid="interable"
         >
           <div
-            class="sc-AxjAm c4"
+            class="c4 c5"
             data-testid="icon-state"
             height="20"
             width="20"
@@ -287,15 +277,15 @@ exports[`Not expect visual regression 1`] = `
             style="transform: none;"
           >
             <div
-              class="sc-AxjAm c5"
+              class="c6 c5"
               height="10"
               width="10"
             >
               <div
-                class="c6"
+                class="c7"
               >
                 <div
-                  class="c7"
+                  class="c8"
                 >
                   <svg
                     fill="none"
@@ -318,7 +308,7 @@ exports[`Not expect visual regression 1`] = `
           </span>
         </button>
         <input
-          class="c8"
+          class="c9"
           data-testid="input-autocomplete"
           placeholder="Digite aqui..."
           value=""
@@ -326,15 +316,15 @@ exports[`Not expect visual regression 1`] = `
       </div>
     </label>
     <ul
-      class="c9"
+      class="c10"
       style="display: none; opacity: 0;"
     >
       <li
-        class="c10"
+        class="c11"
         value="city"
       >
         <div
-          class="sc-AxjAm c4"
+          class="c4 c5"
           data-testid="list-city"
           height="20"
           width="20"
@@ -374,11 +364,11 @@ exports[`Not expect visual regression 1`] = `
         </div>
       </li>
       <li
-        class="c11"
+        class="c12"
         value="state"
       >
         <div
-          class="sc-AxjAm c4"
+          class="c4 c5"
           data-testid="list-state"
           height="20"
           width="20"
@@ -419,11 +409,11 @@ exports[`Not expect visual regression 1`] = `
       </li>
     </ul>
     <ul
-      class="c9"
+      class="c10"
       style="display: none; opacity: 0;"
     />
     <span
-      class="c12"
+      class="c13"
     />
   </div>
 </div>

@@ -1,20 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Not expect visual regression 1`] = `
-.c5 {
+.c3 {
+  display: inline-block;
+}
+
+.c6 {
   -webkit-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
 }
 
-.c4 {
+.c5 {
   -webkit-transform: scaleY(-1);
   -ms-transform: scaleY(-1);
   transform: scaleY(-1);
 }
 
-.c3 {
-  display: inline-block;
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -78,7 +81,7 @@ exports[`Not expect visual regression 1`] = `
   border: 1px solid #6479cb;
 }
 
-.c6 {
+.c7 {
   width: 100%;
   top: calc(100% + 4px);
   position: absolute;
@@ -90,7 +93,7 @@ exports[`Not expect visual regression 1`] = `
   box-shadow: 0 2px 4px rgba(50,71,151,0.15);
 }
 
-.c7 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -111,7 +114,7 @@ exports[`Not expect visual regression 1`] = `
   color: #19244d;
 }
 
-.c7:hover {
+.c8:hover {
   color: #fff;
   background-color: #133BEC;
 }
@@ -135,15 +138,15 @@ exports[`Not expect visual regression 1`] = `
         Selecionar
       </span>
       <div
-        class="sc-AxjAm c3"
+        class="c3 c4"
         height="20"
         width="6"
       >
         <div
-          class="c4"
+          class="c5"
         >
           <div
-            class="c5"
+            class="c6"
           >
             <svg
               fill="none"
@@ -165,16 +168,17 @@ exports[`Not expect visual regression 1`] = `
       </div>
     </div>
     <div
-      class="c6"
+      class="c7"
+      style="display: none; opacity: 0;"
     >
       <div
-        class="c7"
+        class="c8"
         value="1"
       >
         Banana
       </div>
       <div
-        class="c7"
+        class="c8"
         value="2"
       >
         Apple
