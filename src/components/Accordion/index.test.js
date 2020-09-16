@@ -31,8 +31,11 @@ test('expect render with theme', () => {
   )
 
   const divHeader = getByText('Header').closest('div')
-  expect(divHeader).toHaveStyle(`background-color:${dark.accordion.bg.primary}`)
-  expect(divHeader).toHaveStyleRule(`color:${dark.accordion.text.primar}`)
+  expect(divHeader).toHaveStyleRule('color', dark.accordion.text.primary)
+  expect(divHeader).toHaveStyleRule(
+    'background-color',
+    dark.accordion.bg.primary
+  )
 })
 
 test('expect open body with click', async () => {

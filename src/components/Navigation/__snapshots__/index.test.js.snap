@@ -1,35 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Not expect visual regression 1`] = `
-.c6 {
+.c7 {
   display: inline-block;
   padding: 0 5px;
-}
-
-.c3 {
-  display: inline-block;
 }
 
 .c2 {
   display: inline-block;
   margin-right: 10px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  line-height: 0;
 }
 
-.c13 {
+.c4 {
   display: inline-block;
+}
+
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -71,7 +57,7 @@ exports[`Not expect visual regression 1`] = `
   background-color: #d7dcf2;
 }
 
-.c5 {
+.c6 {
   width: calc(100% - 10px);
   height: 50px;
   border-radius: 0.25rem;
@@ -96,12 +82,12 @@ exports[`Not expect visual regression 1`] = `
   transition: all 100ms cubic-bezier(0.64,0.04,0.35,1);
 }
 
-.c5:hover {
+.c6:hover {
   background-color: #fff;
 }
 
-.c5:hover path,
-.c5:hover span {
+.c6:hover path,
+.c6:hover span {
   color: #133BEC;
 }
 
@@ -131,15 +117,14 @@ exports[`Not expect visual regression 1`] = `
   align-items: center;
 }
 
-.c7 {
-  display: inline-block;
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c10 {
+.c11 {
   border-radius: 1.5rem;
   background-color: #133BEC;
   -webkit-box-pack: end;
@@ -162,14 +147,14 @@ exports[`Not expect visual regression 1`] = `
   padding: 0 3px;
 }
 
-.c11 {
+.c12 {
   border-radius: 50%;
   background-color: #fff;
   height: 10px;
   width: 10px;
 }
 
-.c12 {
+.c13 {
   font-family: Inter,sans-serif;
   color: #080B19;
   cursor: pointer;
@@ -177,7 +162,7 @@ exports[`Not expect visual regression 1`] = `
   margin-left: 8px;
 }
 
-.c8 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -191,7 +176,7 @@ exports[`Not expect visual regression 1`] = `
   flex-direction: row;
 }
 
-.c9 {
+.c10 {
   border: 0;
   -webkit-clip: rect(0 0 0 0);
   clip: rect(0 0 0 0);
@@ -206,7 +191,7 @@ exports[`Not expect visual regression 1`] = `
   width: 1px;
 }
 
-.c4 {
+.c5 {
   font-family: Inter,sans-serif;
   font-weight: 600;
   display: block;
@@ -237,7 +222,7 @@ exports[`Not expect visual regression 1`] = `
       class="c1"
     >
       <div
-        class="c2"
+        class="c2 c3"
         height="20"
         width="20"
       >
@@ -260,12 +245,12 @@ exports[`Not expect visual regression 1`] = `
         </svg>
       </div>
       <div
-        class="c3"
+        class="c4"
         color="#19244d"
         display="block"
       >
         <span
-          class="c4"
+          class="c5"
           color="#19244d"
           display="block"
         >
@@ -274,35 +259,35 @@ exports[`Not expect visual regression 1`] = `
       </div>
     </div>
     <div
-      class="c5"
+      class="c6"
       data-testid="open-cars"
     >
       <div
-        class="c6"
+        class="c7"
         data-interable="interable"
       >
         <div
-          class="c7"
+          class="c4 c8"
         >
           <label
-            class="c8"
+            class="c9"
             for="cars"
           >
             <input
               checked=""
-              class="c9"
+              class="c10"
               id="cars"
               type="checkbox"
             />
             <div
-              class="c10"
+              class="c11"
             >
               <div
-                class="c11"
+                class="c12"
               />
             </div>
             <span
-              class="c12"
+              class="c13"
             >
               Cars
             </span>
@@ -310,7 +295,7 @@ exports[`Not expect visual regression 1`] = `
         </div>
       </div>
       <div
-        class="c13"
+        class="c4 c3"
         height="12"
         width="12"
       >
@@ -339,14 +324,14 @@ exports[`Not expect visual regression 1`] = `
       />
     </div>
     <div
-      class="c5"
+      class="c6"
       data-testid="open-newsletter"
     >
       <div
         class="c16"
       >
         <div
-          class="c2"
+          class="c2 c3"
           height="20"
           width="20"
         >
@@ -381,7 +366,7 @@ exports[`Not expect visual regression 1`] = `
           </svg>
         </div>
         <div
-          class="c3"
+          class="c4"
           display="block"
         >
           <span
@@ -393,7 +378,7 @@ exports[`Not expect visual regression 1`] = `
         </div>
       </div>
       <div
-        class="c13"
+        class="c4 c3"
         height="12"
         width="12"
       >

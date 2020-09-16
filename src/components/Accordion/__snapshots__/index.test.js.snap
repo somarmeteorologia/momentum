@@ -3,6 +3,9 @@
 exports[`Not expect visual regression 1`] = `
 .c4 {
   display: inline-block;
+}
+
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -79,6 +82,7 @@ exports[`Not expect visual regression 1`] = `
   >
     <div
       class="c2"
+      data-testid="header-accordion"
     >
       Header
       <span
@@ -86,7 +90,7 @@ exports[`Not expect visual regression 1`] = `
         style="transform: rotate(45deg) translateZ(0);"
       >
         <div
-          class="sc-AxjAm c4"
+          class="c4 c5"
           height="16"
           width="16"
         >

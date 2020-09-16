@@ -86,7 +86,10 @@ export const Accordion = memo(({ accordions, auto, full }) => {
       {list.map(({ id, active, Header, Body }) => {
         return (
           <Container key={id}>
-            <Headerable onClick={() => setActive(id)}>
+            <Headerable
+              data-testid="header-accordion"
+              onClick={() => setActive(id)}
+            >
               {Header}
 
               <Iconable

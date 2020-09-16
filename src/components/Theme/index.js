@@ -196,7 +196,7 @@ export const Theme = {
         primary: ebony.thirteen,
         secondary: white.hundred,
         tertiary: ebony.twenty,
-        active: ebony.forty,
+        active: cornflower.fifty,
         hover: cornflower.fifty
       },
       text: {
